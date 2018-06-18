@@ -9,26 +9,159 @@ function init() {
         guardaryeditar(e);
     })
 
-
-    $.post("../ajax/entrenador.php?op=selectSucursal", function(r) {
+    $.post("../ajax/alumno.php?op=selectSucursal", function(r) {
         $("#sucursal_idsucursal").html(r);
         $('#sucursal_idsucursal').selectpicker('refresh');
 
     });
+
+
+    $("#ocultar").hide();
+    $("#ocultar1").hide();
+    $("#ocultar2").hide();
+
+
     $("#imagenmuestra").hide();
+}
+
+
+$("#checkbox1").on('change', function() {
+    if ($(this).is(':checked')) {
+
+
+
+        $('#bandera').val("true");
+
+        console.log($('#bandera').val());
+
+        $("#ocultar").show();
+        $("#ocultar1").show();
+        $("#ocultar2").show();
+
+
+
+        $("#sucursal_idsucursal").attr("required", true);
+        $("#categoria_idcategoria").attr("required", true);
+        $("#idsucursal_categorias").attr("required", true);
+
+
+    } else {
+
+
+        $("#ocultar").hide();
+        $("#ocultar1").hide();
+        $("#ocultar2").hide();
+
+        $('#bandera').val("false");
+        console.log($('#bandera').val());
+
+        $("#sucursal_idsucursal").attr("required", false);
+        $("#categoria_idcategoria").attr("required", false);
+        $("#idsucursal_categorias").attr("required", false);
+
+    }
+
+});
+
+function abrirmodal(identrenador) {
+
+    $('#myModal').modal('show');
+
+
+    console.log(identrenador);
+
+    $.post("../ajax/entrenador.php?op=mostrar", { identrenador: identrenador }, function(data, status) {
+        data = JSON.parse(data);
+
+
+
+        $("#identrenador1").val(data.identrenador);
+        $("#cedula_entrenador1").val(data.cedula_entrenador);
+        $("#nombre_entrenador1").val(data.nombre_entrenador);
+        $("#apellido_entrenador1").val(data.apellido_entrenador);
+        $("#direccion_entrenador1").val(data.direccion_entrenador);
+        $("#email_entrenador1").val(data.email_entrenador);
+        $("#telefono_entrenador1").val(data.telefono_entrenador);
+        $("#celular_entrenador1").val(data.celular_entrenador);
+        $("#descripcion1").val(data.descripcion);
+        $("#genero_entrenador1").val(data.genero_entrenador);
+        $("#titulo_entrenador1").val(data.titulo_entrenador);
+        $("#fechanacimiento_entrenador1").val(data.fechanacimiento_entrenador);
+
+        $("#imagenmodal").attr("src", "../files/entrenadores/" + data.imagen_entrenador);
+
+
+    });
+}
+
+function cargarCategorias(idsucursal) {
+
+    console.log("entra al ajax");
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
+
+
+    $("#categoria_idcategoria").val("");
+    $('#categoria_idcategoria').selectpicker('refresh');
+
+    $('#categoria_idcategoria').find('option').remove();
+
+    $.post("../ajax/entrenador.php?op=selectCategoria&sucursalCategoria=" + idsucursal, function(r) {
+        $("#categoria_idcategoria").html(r);
+        $('#categoria_idcategoria').selectpicker('refresh');
+
+    });
+
+}
+
+function cargarHorario(idcategoria) {
+    var idsucursal = $('#sucursal_idsucursal').val();
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
+
+    $.post("../ajax/entrenador.php?op=selectHorario&sucursalCategoria=" + idsucursal + "&horarioCategoria=" + idcategoria, function(r) {
+        $("#idsucursal_categorias").html(r);
+        $('#idsucursal_categorias').selectpicker('refresh');
+
+    });
+
 }
 
 //Función limpiar
 function limpiar() {
+
+
+
     $("#identrenador").val("");
     $("#cedula_entrenador").val("");
     $("#nombre_entrenador").val("");
     $("#apellido_entrenador").val("");
+    $("#direccion_entrenador").val("");
     $("#email_entrenador").val("");
     $("#telefono_entrenador").val("");
     $("#celular_entrenador").val("");
-    $("#direccion_entrenador").val("");
+    $("#descripcion").val("");
+    $("#genero_entrenador").val("");
+    $('#genero_entrenador').selectpicker('refresh');
+
+    $("#titulo_entrenador").val("");
+    $("#fechanacimiento_entrenador").val("");
+
     $("#sucursal_idsucursal").val("");
+    $('#sucursal_idsucursal').selectpicker('refresh');
+
+    $("#categoria_idcategoria").val("");
+    $('#categoria_idcategoria').selectpicker('refresh');
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
     $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#imagen").val("");
@@ -117,22 +250,19 @@ function mostrar(identrenador) {
         mostrarform(true);
 
 
-
-        $("#sucursal_idsucursal").val(data.sucursal_idsucursal);
-        $('#sucursal_idsucursal').selectpicker('refresh');
-
         $("#identrenador").val(data.identrenador);
         $("#cedula_entrenador").val(data.cedula_entrenador);
         $("#nombre_entrenador").val(data.nombre_entrenador);
         $("#apellido_entrenador").val(data.apellido_entrenador);
-
-
-
+        $("#direccion_entrenador").val(data.direccion_entrenador);
         $("#email_entrenador").val(data.email_entrenador);
         $("#telefono_entrenador").val(data.telefono_entrenador);
-
         $("#celular_entrenador").val(data.celular_entrenador);
-        $("#direccion_entrenador").val(data.direccion_entrenador);
+        $("#descripcion").val(data.descripcion);
+        $("#genero_entrenador").val(data.genero_entrenador);
+        $('#genero_entrenador').selectpicker('refresh');
+        $("#titulo_entrenador").val(data.titulo_entrenador);
+        $("#fechanacimiento_entrenador").val(data.fechanacimiento_entrenador);
 
         $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src", "../files/entrenadores/" + data.imagen_entrenador);
@@ -163,6 +293,37 @@ function activar(identrenador) {
             });
         }
     })
+}
+
+function validarcedula() {
+
+    var cedula_representante = $('#cedula_entrenador').val();
+    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
+
+}
+
+function validarRUC() {
+
+    var cedula_representante = $('#cedula_entrenador').val();
+    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
+}
+
+function validarRUCP() {
+
+    var cedula_representante = $('#cedula_entrenador').val();
+    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
 }
 
 

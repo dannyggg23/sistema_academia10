@@ -55,9 +55,15 @@ if($_SESSION['ficha_alumno']==1)
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Cédula(*):</label>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">CI</button>
+                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC()">RUC-SP</button>
+                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP()">RUC-SPRIVADA</button>
                             <input type="hidden" name="idrepresentante" id="idrepresentante">
                             <input type="text" class="form-control" name="cedula_representante" id="cedula_representante" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
                           </div>
+
+                        
+
                         <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Nombre(*):</label>
                             <input type="text" class="form-control" name="nombre_representante" id="nombre_representante" placeholder="Nombres y apellidos del representante" maxlength="70" minlength="10" required>
@@ -65,6 +71,9 @@ if($_SESSION['ficha_alumno']==1)
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Cédula Cónyugue(*):</label>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula1()">CI</button>
+                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC1()">RUC-SP</button>
+                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP1()">RUC-SPRIVADA</button>
                             <input type="text" class="form-control" name="cedula_conyugue_representante" id="cedula_conyugue_representante" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
                           </div>
                         <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">

@@ -60,6 +60,9 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Cédula(*):</label>
                             <input type="hidden" name="idalumno" id="idalumno">
+                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">C.I</button>
+                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC()">RUC-S.PUBLICA</button>
+                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP()">RUC-S.PRIVADA</button>
                             <input type="text" class="form-control" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" required>
                           </div>
 
@@ -148,7 +151,7 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div id="ocultar3" name="ocultar3" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Decuento(*):</label>
-                            <input type="text" class="form-control" name="descuento_ficha_alumno" id="descuento_ficha_alumno" placeholder="Descuento %" maxlength="20" required>
+                            <input type="text" class="form-control" name="descuento_ficha_alumno" id="descuento_ficha_alumno" placeholder="Descuento %" maxlength="20" >
                           </div>
 
 

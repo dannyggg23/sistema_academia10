@@ -64,11 +64,15 @@ function listar() {
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: [
+        buttons: [{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL'
+
+            },
             'copyHtml5',
             'excelHtml5',
             'csvHtml5',
-            'pdf'
         ],
         "ajax": {
             url: '../ajax/sucursal.php?op=listar',

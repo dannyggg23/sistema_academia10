@@ -78,9 +78,8 @@ if($_SESSION['pagos']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
                             <select id="tipo_documento" name="tipo_documento" class="form-control selectpicker" data-live-search="true" required>
-                              <option value="Boleta">Boleta</option>
                               <option value="Factura">Factura</option>
-                              <option value="Ticket">Ticket</option>
+                            
                             </select>
                           </div>
 
@@ -96,7 +95,7 @@ if($_SESSION['pagos']==1)
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Impuesto:</label>
+                            <label>Iva:</label>
                               <input type="text" class="form-control" name="impuesto" id="impuesto" maxlength="10" placeholder="Impuesto" required="">
                           </div>
 
@@ -166,7 +165,6 @@ if($_SESSION['pagos']==1)
           <table id="tblarticulos" class="table table-striped table-bordered table-condensed table-hover">
             <thead>
                 <th>Opciones</th>
-                <th>Ficha</th>
                 <th>Alumno</th>
                 <th>Nombre</th>
                 <th>Acceso</th>
@@ -177,7 +175,6 @@ if($_SESSION['pagos']==1)
             </tbody>
             <tfoot>
               <th>Opciones</th>
-                <th>Ficha</th>
                 <th>Alumno</th>
                 <th>Nombre</th>
                 <th>Acceso</th>

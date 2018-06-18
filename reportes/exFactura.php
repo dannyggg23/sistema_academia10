@@ -16,7 +16,7 @@ if ($_SESSION['pagos']==1)
 require('Factura.php');
 
 //Establecemos los datos de la empresa
-
+$cedularepresentante;
 $logo = "logo.jpg";
 $ext_logo = "jpg";
 $empresa = "NOMBRE EMPRESA";
@@ -32,7 +32,11 @@ $venta= new Pago();
 
 $rsptav = $venta->pagocabecera($_GET["id"]);
 //Recorremos todos los valores obtenidos
+
+
 $regv = $rsptav->fetch_object();
+
+$cedularepresentante=$regv->cedula_representante;
 
 //Establecemos la configuración de la factura
 $pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
@@ -76,7 +80,7 @@ $rsptad = $venta->pagodetalle($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
   $line = array( "FICHA"=> "$regd->numeroFicha_alumno",
-                "DESCRIPCION"=> utf8_decode("$regd->cedula_alumno"." "."$regd->nombre_alumno". " "."$regd->apellido_alumno"),
+                "DESCRIPCION"=> utf8_decode("$regd->cedula_alumno"." "."$regd->nombre_alumno".""),
                 "N.MESES"=> "$regd->numero_meses_pago",
                 "P.M."=> "$regd->precio_pago",
                 "DSCTO" => "$regd->descuento_pago",
@@ -94,7 +98,55 @@ $pdf->addCadreTVAs("---".$con_letra);
 //Mostramos el impuesto
 $pdf->addTVAs( $regv->impuesto, $regv->total,"$ ");
 $pdf->addCadreEurosFrancs("IVA"." $regv->impuesto %");
-$pdf->Output('Reporte de Venta','I');
+
+//$pdf->Output('Reporte de Venta','I');
+
+//////////EMAIL
+
+$pdf->Output();
+
+$pdf->Output('F','facturas/'.$cedularepresentante.'.pdf');
+
+require_once ('../vendor/phpmailer/phpmailer/src/Exception.php');
+require_once ('../vendor/phpmailer/phpmailer/src/OAuth.php');
+require_once ('../vendor/phpmailer/phpmailer/src/PHPMailer.php');
+require_once ('../vendor/phpmailer/phpmailer/src/SMTP.php');
+require_once ('../vendor/phpmailer/phpmailer/src/POP3.php');
+
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+//$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+
+$mail->IsSMTP(); // telling the class to use SMTP
+
+$body ="Danny García";
+
+try {
+     //$mail->Host       = "mail.gmail.com"; // SMTP server
+      $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+      $mail->SMTPAuth   = true;                  // enable SMTP authentication
+      $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+      $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+      $mail->Port       = 465;   // set the SMTP port for the GMAIL server
+      $mail->SMTPKeepAlive = true;
+      $mail->Mailer = "smtp";
+      $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
+      $mail->Password   = "..Danny..3Burguer";            // GMAIL password
+      $mail->AddAddress('azdannyggg23@gmail.com', 'abc');
+      $mail->SetFrom('dannyggg23@gmail.com', 'Admin');
+      $mail->addAttachment('facturas/'.$cedularepresentante.'.pdf');         // Add attachments
+      $mail->Subject = 'PHPMailer Test Subject via mail(), advanced';
+      $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+      $mail->MsgHTML($body);
+      $mail->Send();
+      echo "Message Sent OK</p>\n";
+} catch (phpmailerException $e) {
+      echo $e->errorMessage(); //Pretty error messages from PHPMailer
+} catch (Exception $e) {
+      echo $e->getMessage(); //Boring error messages from anything else!
+}
+
+
+//////////////
 
 
 }

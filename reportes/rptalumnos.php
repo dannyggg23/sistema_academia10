@@ -55,7 +55,7 @@ $pdf->SetWidths(array(30,50,40,30,30));
 while($reg= $rspta->fetch_object())
 {  
   $numeroFicha_alumno = $reg->numeroFicha_alumno;
-    $nombreAlumno = $reg->nombreAlumno;
+    $nombreAlumno = $reg->nombre_alumno;
     $nombre_categoria = $reg->nombre_categoria;
     $horario =$reg->horario;
     $fecha_acceso = $reg->fecha_acceso;

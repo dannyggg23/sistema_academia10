@@ -6,25 +6,137 @@ Class Entrenador
 
   }
 
-  public function insertar($cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen_entrenador,$sucursal_idsucursal,$descripcion){
-    $sql=sprintf("INSERT INTO `entrenador`( `cedula_entrenador`, `nombre_entrenador`, `apellido_entrenador`, `direccion_entrenador`, `email_entrenador`, `telefono_entrenador`, `celular_entrenador`, `imagen_entrenador`, `sucursal_idsucursal`, `usuario`, `clave`,descripcion) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen_entrenador,$sucursal_idsucursal,$cedula_entrenador,$cedula_entrenador,$descripcion);
-    return ejecutarConsulta($sql);
+  public function insertar($cedula_entrenador,
+  $nombre_entrenador,
+  $direccion_entrenador,
+  $email_entrenador,
+  $telefono_entrenador,
+  $celular_entrenador,
+  $imagen_entrenador,
+  $descripcion,
+  $genero_entrenador,
+  $titulo_entrenador,
+  $fechanacimiento_entrenador,
+  $idsucursal_categorias,
+  $bandera){
+
+    if($bandera=="true")
+    {
+      $sql=sprintf("INSERT INTO `entrenador`( 
+        `cedula_entrenador`, 
+        `nombre_entrenador`,
+        `direccion_entrenador`,
+        `email_entrenador`,
+        `telefono_entrenador`, 
+        `celular_entrenador`,
+        `imagen_entrenador`,
+        `usuario`,
+        `clave`,
+        descripcion,
+        genero_entrenador,
+        titulo_entrenador,
+        fechanacimiento_entrenador)
+         VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+         $cedula_entrenador,
+         $nombre_entrenador,
+         $direccion_entrenador,
+         $email_entrenador,
+         $telefono_entrenador,
+         $celular_entrenador,
+         $imagen_entrenador,
+         $cedula_entrenador,
+         $cedula_entrenador,
+         $descripcion, 
+         $genero_entrenador,
+         $titulo_entrenador,
+         $fechanacimiento_entrenador);
+
+        $identrenador= ejecutarConsulta_retornarID($sql);
+        $sw=true;
+
+        $sql_ficha_entrenador=sprintf("INSERT INTO `ficha_entrenador`( `fechaApertura_entrenador`,  `entrenador_identrenador`, `sucursal_categorias_idsucursal_categorias`) VALUES (CURDATE(),'%s','%s')",$identrenador,$idsucursal_categorias);
+      
+       $sql_categoria=sprintf("UPDATE `sucursal_categorias` SET 
+       `disponible`=0 
+       WHERE idsucursal_categorias='%s'",$idsucursal_categorias);
+        ejecutarConsulta($sql_categoria) or $sw=false;
+        ejecutarConsulta($sql_ficha_entrenador) or $sw=false;
+        return $sw;
+    }
+
+    else
+    {
+      $sql=sprintf("INSERT INTO `entrenador`( 
+        `cedula_entrenador`, 
+        `nombre_entrenador`,
+        `direccion_entrenador`,
+        `email_entrenador`,
+        `telefono_entrenador`, 
+        `celular_entrenador`,
+        `imagen_entrenador`,
+        `usuario`,
+        `clave`,
+        descripcion,
+        genero_entrenador,
+        titulo_entrenador,
+        fechanacimiento_entrenador)
+         VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+         $cedula_entrenador,
+         $nombre_entrenador,
+         $direccion_entrenador,
+         $email_entrenador,
+         $telefono_entrenador,
+         $celular_entrenador,
+         $imagen_entrenador,
+         $cedula_entrenador,
+         $cedula_entrenador,
+         $descripcion, 
+         $genero_entrenador,
+         $titulo_entrenador,
+         $fechanacimiento_entrenador);
+        return ejecutarConsulta($sql);
+
+    }
+   
   }
 
-  public function editar($identrenador,$cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen_entrenador,$sucursal_idsucursal,$descripcion)
+  public function editar($identrenador,
+  $cedula_entrenador,
+  $nombre_entrenador,
+  $direccion_entrenador,
+  $email_entrenador,
+  $telefono_entrenador,
+  $celular_entrenador,
+  $imagen_entrenador,
+  $descripcion,
+  $genero_entrenador,
+  $titulo_entrenador,
+  $fechanacimiento_entrenador)
   {
   $sql=sprintf("UPDATE `entrenador` SET 
     `cedula_entrenador`='%s',
     `nombre_entrenador`='%s',
-    `apellido_entrenador`='%s',
     `direccion_entrenador`='%s',
     `email_entrenador`='%s',
     `telefono_entrenador`='%s',
     `celular_entrenador`='%s',
     `imagen_entrenador`='%s',
-    `sucursal_idsucursal`='%s',
-    `descripcion`='%s'
-     WHERE `identrenador`='%s'",$cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen_entrenador,$sucursal_idsucursal,$descripcion,$identrenador);
+    `descripcion`='%s',
+    genero_entrenador='%s',
+    titulo_entrenador='%s',
+    fechanacimiento_entrenador='%s'
+     WHERE `identrenador`='%s'",$cedula_entrenador,
+     $nombre_entrenador,
+     $direccion_entrenador,
+     $email_entrenador,
+     $telefono_entrenador,
+     $celular_entrenador,
+     $imagen_entrenador,
+     $descripcion,
+     $genero_entrenador,
+     $titulo_entrenador,
+     $fechanacimiento_entrenador,
+     $identrenador);
     return ejecutarConsulta($sql);
   }
 
@@ -45,17 +157,7 @@ Class Entrenador
     return ejecutarConsultaSimpleFila($sql);
   }
   public function listar(){
-      $sql="SELECT entrenador.identrenador,
-      entrenador.cedula_entrenador,
-      entrenador.nombre_entrenador,
-      entrenador.apellido_entrenador,
-      entrenador.direccion_entrenador,
-      entrenador.email_entrenador,
-      entrenador.telefono_entrenador,
-      entrenador.celular_entrenador,
-      entrenador.imagen_entrenador,
-      entrenador.estado,
-      sucursal.nombre_sucursal  FROM `entrenador` INNER JOIN sucursal on sucursal.idsucursal=entrenador.sucursal_idsucursal";
+      $sql="SELECT * from entrenador"; 
      return ejecutarConsulta($sql);
 
   }

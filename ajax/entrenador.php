@@ -9,19 +9,21 @@ $cedula_entrenador=isset($_POST["cedula_entrenador"])? limpiarCadena($_POST["ced
 
 $nombre_entrenador=isset($_POST["nombre_entrenador"])? limpiarCadena($_POST["nombre_entrenador"]):"";
 
-$apellido_entrenador=isset($_POST["apellido_entrenador"])? limpiarCadena($_POST["apellido_entrenador"]):"";
-
 $direccion_entrenador=isset($_POST["direccion_entrenador"])? limpiarCadena($_POST["direccion_entrenador"]):"";
 
 $email_entrenador=isset($_POST["email_entrenador"])? limpiarCadena($_POST["email_entrenador"]):"";
 
 $telefono_entrenador=isset($_POST["telefono_entrenador"])? limpiarCadena($_POST["telefono_entrenador"]):"";
 
-
 $celular_entrenador=isset($_POST["celular_entrenador"])? limpiarCadena($_POST["celular_entrenador"]):"";
 
+$descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):"";
+$genero_entrenador=isset($_POST["genero_entrenador"])? limpiarCadena($_POST["genero_entrenador"]):"";
+$titulo_entrenador=isset($_POST["titulo_entrenador"])? limpiarCadena($_POST["titulo_entrenador"]):"";
+$fechanacimiento_entrenador=isset($_POST["fechanacimiento_entrenador"])? limpiarCadena($_POST["fechanacimiento_entrenador"]):"";
+$idsucursal_categorias=isset($_POST["idsucursal_categorias"])? limpiarCadena($_POST["idsucursal_categorias"]):"";
+$bandera=isset($_POST["bandera"])? limpiarCadena($_POST["bandera"]):"";
 
-$sucursal_idsucursal=isset($_POST["sucursal_idsucursal"])? limpiarCadena($_POST["sucursal_idsucursal"]):"";
 
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 
@@ -42,11 +44,28 @@ switch ($_GET["op"]){
 			}
 		}
 		if (empty($identrenador)){
-			$rspta=$entrenador->insertar($cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen,$sucursal_idsucursal);
+			$rspta=$entrenador->insertar($cedula_entrenador,
+			$nombre_entrenador,
+			$direccion_entrenador,
+			$email_entrenador,
+			$telefono_entrenador,
+			$celular_entrenador,
+			$imagen,
+			$descripcion,
+			$genero_entrenador,
+			$titulo_entrenador,
+			$fechanacimiento_entrenador,
+			$idsucursal_categorias,
+			$bandera);
 			echo $rspta ? "Datos registrados" : "No se pudo registrar";
 		}
 		else {
-			$rspta=$entrenador->editar($identrenador,$cedula_entrenador,$nombre_entrenador,$apellido_entrenador,$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen,$sucursal_idsucursal);
+			$rspta=$entrenador->editar($identrenador,
+			$cedula_entrenador,
+			$nombre_entrenador,
+			$direccion_entrenador,$email_entrenador,$telefono_entrenador,$celular_entrenador,$imagen,$descripcion,$genero_entrenador,
+			$titulo_entrenador,
+			$fechanacimiento_entrenador);
 			echo $rspta ? "Datos actualizados" : "No se pudo actualizar";
 		}
 	break;
@@ -74,19 +93,19 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->identrenador.')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg->identrenador.')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->identrenador.')"><i class="fa fa-pencil"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg->identrenador.')"><i class="fa fa-check"></i></button>',
+				 "0"=>($reg->estado)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->identrenador.')"><i class="fa fa-pencil"></i></button>'.
+				    ' <button class="btn btn-success btn-xs" onclick="abrirmodal('.$reg->identrenador.')"><i class="fa fa-eye"></i></button> '.
+ 					' <button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->identrenador.')"><i class="fa fa-close"></i></button>':
+					 ' <button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->identrenador.')"><i class="fa fa-pencil"></i></button>'.
+					 ' <button class="btn btn-success btn-xs" onclick="abrirmodal('.$reg->identrenador.')"><i class="fa fa-eye"></i></button> '.
+ 					' <button class="btn btn-primary btn-xs" onclick="activar('.$reg->identrenador.')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg->cedula_entrenador,
- 				"2"=>$reg->nombre_entrenador. ' '.$reg->apellido_entrenador,
- 				"3"=>$reg->direccion_entrenador,
- 				"4"=>$reg->email_entrenador,
+ 				"2"=>$reg->nombre_entrenador,
+ 				"3"=>$reg->genero_entrenador,
+ 				"4"=>$reg->titulo_entrenador,
  				"5"=>$reg->telefono_entrenador,
- 				"6"=>$reg->celular_entrenador,
- 				"7"=>$reg->nombre_sucursal,
- 				"8"=>"<img src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
- 				"9"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				"6"=>"<img src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
+ 				"7"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -106,9 +125,47 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
+		echo "<option > -- SELECCIONE --- </option>";
+		
+
 		while ($reg = $rspta->fetch_object())
 				{
 					echo '<option value=' . $reg->idsucursal . '>' . $reg->nombre_sucursal . '</option>';
+				}
+	break;
+
+
+	case "selectCategoria":
+		require_once "../modelos/Chsucursales.php";
+		$sucursal = ($_GET["sucursalCategoria"]);
+		$categoria=new Chsucursales;
+
+		$rspta=$categoria->categoriasSucursal($sucursal);
+
+		echo "<option > -- Seleccione --- </option>";
+		
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value=' . $reg->categoria_idcategoria . '>' . $reg->nombre_categoria . '</option>';
+				}
+	    break;
+
+	case "selectHorario":
+		require_once "../modelos/Chsucursales.php";
+		$idsucursal = ($_GET["sucursalCategoria"]);
+		$idcategoria = ($_GET["horarioCategoria"]);
+
+		$categoria=new Chsucursales;
+
+		$rspta=$categoria->horarioCategoriaSucursal($idsucursal,$idcategoria);
+
+		echo "<option> -- Seleccione --- </option>";
+		
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value=' . $reg->idsucursal_categorias . '>' . $reg->nombre . '</option>';
 				}
 	break;
 }

@@ -137,6 +137,8 @@ switch ($_GET["op"]){
 
 		$rspta = $representante->select();
 
+		echo '<option>--Seleccione--</option>';
+
 		while ($reg = $rspta->fetch_object())
 				{
 					echo '<option value=' . $reg->idrepresentante . '>' . $reg->cedula_representante . '</option>';
@@ -152,15 +154,13 @@ switch ($_GET["op"]){
  		$data= Array();
 
 
-
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idficha_alumno.',\''.$reg->numeroFicha_alumno.'\')"><span class="fa fa-plus"></span></button>',
- 				"1"=>$reg->numeroFicha_alumno,
- 				"2"=>$reg->cedula_alumno,
- 				"3"=>$reg->nombreAlumno,
- 				"4"=>$reg->fecha_acceso,
-       			"5"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >"
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idficha_alumno.',\''.$reg->numeroFicha_alumno.'\',\''.$reg->descuento_ficha_alumno.'\')"><span class="fa fa-plus"></span></button>',
+ 				"1"=>$reg->cedula_alumno,
+ 				"2"=>$reg->nombre_alumno,
+ 				"3"=>$reg->fecha_acceso,
+       			"4"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >"
  				);
  		}
  		$results = array(

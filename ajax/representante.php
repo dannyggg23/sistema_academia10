@@ -35,6 +35,48 @@ switch ($_GET["op"]){
 		}
 	break;
 
+	    case 'validarcedula':
+	    //Cargar el autoload de composer
+         require '../vendor/autoload.php';
+        // Crear nuevo objeto
+         $validador = new Tavo\ValidadorEc;
+
+		 if ($validador->validarCedula($cedula_representante)) {
+			echo 'Cédula válida';
+		} else {
+			echo 'Cédula incorrecta: '.$validador->getError();
+		}
+ 		
+	break;
+	case 'validarRUC':
+	//Cargar el autoload de composer
+	 require '../vendor/autoload.php';
+	// Crear nuevo objeto
+	 $validador = new Tavo\ValidadorEc;
+
+	 if ($validador->validarRucSociedadPublica($cedula_representante)) {
+		echo 'RUC válida';
+	} else {
+		echo 'RUC incorrecta: '.$validador->getError();
+	}
+	 
+break;
+
+case 'validarRUCP':
+//Cargar el autoload de composer
+ require '../vendor/autoload.php';
+// Crear nuevo objeto
+ $validador = new Tavo\ValidadorEc;
+
+ if ($validador->validarRucSociedadPrivada($cedula_representante)) {
+	echo 'RUC válida';
+} else {
+	echo 'RUC incorrecta: '.$validador->getError();
+}
+ 
+break;
+	
+
 	case 'desactivar':
 		$rspta=$representante->desactivar($idrepresentante);
  		echo $rspta ? "Datos desactivados" : "No se puede desactivar";

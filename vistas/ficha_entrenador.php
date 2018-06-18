@@ -32,10 +32,9 @@ if($_SESSION['ficha_entrenador']==1)
                           <thead>
 
                             <th>Opciones</th>
-                            <th>N° Ficha</th>
-                            <th>Fecha</th>
-                            <th>Cédula</th>
-                            <th>Entrenador</th>
+                            <th>Ficha</th>
+                            <th>Nombre</th>
+                            <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
                             <th>Estado</th>
@@ -45,11 +44,10 @@ if($_SESSION['ficha_entrenador']==1)
                           </tbody>
                           <tfoot>
                             
-                            <th>Opciones</th>
-                            <th>N° Ficha</th>
-                            <th>Fecha</th>
-                            <th>Cédula</th>
-                            <th>Entrenador</th>
+                          <th>Opciones</th>
+                            <th>Ficha</th>
+                            <th>Nombre</th>
+                            <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
                             <th>Estado</th>
@@ -62,26 +60,31 @@ if($_SESSION['ficha_entrenador']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Número de ficha(*):</label>
                             <input type="hidden" name="idficha_entrenador" id="idficha_entrenador">
-                            <input type="text" class="form-control" name="numeroFicha_entrenador" id="numeroFicha_entrenador" minlength="10" maxlength="13" placeholder="Número de ficha" required>
-                          </div>
-
-
-                      
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                              <input type="date" class="form-control" name="fechaApertura_entrenador" id="fechaApertura_entrenador" required>
-                          </div>
-
-
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Entrenador(*):</label>
                             <select id="entrenador_identrenador" name="entrenador_identrenador" class="form-control selectpicker" data-live-search="true" required></select>
                           </div>
 
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Categoría(*):</label>
-                            <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true" required></select>
+
+                      
+                      <div  id="ocultar" name="ocultar" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Sucursal(*):</label>
+                           
+                            <select id="sucursal_idsucursal" name="sucursal_idsucursal" class="form-control selectpicker" data-live-search="true"  required onchange="cargarCategorias(this.value)"></select>
+                           
                           </div>
+
+                          <div id="ocultar1" name="ocultar1" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Categoría(*):</label>
+                            <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true" required onchange="cargarHorario(this.value)"></select>
+                          </div>
+
+                          <div id="ocultar2" name="ocultar2" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Horario(*):</label>
+                            <select id="idsucursal_categorias" name="idsucursal_categorias" class="form-control selectpicker" required data-live-search="true"></select>
+                          </div>
+
+
+                         
 
 
                          

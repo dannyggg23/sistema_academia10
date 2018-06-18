@@ -52,7 +52,8 @@ switch ($_GET["op"]){
  				"2"=>$reg->nombre_categoria,
  				"3"=>$reg->nombre,
  				"4"=>$reg->hora_inicio." : ".$reg->hora_fin,
-      			"5"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				"5"=>($reg->disponible==1)?'SI':'NO',
+      			"6"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -72,7 +73,7 @@ switch ($_GET["op"]){
 
 		$rspta = $horario->select();
 
-		echo '<option value="0">--  Seleccione un horario  --</option>';
+		echo '<option>--  Seleccione un horario  --</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -87,7 +88,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo '<option value="0">--  Seleccione una Sucursal  --</option>';
+		echo '<option>--  Seleccione una Sucursal  --</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -101,7 +102,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo '<option value="0">--  Seleccione una Categoría  --</option>';
+		echo '<option>--  Seleccione una Categoría  --</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{

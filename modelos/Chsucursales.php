@@ -43,35 +43,35 @@ Class Chsucursales
 
   public function listar(){
 
-    $sql="SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario";
+    $sql="SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario";
     return ejecutarConsulta($sql);
 
   }
 
    public function select(){
-    $sql="SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario where sucursal_categorias.estado=1";
+    $sql="SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario where sucursal_categorias.estado=1";
     return ejecutarConsulta($sql);
   }
 
 
   ///CATEGORIAS POR SUCURSALES
   public function categoriasSucursal($idsucursal){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,categoria.nombre_categoria,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal WHERE sucursal.idsucursal='%s' GROUP BY categoria.nombre_categoria",$idsucursal);
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,categoria.nombre_categoria,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal WHERE sucursal.idsucursal='%s' AND categoria.estado=1 GROUP BY categoria.nombre_categoria",$idsucursal);
     return ejecutarConsulta($sql);
   }
 
   public function horarioCategoriaSucursal($idsucursal,$idcategoria){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal.idsucursal='%s' and categoria.idcategoria='%s' GROUP BY horario.nombre",$idsucursal,$idcategoria);
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal.idsucursal='%s' and categoria.idcategoria='%s' AND horario.estado=1 AND sucursal_categorias.disponible=0 GROUP BY horario.nombre",$idsucursal,$idcategoria);
     return ejecutarConsulta($sql);
   }
 
   public function selectCategoriass(){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,categoria.nombre_categoria,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal GROUP BY categoria.nombre_categoria");
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,categoria.nombre_categoria,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal WHERE categoria.estado=1 GROUP BY categoria.nombre_categoria");
     return ejecutarConsulta($sql);
   }
 
   public function selectHorarios(){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario GROUP BY horario.nombre");
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE horario.estado=1 GROUP BY horario.nombre");
     return ejecutarConsulta($sql);
   }
 

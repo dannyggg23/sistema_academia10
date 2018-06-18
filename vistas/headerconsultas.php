@@ -62,8 +62,8 @@
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
+           <!-- sidebar menu: : style can be found in sidebar.less -->
+           <ul class="sidebar-menu">
             <li class="header"></li>
             <li>
               <a href="escritorio.php">
@@ -91,13 +91,27 @@
               <ul class="treeview-menu">
                 <li><a href="horario.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
                 <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                <li><a href="chsucursales.php"><i class="fa fa-circle-o"></i> Asignar a Sucursales</a></li>
               </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-file-text-o"></i>
+                  <span>Entrenadores</span>
+                   <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  
+                  <li><a href="entrenador.php"><i class="fa fa-circle-o"></i> Entrenador</a></li>
+                  <li><a href="ficha_entrenador.php"><i class="fa fa-circle-o"></i> Asignar categorias</a></li>
+                </ul>
+              </li>
 
           <li class="treeview">
               <a href="#">
                 <i class="fa fa-file-text"></i>
-                <span>Ficha-Alumno</span>
+                <span>Alumnos</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -107,19 +121,7 @@
               </ul>
             </li>
 
-            <li class="treeview">
-                <a href="#">
-                  <i class="fa fa-file-text-o"></i>
-                  <span>Ficha-Entrenador</span>
-                   <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                  
-                  <li><a href="entrenador.php"><i class="fa fa-circle-o"></i> Entrenador</a></li>
-                  <li><a href="ficha_entrenador.php"><i class="fa fa-circle-o"></i> Ficha</a></li>
-                </ul>
-              </li>
-
+          
               <li class="treeview">
                   <a href="#">
                     <i class="fa fa-credit-card"></i>
@@ -158,13 +160,27 @@
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Consultass</span>
+                <i class="fa fa-bar-chart"></i> <span>Consultas</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="cpagos.php"><i class="fa fa-circle-o"></i> Consulta de pagos</a></li>
                  <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de fichas</a></li>
                 <li><a href="cdeudores.php"><i class="fa fa-circle-o"></i> Consulta de Deudores</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart"></i> <span>Noticias</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              
+                <li><a href="cpagos.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
+                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i>Crear Noticia</a></li>
+                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
+              
               </ul>
             </li>
 

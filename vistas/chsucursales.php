@@ -37,6 +37,7 @@ if($_SESSION['categoria']==1)
                             <th>Categoria</th>
                             <th>Horario</th>
                             <th>Hora</th>
+                            <th>Entrenador</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>                            
@@ -47,6 +48,7 @@ if($_SESSION['categoria']==1)
                             <th>Categoria</th>
                             <th>Horario</th>
                             <th>Hora</th>
+                            <th>Entrenador</th>
                             <th>Estado</th>
                           </tfoot>
                         </table>

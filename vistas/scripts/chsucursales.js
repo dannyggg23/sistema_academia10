@@ -36,11 +36,11 @@ function limpiar() {
 
     $("#idsucursal_categorias").val("");
 
-    $("#sucursal_idsucursal").val("0");
+    $("#sucursal_idsucursal").val("");
     $('#sucursal_idsucursal').selectpicker('refresh');
-    $("#categoria_idcategoria").val("0");
+    $("#categoria_idcategoria").val("");
     $('#categoria_idcategoria').selectpicker('refresh');
-    $("#horario_idhorario").val("0");
+    $("#horario_idhorario").val("");
     $('#horario_idhorario').selectpicker('refresh');
 
 

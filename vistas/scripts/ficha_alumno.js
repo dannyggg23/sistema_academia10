@@ -107,9 +107,6 @@ function limpiar() {
     $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
 
 
-
-
-
 }
 
 //Función mostrar formulario
@@ -192,10 +189,6 @@ function mostrar(idficha_alumno) {
         data = JSON.parse(data);
         mostrarform(true);
 
-
-
-
-
         $("#idficha_alumno").val(data.idficha_alumno);
         $("#numeroFicha_alumno").val(data.numeroFicha_alumno);
         $("#fechaApertura_alumno").val(data.fechaApertura_alumno);
@@ -213,11 +206,6 @@ function mostrar(idficha_alumno) {
 
         $("#sucursal_categorias_idsucursal_categorias").val(data.sucursal_categorias_idsucursal_categorias);
         $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
-
-
-
-
 
     })
 }

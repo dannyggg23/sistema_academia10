@@ -6,6 +6,12 @@ function init() {
     mostrarform(false);
     listar();
 
+    $("#tipo_documento").val("Factura");
+    $("#tipo_documento").selectpicker();
+
+
+
+
     $("#formulario").on("submit", function(e) {
         guardaryeditar(e);
     })
@@ -218,7 +224,7 @@ function marcarImpuesto() {
 
 }
 
-function agregarDetalle(idficha_alumno, numeroFicha_alumno) {
+function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alumno) {
 
     var n_meses = 1;
     var precio = 25;
@@ -232,7 +238,7 @@ function agregarDetalle(idficha_alumno, numeroFicha_alumno) {
             '<td> <input type="hidden" name="ficha_alumno_idficha_alumno[]" id="ficha_alumno_idficha_alumno[]" value="' + idficha_alumno + '" >' + numeroFicha_alumno + '</td>' +
             '<td> <input type="number" name="numero_meses_pago[]" id="numero_meses_pago[]" onchange="modificarSubtotales()"  value="' + n_meses + '" > </td>' +
             '<td> <input type="number" name="precio_pago[]" id="precio_pago[]" onchange="modificarSubtotales()" value="' + precio + '"> </td>' +
-            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento + '" > </td>' +
+            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento_ficha_alumno + '" > </td>' +
             '<td> <span name="subtotal" id="subtotal' + cont + '">' + subtotal + '</span> </td>' +
             '<td> <button type="button" onclick="modificarSubtotales()" class="btn btn-info"> <i class="fa fa-refresh"></i> </button> </td>' +
             '</tr>';
@@ -260,8 +266,11 @@ function modificarSubtotales() {
         var inpP = prec[i];
         var inpD = desc[i];
         var inpS = sub[i];
-        inpS.value = (inpC.value * inpP.value) - inpD.value;
+
+        inpS.value = inpP.value - (((inpC.value * inpP.value) * inpD.value) / 100);
+
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+
         console.log(inpS.value);
     }
 

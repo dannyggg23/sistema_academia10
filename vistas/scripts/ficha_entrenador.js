@@ -17,9 +17,49 @@ function init() {
 
     });
 
-    $.post("../ajax/ficha_entrenador.php?op=selectCategoria", function(r) {
+    $.post("../ajax/alumno.php?op=selectSucursal", function(r) {
+        $("#sucursal_idsucursal").html(r);
+        $('#sucursal_idsucursal').selectpicker('refresh');
+
+    });
+
+
+}
+
+function cargarCategorias(idsucursal) {
+
+    console.log("entra al ajax");
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
+
+
+    $("#categoria_idcategoria").val("");
+    $('#categoria_idcategoria').selectpicker('refresh');
+
+    $('#categoria_idcategoria').find('option').remove();
+
+    $.post("../ajax/entrenador.php?op=selectCategoria&sucursalCategoria=" + idsucursal, function(r) {
         $("#categoria_idcategoria").html(r);
         $('#categoria_idcategoria').selectpicker('refresh');
+
+    });
+
+}
+
+function cargarHorario(idcategoria) {
+    var idsucursal = $('#sucursal_idsucursal').val();
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
+
+    $.post("../ajax/entrenador.php?op=selectHorario&sucursalCategoria=" + idsucursal + "&horarioCategoria=" + idcategoria, function(r) {
+        $("#idsucursal_categorias").html(r);
+        $('#idsucursal_categorias').selectpicker('refresh');
 
     });
 
@@ -28,10 +68,18 @@ function init() {
 //Función limpiar
 function limpiar() {
     $("#idficha_entrenador").val("");
-    $("#numeroFicha_entrenador").val("");
-    $("#fechaApertura_entrenador").val("");
+
     $("#entrenador_identrenador").val("");
+    $('#entrenador_identrenador').selectpicker('refresh');
+
+    $("#sucursal_idsucursal").val("");
+    $('#sucursal_idsucursal').selectpicker('refresh');
+
     $("#categoria_idcategoria").val("");
+    $('#categoria_idcategoria').selectpicker('refresh');
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
 
 }
 
@@ -125,10 +173,11 @@ function mostrar(idficha_entrenador) {
 }
 
 //Función para desactivar registros
-function desactivar(idficha_entrenador) {
+function desactivar(idficha_entrenador, idsucursal_categorias) {
+    console.log(idsucursal_categorias);
     bootbox.confirm("¿Está Seguro de desactivar?", function(result) {
         if (result) {
-            $.post("../ajax/ficha_entrenador.php?op=desactivar", { idficha_entrenador: idficha_entrenador }, function(e) {
+            $.post("../ajax/ficha_entrenador.php?op=desactivar", { idficha_entrenador: idficha_entrenador, idsucursal_categorias: idsucursal_categorias }, function(e) {
                 bootbox.alert(e);
                 tabla.ajax.reload();
             });
@@ -137,10 +186,12 @@ function desactivar(idficha_entrenador) {
 }
 
 //Función para activar registros
-function activar(idficha_entrenador) {
+function activar(idficha_entrenador, idsucursal_categorias) {
+    console.log(idsucursal_categorias);
+
     bootbox.confirm("¿Está Seguro de activar?", function(result) {
         if (result) {
-            $.post("../ajax/ficha_entrenador.php?op=activar", { idficha_entrenador: idficha_entrenador }, function(e) {
+            $.post("../ajax/ficha_entrenador.php?op=activar", { idficha_entrenador: idficha_entrenador, idsucursal_categorias: idsucursal_categorias }, function(e) {
                 bootbox.alert(e);
                 tabla.ajax.reload();
             });

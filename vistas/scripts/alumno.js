@@ -1,8 +1,5 @@
 var tabla;
 
-//Función que se ejecuta al inicio
-
-
 $("#checkbox1").on('change', function() {
     if ($(this).is(':checked')) {
 
@@ -17,6 +14,11 @@ $("#checkbox1").on('change', function() {
         $("#ocultar2").show();
         $("#ocultar3").show();
 
+        $("#descuento_ficha_alumno").attr("required", true);
+        $("#sucursal_idsucursal").attr("required", true);
+        $("#categoria_idcategoria").attr("required", true);
+        $("#idsucursal_categorias").attr("required", true);
+
 
     } else {
 
@@ -27,6 +29,11 @@ $("#checkbox1").on('change', function() {
         $("#ocultar3").hide();
         $('#bandera').val("false");
         console.log($('#bandera').val());
+
+        $("#descuento_ficha_alumno").attr("required", false);
+        $("#sucursal_idsucursal").attr("required", false);
+        $("#categoria_idcategoria").attr("required", false);
+        $("#idsucursal_categorias").attr("required", false);
 
     }
 
@@ -65,6 +72,17 @@ function cargarCategorias(idsucursal) {
 
     console.log("entra al ajax");
 
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
+
+
+    $("#categoria_idcategoria").val("");
+    $('#categoria_idcategoria').selectpicker('refresh');
+
+    $('#categoria_idcategoria').find('option').remove();
+
     $.post("../ajax/alumno.php?op=selectCategoria&sucursalCategoria=" + idsucursal, function(r) {
         $("#categoria_idcategoria").html(r);
         $('#categoria_idcategoria').selectpicker('refresh');
@@ -75,6 +93,11 @@ function cargarCategorias(idsucursal) {
 
 function cargarHorario(idcategoria) {
     var idsucursal = $('#sucursal_idsucursal').val();
+
+    $("#idsucursal_categorias").val("");
+    $('#idsucursal_categorias').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
 
     $.post("../ajax/alumno.php?op=selectHorario&sucursalCategoria=" + idsucursal + "&horarioCategoria=" + idcategoria, function(r) {
         $("#idsucursal_categorias").html(r);
@@ -307,6 +330,38 @@ function activar(idalumno) {
         }
     })
 }
+
+function validarcedula() {
+
+    var cedula_representante = $('#cedula_alumno').val();
+    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
+
+}
+
+function validarRUC() {
+
+    var cedula_representante = $('#cedula_alumno').val();
+    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
+}
+
+function validarRUCP() {
+
+    var cedula_representante = $('#cedula_alumno').val();
+    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
+        bootbox.alert(e);
+        tabla.ajax.reload();
+    });
+
+}
+
 
 
 init();

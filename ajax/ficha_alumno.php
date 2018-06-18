@@ -43,13 +43,17 @@ switch ($_GET["op"]){
 	case 'listar':
 		$rspta=$ficha_alumno->listar();
  		//Vamos a declarar un array
- 		$data= Array();
+		 $data= Array();
+		 
+		 $url='../reportes/ficha_alumno.php?id=';
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+				 "0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+				    '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info"> <i class="fa fa-file"></i> </button></a>'.	
  					' <button class="btn btn-danger" onclick="desactivar('.$reg->idficha_alumno.')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+					 '<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+					 '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info"> <i class="fa fa-file"></i> </button></a>'.	
  					' <button class="btn btn-primary" onclick="activar('.$reg->idficha_alumno.')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg->numeroFicha_alumno,
  				"2"=>$reg->nombre_alumno,

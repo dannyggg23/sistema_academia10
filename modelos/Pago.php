@@ -17,11 +17,15 @@ Class Pago
 
     while ($num_elementos < count($ficha_alumno_idficha_alumno)) {
 
-      $sql_detalle=sprintf("INSERT INTO `detalle_pago`( `pago_idpago`, `ficha_alumno_idficha_alumno`, `numero_meses_pago`, `precio_pago`, `descuento_pago`) VALUES ('%s','%s','%s','%s','%s')",$idpagonew,$ficha_alumno_idficha_alumno[$num_elementos],$numero_meses_pago[$num_elementos],$precio_pago[$num_elementos],$descuento_pago[$num_elementos]);
+      
+      $descuento=($precio_pago[$num_elementos]*$descuento_pago[$num_elementos])/100;
+
+      $sql_detalle=sprintf("INSERT INTO `detalle_pago`( `pago_idpago`, `ficha_alumno_idficha_alumno`, `numero_meses_pago`, `precio_pago`, `descuento_pago`) VALUES ('%s','%s','%s','%s','%s')",$idpagonew,$ficha_alumno_idficha_alumno[$num_elementos],$numero_meses_pago[$num_elementos],$precio_pago[$num_elementos],$descuento);
 
       ejecutarConsulta($sql_detalle) or $sw=false;
 
       $num_elementos=$num_elementos+1;
+      $descuento=0;
 
     }
     return $sw;
@@ -67,7 +71,7 @@ Class Pago
 }
 
 public function pagodetalle($idpago){
-  $sql="SELECT detalle_pago.iddetalle_pago, detalle_pago.pago_idpago, detalle_pago.ficha_alumno_idficha_alumno, detalle_pago.numero_meses_pago, detalle_pago.precio_pago, detalle_pago.descuento_pago,ficha_alumno.numeroFicha_alumno,alumno.cedula_alumno,alumno.nombre_alumno,alumno.apellido_alumno,(detalle_pago.numero_meses_pago*detalle_pago.precio_pago-detalle_pago.descuento_pago) as subtotal FROM detalle_pago INNER JOIN ficha_alumno ON ficha_alumno.idficha_alumno=detalle_pago.ficha_alumno_idficha_alumno INNER JOIN alumno on alumno.idalumno=ficha_alumno.alumno_idalumno WHERE detalle_pago.pago_idpago='$idpago'";
+  $sql="SELECT detalle_pago.iddetalle_pago, detalle_pago.pago_idpago, detalle_pago.ficha_alumno_idficha_alumno, detalle_pago.numero_meses_pago, detalle_pago.precio_pago, detalle_pago.descuento_pago,ficha_alumno.numeroFicha_alumno,alumno.cedula_alumno,alumno.nombre_alumno, (detalle_pago.numero_meses_pago*detalle_pago.precio_pago-detalle_pago.descuento_pago) as subtotal FROM detalle_pago INNER JOIN ficha_alumno ON ficha_alumno.idficha_alumno=detalle_pago.ficha_alumno_idficha_alumno INNER JOIN alumno on alumno.idalumno=ficha_alumno.alumno_idalumno WHERE detalle_pago.pago_idpago='$idpago'";
  return ejecutarConsulta($sql);
 
 }
