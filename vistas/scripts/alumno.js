@@ -1,9 +1,113 @@
 var tabla;
+//################################################### MODAL REPRESENTANTE #########################################################
+$("#modalrepresentante").click(function() {
+    $.ajax({
+        url: "../vistas/modal_representante.php",
+        cache: false,
 
+        /* Evitamos cache */
+
+        dataType: 'html',
+
+        /* Se recibirá contenido HTML */
+
+        success: function(data) {
+            BootstrapDialog.show({
+                title: 'Datos del Representante',
+                message: data,
+                closeByBackdrop: false,
+                closeByKeyboard: true,
+                closable: true,
+                size: BootstrapDialog.SIZE_LARGE,
+                type: BootstrapDialog.TYPE_INFO,
+                buttons: [{
+                        label: 'Guardar',
+                        cssClass: 'btn-primary',
+                        action: function(dialogRef) {
+                            var idrepresentante;
+                            var cedula_representante = $("#cedula_representante").val();
+                            var nombre_representante = $("#nombre_representante").val();
+                            var cedula_conyugue_representante = $("#cedula_conyugue_representante").val();
+                            var nombre_conyugue_representante = $("#nombre_conyugue_representante").val();
+                            var genero_representante = $("#genero_representante").val();
+                            var email_representante = $("#email_representante").val();
+                            var telefono_representante = $("#telefono_representante").val();
+                            var celular_representante = $("#celular_representante").val();
+                            var ciudad_representante = $("#ciudad_representante").val();
+                            var barrio_representante = $("#barrio_representante").val();
+                            var direccion_representante = $("#direccion_representante").val();
+                            var fecha_nacimiento_representante = $("#fecha_nacimiento_representante").val();
+                            var parentesco_respresentante = $("#parentesco_respresentante").val();
+                            var lugar_trabajo_representante = $("#lugar_trabajo_representante").val();
+
+                            if (cedula_representante == "" || nombre_representante == "" || cedula_conyugue_representante == "" ||
+                                nombre_conyugue_representante == "" || genero_representante == "" || email_representante == "" ||
+                                telefono_representante == "" || ciudad_representante == "" || barrio_representante == "" ||
+                                direccion_representante == "" || fecha_nacimiento_representante == "" || parentesco_respresentante == "" ||
+                                lugar_trabajo_representante == "") { swal("ERROR", "Complete los campos correctamente", "error") } else {
+
+                                var ciudad = ciudad_representante;
+
+                                $.post("../ajax/representante.php?op=selectidciudad", { ciudad: ciudad }, function(data, status) {
+                                    data = JSON.parse(data);
+
+                                    ciudad_representante = data.idCiudad;
+
+                                    genero_representante == "m" || genero_representante == "M" ? genero_representante = "Masculino" : genero_representante = "Femenino";
+
+                                    $.post("../ajax/representante.php?op=guardar", {
+                                        cedula_representante: cedula_representante,
+                                        nombre_representante: nombre_representante,
+                                        cedula_conyugue_representante: cedula_conyugue_representante,
+                                        nombre_conyugue_representante: nombre_conyugue_representante,
+                                        genero_representante: genero_representante,
+                                        email_representante: email_representante,
+                                        telefono_representante: telefono_representante,
+                                        celular_representante: celular_representante,
+                                        ciudad_representante: ciudad_representante,
+                                        barrio_representante: barrio_representante,
+                                        direccion_representante: direccion_representante,
+                                        fecha_nacimiento_representante: fecha_nacimiento_representante,
+                                        parentesco_respresentante: parentesco_respresentante,
+                                        lugar_trabajo_representante: lugar_trabajo_representante,
+                                        idrepresentante: idrepresentante
+                                    }, function(data, status) {
+                                        if (data > 0) {
+                                            dialogRef.close();
+                                            swal("CORRECTO", "Representante registrado", "success");
+                                            $.post("../ajax/alumno.php?op=selectRepresentante", function(r) {
+                                                $("#representante_idrepresentante").html(r);
+                                                $("#representante_idrepresentante").val(data);
+                                                $('#representante_idrepresentante').selectpicker('refresh');
+                                            });
+                                        } else {
+                                            swal("INCORRECTO", "Verifique los datos antes de registrar", "error");
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    },
+                    {
+                        label: 'Cerrar',
+                        cssClass: 'btn-warning',
+                        /* Nombre del botón (en este caso "Cerrar" */
+                        action: function(dialogRef) {
+                            dialogRef.close(); /* Cerrar la modal sin hacer nada más */
+                        }
+                    }
+                ]
+            });
+
+        }
+    })
+});
+
+//############################################################# FIN MODAL REPRESENTANTE ######################################################
+
+//############################################################--MOSTRAR DATOS DE FICHA---######################################################
 $("#checkbox1").on('change', function() {
     if ($(this).is(':checked')) {
-
-
 
         $('#bandera').val("true");
 
@@ -39,6 +143,12 @@ $("#checkbox1").on('change', function() {
 
 });
 
+//############################################################-- FIN DE MOSTRAR DATOS DE FICHA---######################################################
+
+
+
+//############################################################----MOSTRAR MODAL DE DATOS DE ALUMNO---###################################################
+
 function abrirmodal(idalumno) {
 
     $('#myModal').modal('show');
@@ -67,6 +177,10 @@ function abrirmodal(idalumno) {
     });
 }
 
+//#########################################################- FIN MOSTRAR MODAL DE DATOS DE ALUMNO---###################################################
+
+
+//############################################################----MOSTRAR CATEGORIAS POR SUCURSALES---###################################################
 
 function cargarCategorias(idsucursal) {
 
@@ -90,6 +204,10 @@ function cargarCategorias(idsucursal) {
     });
 
 }
+//############################################################-  FIN MOSTRAR CATEGORIAS POR SUCURSALES---###################################################
+
+
+//############################################################----MOSTRAR HORARIOS POR SUCURSALES Y CATEGORIAS ---###################################################
 
 function cargarHorario(idcategoria) {
     var idsucursal = $('#sucursal_idsucursal').val();
@@ -106,6 +224,9 @@ function cargarHorario(idcategoria) {
     });
 
 }
+
+//############################################################---- FIN MOSTRAR HORARIOS POR SUCURSALES Y CATEGORIAS ---###################################################
+
 
 function init() {
     mostrarform(false);
@@ -149,10 +270,8 @@ function limpiar() {
     $("#genero_alumno").val("");
     $('#genero_alumno').selectpicker('refresh');
 
-
     $("#representante_idrepresentante").val("");
     $('#representante_idrepresentante').selectpicker('refresh');
-
 
     $("#tipo_sangre_alumno").val("");
     $("#escuela_alumno").val("");
@@ -162,7 +281,6 @@ function limpiar() {
     $("#peso_alumno").val("");
     $("#talla_alumno").val("");
     $("#informacion_alumno").val("");
-
 
     $("#descuento_ficha_alumno").val("");
     $("#sucursal_idsucursal").val("");
@@ -174,14 +292,9 @@ function limpiar() {
     $("#idsucursal_categorias").val("");
     $('#idsucursal_categorias').selectpicker('refresh');
 
-
-
-
-
     $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#imagen").val("");
-
 
     var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
@@ -200,7 +313,6 @@ function mostrarform(flag) {
         $("#btnagregar").hide();
         $("#checkbox1").show();
         $("#imagenmuestra").hide();
-
 
     } else {
         $("#listadoregistros").show();
@@ -335,33 +447,27 @@ function validarcedula() {
 
     var cedula_representante = $('#cedula_alumno').val();
     $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
+        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
         tabla.ajax.reload();
     });
-
-
 }
 
-function validarRUC() {
+function validarcedularepresentante() {
 
-    var cedula_representante = $('#cedula_alumno').val();
-    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
+    var cedula_representante = $('#cedula_representante').val();
+    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
         tabla.ajax.reload();
     });
-
 }
 
-function validarRUCP() {
+function validarcedularepresentanteconyugue() {
 
-    var cedula_representante = $('#cedula_alumno').val();
-    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
+    var cedula_representante = $('#cedula_conyugue_representante').val();
+    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
         tabla.ajax.reload();
     });
-
 }
-
-
 
 init();

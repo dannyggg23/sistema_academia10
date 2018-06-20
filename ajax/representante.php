@@ -35,6 +35,13 @@ switch ($_GET["op"]){
 		}
 	break;
 
+	case 'guardar':
+
+			$rspta=$representante->insertarModal($cedula_representante,$nombre_representante,$email_representante,$direccion_representante,$telefono_representante,$genero_representante,$fecha_nacimiento_representante,$parentesco_respresentante,$celular_representante,$lugar_trabajo_representante,$cedula_conyugue_representante,$nombre_conyugue_representante,$barrio_representante,$ciudad_representante);
+			echo $rspta;
+	
+	break;
+
 	    case 'validarcedula':
 	    //Cargar el autoload de composer
          require '../vendor/autoload.php';
@@ -136,6 +143,14 @@ break;
 				{
 					echo '<option value=' . $reg->idCiudad . '>' . $reg->ciudad . '</option>';
 				}
+	break;
+
+	case "selectidciudad":
+		require_once "../modelos/Ciudad.php";
+		$ciudad = new Ciudad();
+		$rspta = $ciudad->selectidciudad($_POST["ciudad"]);
+		echo json_encode($rspta);
+		
 	break;
 
 }

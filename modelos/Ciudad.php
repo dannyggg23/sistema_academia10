@@ -16,6 +16,13 @@ Class Ciudad
 		$sql="SELECT * FROM ciudad";
 		return ejecutarConsulta($sql);
 	}
+
+	public function selectidciudad($ciudad)
+	{
+		$ciudad="%".$ciudad."%";
+		$sql="SELECT * FROM ciudad WHERE ciudad LIKE '$ciudad'";
+		return ejecutarConsultaSimpleFila($sql);
+	}
 }
 
 ?>

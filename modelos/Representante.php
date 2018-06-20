@@ -35,6 +35,35 @@ $ciudad_representante
     return ejecutarConsulta($sql);
   }
 
+  public function insertarModal($cedula_representante,$nombre_representante,$email_representante,$direccion_representante,$telefono_representante,$genero_representante,$fecha_nacimiento_representante,$parentesco_respresentante,$celular_representante,$lugar_trabajo_representante,$cedula_conyugue_representante,$nombre_conyugue_representante,$barrio_representante,$ciudad_representante){
+    $sql=sprintf("INSERT INTO `representante`
+    ( `cedula_representante`, `nombre_representante`, `email_representante`, 
+    `direccion_representante`, `telefono_representante`, `usuario`, `clave` , genero_representante,
+fecha_nacimiento_representante,
+parentesco_respresentante,
+celular_representante,
+lugar_trabajo_representante,
+cedula_conyugue_representante,
+nombre_conyugue_representante,
+barrio_representante,
+ciudad_representante
+) 
+    VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+    $cedula_representante,$nombre_representante,$email_representante,$direccion_representante,
+    $telefono_representante,$cedula_representante,$cedula_representante,$genero_representante,
+$fecha_nacimiento_representante,
+$parentesco_respresentante,
+$celular_representante,
+$lugar_trabajo_representante,
+$cedula_conyugue_representante,
+$nombre_conyugue_representante,
+$barrio_representante,
+$ciudad_representante
+);
+
+    return ejecutarConsulta_retornarID($sql);
+  }
+
   public function editar($idrepresentante,$cedula_representante,$nombre_representante,$email_representante,$direccion_representante,$telefono_representante,$genero_representante,$fecha_nacimiento_representante,$parentesco_respresentante,$celular_representante,$lugar_trabajo_representante,$cedula_conyugue_representante,
   $nombre_conyugue_representante,
   $barrio_representante,

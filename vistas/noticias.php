@@ -52,7 +52,7 @@ if($_SESSION['noticias']==1)
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Cédula(*):</label>
+                            <label>titulo(*):</label>
                             <input type="hidden" name="idalumno" id="idalumno">
                             <input type="text" class="form-control" name="cedula_alumno" id="cedula_alumno" minlength="10" maxlength="13" placeholder="Cédula" required>
                           </div>

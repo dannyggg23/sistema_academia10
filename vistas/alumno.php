@@ -60,10 +60,8 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Cédula(*):</label>
                             <input type="hidden" name="idalumno" id="idalumno">
-                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">C.I</button>
-                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC()">RUC-S.PUBLICA</button>
-                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP()">RUC-S.PRIVADA</button>
-                            <input type="text" class="form-control" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" required>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">CI</button>
+                            <input type="text" class="form-control" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" onkeyup = "if(event.keyCode == 13) validarcedula()" required>
                           </div>
 
                          
@@ -98,7 +96,7 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Representante(*):</label>
+                            <label>Representante(*):</label><button type="button" id="modalrepresentante" name="modalrepresentante" class"btn btn-primary" >+</button>
                             <select id="representante_idrepresentante" name="representante_idrepresentante" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" required></select>
                            
                           </div>
@@ -278,11 +276,6 @@ if($_SESSION['ficha_alumno']==1)
           <span class="input-group-addon" id="sizing-addon2">Nombre</span>
           <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombrerepresentante" name="nombrerepresentante">
     </div>
-
-
-
-
-    
 
         </div>
         <div class="modal-footer">

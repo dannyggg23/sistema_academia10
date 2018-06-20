@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../public/css/font-awesome.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../public/css/bootstrap-dialog.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
@@ -27,6 +28,9 @@
 
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 
+   
+
+ </style>
   </head>
   <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
