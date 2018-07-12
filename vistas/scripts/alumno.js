@@ -4,13 +4,9 @@ $("#modalrepresentante").click(function() {
     $.ajax({
         url: "../vistas/modal_representante.php",
         cache: false,
-
         /* Evitamos cache */
-
         dataType: 'html',
-
         /* Se recibirá contenido HTML */
-
         success: function(data) {
             BootstrapDialog.show({
                 title: 'Datos del Representante',

@@ -96,7 +96,7 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Representante(*):</label><button type="button" id="modalrepresentante" name="modalrepresentante" class"btn btn-primary" >+</button>
+                            <label>Representante(*):</label><button type="button" id="modalrepresentante" name="modalrepresentante" class="btn btn-primary" >+</button>
                             <select id="representante_idrepresentante" name="representante_idrepresentante" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" required></select>
                            
                           </div>

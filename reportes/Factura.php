@@ -136,10 +136,10 @@ function sizeOfText( $texte, $largeur )
 // Company
 function addSociete( $nom, $adresse,$logo,$ext_logo )
 {
-	$x1 = 30;
+	$x1 = 45;
 	$y1 = 8;
 	//Positionnement en bas
-	$this->Image($logo , 5 ,3, 25 , 25 , $ext_logo);
+	$this->Image($logo , 5 ,3, 40 , 40 , $ext_logo);
 	$this->SetXY( $x1, $y1 );
 	$this->SetFont('Arial','B',12);
 	$length = $this->GetStringWidth( $nom );
@@ -256,20 +256,20 @@ function addClientAdresse( $cliente,$domicilio,$num_documento,$email,$telefono )
 	$r1     = $this->w - 180;
 	$r2     = $r1 + 68;
 	$y1     = 40;
-	$this->SetXY( $r1, $y1);
+	$this->SetXY( $r1+20, $y1);
 	$this->SetFont( "Arial", "B", 10);
-	$this->MultiCell( 60, 4, "CLIENTE");
+	$this->MultiCell( 200, 4, "CLIENTE");
 	$this->SetXY( $r1, $y1+5);
 	$this->SetFont( "Arial", "", 10);
-	$this->MultiCell( 150, 4, $cliente);
+	$this->MultiCell( 200, 4, $cliente);
 	$this->SetXY( $r1, $y1+10);
-	$this->MultiCell( 150, 4, $domicilio);
+	$this->MultiCell( 200, 4, $domicilio);
 	$this->SetXY( $r1, $y1+15);
-	$this->MultiCell( 150, 4, $num_documento);
+	$this->MultiCell( 200, 4, $num_documento);
 	$this->SetXY( $r1, $y1+20);
-	$this->MultiCell( 150, 4, $email);
+	$this->MultiCell( 200, 4, $email);
 	$this->SetXY( $r1, $y1+25);
-	$this->MultiCell( 150, 4, $telefono);
+	$this->MultiCell( 200, 4, $telefono);
 }
 
 // Mode of payment

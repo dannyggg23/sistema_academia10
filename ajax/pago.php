@@ -3,7 +3,7 @@ require_once "../modelos/Pago.php";
 if (strlen(session_id()) < 1)
 	session_start();
 
-$pago=new Pago();
+$pago=new Pago(); 
 $idpago=isset($_POST["idpago"])? limpiarCadena($_POST["idpago"]):"";
 
 $representante_idrepresentante=isset($_POST["representante_idrepresentante"])? limpiarCadena($_POST["representante_idrepresentante"]):"";
@@ -29,7 +29,7 @@ switch ($_GET["op"]){
 
 		if (empty($idpago)){
 			$rspta=$pago->insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$_POST["ficha_alumno_idficha_alumno"],$_POST["numero_meses_pago"],$_POST["precio_pago"],$_POST["descuento_pago"]);
-			echo $rspta ? "Datos registrados" : "No se pudo registrar";
+			echo $rspta;
 		}
 		else {
 			
@@ -148,11 +148,11 @@ switch ($_GET["op"]){
 	case "listarFichas":
 		require_once "../modelos/Ficha_alumno.php";
 		$ficha_alumno = new Ficha_alumno();
+        $idrepresentante=$_GET['id'];
 
-		$rspta=$ficha_alumno->listarActivos();
+		$rspta=$ficha_alumno->listarFicha_Representante($idrepresentante);
  		//Vamos a declarar un array
  		$data= Array();
-
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(

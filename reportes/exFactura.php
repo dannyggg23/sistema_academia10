@@ -17,6 +17,8 @@ require('Factura.php');
 
 //Establecemos los datos de la empresa
 $cedularepresentante;
+$email_representante;
+$fecha_representante;
 $logo = "logo.jpg";
 $ext_logo = "jpg";
 $empresa = "NOMBRE EMPRESA";
@@ -37,6 +39,8 @@ $rsptav = $venta->pagocabecera($_GET["id"]);
 $regv = $rsptav->fetch_object();
 
 $cedularepresentante=$regv->cedula_representante;
+$email_representante=$regv->email_representante;
+$fecha_representante=$regv->fecha;
 
 //Establecemos la configuración de la factura
 $pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
@@ -105,7 +109,9 @@ $pdf->addCadreEurosFrancs("IVA"." $regv->impuesto %");
 
 $pdf->Output();
 
-$pdf->Output('F','facturas/'.$cedularepresentante.'.pdf');
+$factura_num='facturas/'.$cedularepresentante.$fecha_representante.'.pdf';
+
+$pdf->Output('F',$factura_num);
 
 require_once ('../vendor/phpmailer/phpmailer/src/Exception.php');
 require_once ('../vendor/phpmailer/phpmailer/src/OAuth.php');
@@ -118,7 +124,7 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 $mail->IsSMTP(); // telling the class to use SMTP
 
-$body ="Danny García";
+$body ="Comprobante de Factura ";
 
 try {
      //$mail->Host       = "mail.gmail.com"; // SMTP server
@@ -131,10 +137,10 @@ try {
       $mail->Mailer = "smtp";
       $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
       $mail->Password   = "..Danny..3Burguer";            // GMAIL password
-      $mail->AddAddress('azdannyggg23@gmail.com', 'abc');
+      $mail->AddAddress($email_representante, 'abc');
       $mail->SetFrom('dannyggg23@gmail.com', 'Admin');
-      $mail->addAttachment('facturas/'.$cedularepresentante.'.pdf');         // Add attachments
-      $mail->Subject = 'PHPMailer Test Subject via mail(), advanced';
+      $mail->addAttachment($factura_num);         // Add attachments
+      $mail->Subject = 'Comprobante de pago La Escuela del 10';
       $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
       $mail->MsgHTML($body);
       $mail->Send();

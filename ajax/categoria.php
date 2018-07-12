@@ -19,6 +19,11 @@ switch ($_GET["op"]){
 		}
 	break;
 
+	case 'guardar':
+			$rspta=$categoria->insertar_modal($nombre_categoria,$descripcion_categoria);
+			echo $rspta;
+	break;
+
 	case 'desactivar':
 		$rspta=$categoria->desactivar($idcategoria);
  		echo $rspta ? "Datos Desactivado" : "No se puede desactivar";

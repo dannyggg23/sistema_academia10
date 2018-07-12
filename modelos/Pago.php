@@ -3,7 +3,7 @@ require "../config/Conexion.php";
 Class Pago
 {
   public function _construct(){
-
+ 
   }
 
   public function insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$ficha_alumno_idficha_alumno,$numero_meses_pago,$precio_pago,$descuento_pago){
@@ -28,7 +28,7 @@ Class Pago
       $descuento=0;
 
     }
-    return $sw;
+    return $idpagonew;
 
   }
 

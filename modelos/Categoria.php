@@ -12,6 +12,12 @@ Class Categoria
     return ejecutarConsulta($sql);
   }
 
+  public function insertar_modal($nombre_categoria,$descripcion_categoria){
+
+    $sql=sprintf("INSERT INTO `categoria`(`nombre_categoria`, `descripcion_categoria`) VALUES ('%s','%s')",$nombre_categoria,$descripcion_categoria);
+    return ejecutarConsulta_retornarID($sql);
+  }
+
   public function editar($idcategoria,$nombre_categoria,$descripcion_categoria)
   {
   $sql=sprintf("UPDATE `categoria` SET 

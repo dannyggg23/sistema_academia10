@@ -22,6 +22,14 @@ switch ($_GET["op"]){
 		}
 	break;
 
+	case 'guardar':
+
+
+		$rspta=$horario->insertar_modal($nombre,$hora_inicio,$hora_fin);
+		echo $rspta;
+	
+    break;
+
 	case 'desactivar':
 		$rspta=$horario->desactivar($idhorario);
  		echo $rspta ? "Datos Desactivado" : "No se puede desactivar";

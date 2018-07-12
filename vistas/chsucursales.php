@@ -62,26 +62,14 @@ if($_SESSION['categoria']==1)
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Categoría(*):</label>
-                        
-                           
+                            <label>Categoría(*):</label><button type="button" id="modalcategoria" name="modalcategoria" class="btn btn-primary" >+</button>
                             <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarCategorias(this.value)" required></select>
-                          
-                         
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Horario(*):</label>
-                         
-                           
+                            <label>Horario(*):</label><button type="button" id="modalhorario" name="modalhorario" class="btn btn-primary" >+</button>
                             <select id="horario_idhorario" name="horario_idhorario" class="form-control selectpicker" data-live-search="true"  onchange="cargarCategorias(this.value)" required></select>
-                          
-                         
                           </div>
-
-                        
-
-
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 

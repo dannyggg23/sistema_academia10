@@ -96,12 +96,12 @@ if($_SESSION['pagos']==1)
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Iva:</label>
-                              <input type="text" class="form-control" name="impuesto" id="impuesto" maxlength="10" placeholder="Impuesto" required="">
+                              <input type="text" class="form-control" name="impuesto" id="impuesto" maxlength="10" placeholder="Impuesto" required>
                           </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                            <a data-toggle="modal" href="#myModal">
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span>Agregar ficha</button>
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary" onclick="listarArticulos()"> <span class="fa fa-plus"></span>Agregar ficha</button>
                            </a>
                           </div>
 
@@ -152,14 +152,14 @@ if($_SESSION['pagos']==1)
   <!--Fin-Contenido-->
 
  <!--Modal-->
- 
+
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" name="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Seleccione un Artículo</h4>
+          <h4 class="modal-title">Seleccione los Alumnos</h4>
         </div>
         <div class="modal-body">
           <table id="tblarticulos" class="table table-striped table-bordered table-condensed table-hover">

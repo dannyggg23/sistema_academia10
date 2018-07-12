@@ -2,6 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init() {
+
     console.log("entra al js");
     mostrarform(false);
     listar();
@@ -13,7 +14,9 @@ function init() {
 
 
     $("#formulario").on("submit", function(e) {
+
         guardaryeditar(e);
+
     })
 
     $.post("../ajax/pago.php?op=selectRepresentante", function(r) {
@@ -21,12 +24,16 @@ function init() {
         $('#representante_idrepresentante').selectpicker('refresh');
 
     });
+
+    $("#impuesto").val("12");
+
 }
 
 //Función limpiar
 function limpiar() {
     $("#idpago").val("");
     $("#representante_idrepresentante").val("");
+    $('#representante_idrepresentante').selectpicker('refresh');
 
     //Obtenemos la fecha actual
     var now = new Date();
@@ -37,13 +44,16 @@ function limpiar() {
 
     $("#total").val("");
 
-    $("#tipo_documento").val("");
+
+    $("#tipo_documento").val("Factura");
+    $("#tipo_documento").selectpicker();
+
     $("#serie_comprobante").val("");
     $("#num_comprobante").val("");
     $("#total_compra").val("");
     $("#total").val("");
     $(".filas").remove();
-    $("#impuesto").val("");
+    $("#impuesto").val("12");
 
 }
 
@@ -56,7 +66,8 @@ function mostrarform(flag) {
         $("#formularioregistros").show();
         //$("#btnGuardar").prop("disabled",false);
         $("#btnagregar").hide();
-        listarArticulos();
+
+
 
 
 
@@ -115,27 +126,44 @@ function listar() {
 
 
 function listarArticulos() {
-    tabla = $('#tblarticulos').dataTable({
-        "aProcessing": true, //Activamos el procesamiento del datatables
-        "aServerSide": true, //Paginación y filtrado realizados por el servidor
-        dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: [
 
-        ],
-        "ajax": {
-            url: '../ajax/pago.php?op=listarFichas',
-            type: "get",
-            dataType: "json",
-            error: function(e) {
-                console.log(e.responseText);
-            }
-        },
-        "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
-        "order": [
-                [0, "desc"]
-            ] //Ordenar (columna,orden)
-    }).DataTable();
+    var idrepresentante = $('#representante_idrepresentante').val();
+    console.log(idrepresentante);
+
+    if (idrepresentante == null || idrepresentante == "" || idrepresentante == "--Seleccione--") {
+
+        swal("INCORRECTO", "Seleccione un representante", "error").then((value) => {
+            $('#myModal').modal('hide');
+        });
+
+
+
+
+    } else {
+        tabla = $('#tblarticulos').dataTable({
+            "aProcessing": true, //Activamos el procesamiento del datatables
+            "aServerSide": true, //Paginación y filtrado realizados por el servidor
+            dom: 'Bfrtip', //Definimos los elementos del control de tabla
+            buttons: [
+
+            ],
+            "ajax": {
+                url: '../ajax/pago.php?op=listarFichas&id=' + idrepresentante,
+                type: "get",
+                dataType: "json",
+                error: function(e) {
+                    console.log(e.responseText);
+                }
+            },
+            "bDestroy": true,
+            "iDisplayLength": 10, //Paginación
+            "order": [
+                    [0, "desc"]
+                ] //Ordenar (columna,orden)
+        }).DataTable();
+
+    }
+
 }
 
 //Función para guardar o editar
@@ -153,9 +181,19 @@ function guardaryeditar(e) {
         processData: false,
 
         success: function(datos) {
-            bootbox.alert(datos);
-            mostrarform(false);
-            listar();
+            if (datos > 0) {
+                swal("CORRECTO", "Factura registrada", "success").then((value) => {
+                    var url = "http://localhost:8082/sistema_academia10/reportes/exFactura.php?id=" + datos;
+                    window.open(url, '_blank');
+                });
+
+                mostrarform(false);
+                listar();
+            } else {
+                swal("INCORRECTO", "Verifique los datos antes de registrar", "error");
+
+            }
+
         }
 
     });
@@ -231,6 +269,7 @@ function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alum
     var descuento = 0;
 
     if (idficha_alumno != "") {
+
         var subtotal = (n_meses * precio) - descuento;
 
         var fila = '<tr class="filas" id="fila' + cont + '">' +
@@ -238,7 +277,7 @@ function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alum
             '<td> <input type="hidden" name="ficha_alumno_idficha_alumno[]" id="ficha_alumno_idficha_alumno[]" value="' + idficha_alumno + '" >' + numeroFicha_alumno + '</td>' +
             '<td> <input type="number" name="numero_meses_pago[]" id="numero_meses_pago[]" onchange="modificarSubtotales()"  value="' + n_meses + '" > </td>' +
             '<td> <input type="number" name="precio_pago[]" id="precio_pago[]" onchange="modificarSubtotales()" value="' + precio + '"> </td>' +
-            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento_ficha_alumno + '" > </td>' +
+            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento_ficha_alumno + '" >%</td>' +
             '<td> <span name="subtotal" id="subtotal' + cont + '">' + subtotal + '</span> </td>' +
             '<td> <button type="button" onclick="modificarSubtotales()" class="btn btn-info"> <i class="fa fa-refresh"></i> </button> </td>' +
             '</tr>';
@@ -267,7 +306,7 @@ function modificarSubtotales() {
         var inpD = desc[i];
         var inpS = sub[i];
 
-        inpS.value = inpP.value - (((inpC.value * inpP.value) * inpD.value) / 100);
+        inpS.value = (inpC.value * inpP.value) - (((inpC.value * inpP.value) * inpD.value) / 100);
 
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
 

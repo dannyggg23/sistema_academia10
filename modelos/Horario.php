@@ -12,6 +12,12 @@ Class Horario
     return ejecutarConsulta($sql);
   }
 
+  public function insertar_modal($nombre,$hora_inicio,$hora_fin){
+
+    $sql=sprintf("INSERT INTO `horario`( `nombre`, `hora_inicio`, `hora_fin`) VALUES ('%s','%s','%s')",$nombre,$hora_inicio,$hora_fin);
+    return ejecutarConsulta_retornarID($sql);
+  }
+
   public function editar($idhorario,$nombre,$hora_inicio,$hora_fin)
   {
   $sql=sprintf("UPDATE `horario` SET 

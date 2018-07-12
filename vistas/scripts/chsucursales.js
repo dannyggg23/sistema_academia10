@@ -1,5 +1,151 @@
 var tabla;
 
+//################################################### MODAL CATEGORIA #########################################################
+$("#modalcategoria").click(function() {
+    $.ajax({
+        url: "../vistas/modal_categoria.php",
+        cache: false,
+        /* Evitamos cache */
+        dataType: 'html',
+        /* Se recibirá contenido HTML */
+        success: function(data) {
+            BootstrapDialog.show({
+                title: 'Datos de la Categoría',
+                message: data,
+                closeByBackdrop: false,
+                closeByKeyboard: true,
+                closable: true,
+                size: BootstrapDialog.SIZE_LARGE,
+                type: BootstrapDialog.TYPE_INFO,
+                buttons: [{
+                        label: 'Guardar',
+                        cssClass: 'btn-primary',
+                        action: function(dialogRef) {
+                            var idcategoria;
+                            var nombre_categoria = $("#nombre_categoria").val();
+                            var descripcion_categoria = $("#descripcion_categoria").val();
+
+
+                            if (nombre_categoria == "" || descripcion_categoria == "") { swal("ERROR", "Complete los campos correctamente", "error") } else {
+
+
+                                $.post("../ajax/categoria.php?op=guardar", {
+                                    nombre_categoria: nombre_categoria,
+                                    descripcion_categoria: descripcion_categoria
+
+                                }, function(data, status) {
+                                    if (data > 0) {
+                                        dialogRef.close();
+
+                                        swal("CORRECTO", "Categoria registrada", "success");
+
+                                        $.post("../ajax/chsucursales.php?op=selectCategoria", function(r) {
+                                            $("#categoria_idcategoria").html(r);
+                                            $("#categoria_idcategoria").val(data);
+                                            $('#categoria_idcategoria').selectpicker('refresh');
+
+                                        });
+
+                                    } else {
+                                        swal("INCORRECTO", "Verifique los datos antes de registrar", "error");
+                                    }
+                                });
+
+                            }
+                        }
+                    },
+                    {
+                        label: 'Cerrar',
+                        cssClass: 'btn-warning',
+                        /* Nombre del botón (en este caso "Cerrar" */
+                        action: function(dialogRef) {
+                            dialogRef.close(); /* Cerrar la modal sin hacer nada más */
+                        }
+                    }
+                ]
+            });
+
+        }
+    })
+});
+
+//############################################################# FIN MODAL CATEGORIA ######################################################
+
+
+//################################################### MODAL HORARIO #########################################################
+$("#modalhorario").click(function() {
+    $.ajax({
+        url: "../vistas/modal_horario.php",
+        cache: false,
+        /* Evitamos cache */
+        dataType: 'html',
+        /* Se recibirá contenido HTML */
+        success: function(data) {
+            BootstrapDialog.show({
+                title: 'Datos del Horario',
+                message: data,
+                closeByBackdrop: false,
+                closeByKeyboard: true,
+                closable: true,
+                size: BootstrapDialog.SIZE_LARGE,
+                type: BootstrapDialog.TYPE_INFO,
+                buttons: [{
+                        label: 'Guardar',
+                        cssClass: 'btn-primary',
+                        action: function(dialogRef) {
+
+                            var nombre = $("#nombre").val();
+                            var hora_inicio = $("#hora_inicio").val();
+                            var hora_fin = $("#hora_fin").val();
+
+
+                            if (nombre == "" || hora_inicio == "" || hora_fin == "") { swal("ERROR", "Complete los campos correctamente", "error") } else {
+
+
+                                $.post("../ajax/horario.php?op=guardar", {
+                                    nombre: nombre,
+                                    hora_inicio: hora_inicio,
+                                    hora_fin: hora_fin
+
+                                }, function(data, status) {
+                                    if (data > 0) {
+                                        dialogRef.close();
+
+                                        swal("CORRECTO", "Horario registrado", "success");
+
+                                        $.post("../ajax/chsucursales.php?op=selectHorario", function(r) {
+                                            $("#horario_idhorario").html(r);
+                                            $("#horario_idhorario").val(data);
+                                            $('#horario_idhorario').selectpicker('refresh');
+
+                                        });
+
+                                    } else {
+                                        swal("INCORRECTO", "Verifique los datos antes de registrar", "error");
+                                    }
+                                });
+
+                            }
+                        }
+                    },
+                    {
+                        label: 'Cerrar',
+                        cssClass: 'btn-warning',
+                        /* Nombre del botón (en este caso "Cerrar" */
+                        action: function(dialogRef) {
+                            dialogRef.close(); /* Cerrar la modal sin hacer nada más */
+                        }
+                    }
+                ]
+            });
+
+        }
+    })
+});
+
+//############################################################# FIN MODAL HORARIO ######################################################
+
+
 //Función que se ejecuta al inicio
 function init() {
     console.log("entra al js");
