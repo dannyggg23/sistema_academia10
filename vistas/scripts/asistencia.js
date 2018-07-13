@@ -288,7 +288,7 @@ function listarfechaRepresentante() {
 
     var fechaDesde = $('#fechaDesde').val();
     var fechaHasta = $('#fechaHasta').val();
-    var representante = $('#representante').val();
+    var representante = $('#idalumno').val();
 
     if (fechaDesde == "") {
         swal("ERROR", "Seleccione una fecha de inicio", "error").then((value) => {

@@ -18,7 +18,7 @@ Class Noticias
   `titulo`='%s',
   `fecha`='%s',
   `descripcion`='%s',
-  `imagen`='%s' WHERE idnoticias='%s'",$titulo,$fecha,$descripcion,$imagen);
+  `imagen`='%s' WHERE idnoticias='%s'",$titulo,$fecha,$descripcion,$imagen,$idnoticias);
     return ejecutarConsulta($sql);
   }
   public function desactivar($idnoticias)

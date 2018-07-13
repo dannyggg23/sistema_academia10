@@ -1,7 +1,7 @@
 <?php 
 require_once "../modelos/Noticias.php";
 
-$noticia=new Noticia();
+$noticia=new Noticias();
 
 $idnoticias=isset($_POST["idnoticias"])? limpiarCadena($_POST["idnoticias"]):"";
 $titulo=isset($_POST["titulo"])? limpiarCadena($_POST["titulo"]):"";
@@ -12,19 +12,19 @@ $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
-		if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
+	if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
+	{
+		$imagen=$_POST["imagenactual"];
+	}
+	else 
+	{
+		$ext = explode(".", $_FILES["imagen"]["name"]);
+		if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
 		{
-			$imagen=$_POST["imagenactual"];
+			$imagen = round(microtime(true)) . '.' . end($ext);
+			move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/noticias/" . $imagen);
 		}
-		else 
-		{
-			$ext = explode(".", $_FILES["imagen"]["name"]);
-			if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
-			{
-				$imagen = round(microtime(true)) . '.' . end($ext);
-				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/noticias/" . $imagen);
-			}
-		}
+	}
 		if (empty($idnoticias)){
 			$rspta=$noticia->insertar($titulo,$fecha,$descripcion,$imagen);
 			echo $rspta ? "Datos registrados" : "No se pudo registrar";

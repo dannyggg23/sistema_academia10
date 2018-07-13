@@ -21,7 +21,7 @@ if($_SESSION['noticias']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Noticias <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Noticias-Imagenes <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -32,8 +32,6 @@ if($_SESSION['noticias']==1)
                           <thead>
                             <th>Opciones</th>
                             <th>Titulo</th>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
@@ -42,8 +40,6 @@ if($_SESSION['noticias']==1)
                           <tfoot>
                           <th>Opciones</th>
                             <th>Titulo</th>
-                            <th>Fecha</th>
-                            <th>Descripción</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </tfoot>
@@ -52,23 +48,11 @@ if($_SESSION['noticias']==1)
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Titulo(*):</label>
-                            <input type="hidden" name="idnoticias" id="idnoticias">
-                            <input type="text" class="form-control" name="titulo" id="titulo" minlength="3" maxlength="100" placeholder="Título de la noticia" required>
+                            <label>Noticia(*):</label>
+                            <input type="hidden" name="idimagenes" id="idimagenes">
+                            <select id="noticias_idnoticias" name="noticias_idnoticias" class="form-control selectpicker" data-live-search="true" required></select>
                           </div>
 
-
-                      
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                              <input type="date" class="form-control" name="fecha" id="fecha"  required>
-                          </div>
-
-
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Descripción(*):</label>
-                              <textarea rows="4"  type="text" class="form-control" name="descripcion" id="descripcion" maxlength="500" placeholder="Descripción de la noticia" required></textarea>
-                          </div>
 
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -102,7 +86,7 @@ else
 require 'footer.php';
 ?>
 
-<script type="text/javascript" src="scripts/noticias.js"></script>
+<script type="text/javascript" src="scripts/imagenes.js"></script>
 
 <?php
 }

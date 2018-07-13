@@ -187,9 +187,8 @@
               </a>
               <ul class="treeview-menu">
               
-                <li><a href="cpagos.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
-                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i>Crear Noticia</a></li>
-                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
+                <li><a href="noticias.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
+                 <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
               
               </ul>
             </li>
