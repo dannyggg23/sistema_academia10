@@ -146,8 +146,9 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="cpagos.php"><i class="fa fa-circle-o"></i> Consulta de pagos</a></li>
-                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de fichas</a></li>
+                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de Alumnos</a></li>
                 <li><a href="cdeudores.php"><i class="fa fa-circle-o"></i> Consulta de Deudores</a></li>
+                <li><a href="asistencia.php"><i class="fa fa-circle-o"></i> Consulta de Asistencias</a></li>
               </ul>
             </li>
 

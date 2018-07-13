@@ -37,9 +37,10 @@ require 'headerconsultas.php';
                          </div>
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
-
+ 
                             <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Género</th>
                             <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
@@ -52,6 +53,7 @@ require 'headerconsultas.php';
                           <tfoot>
                             <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Género</th>
                             <th>Sucursal</th> 
                             <th>Categoria</th>
                             <th>Horario</th>
