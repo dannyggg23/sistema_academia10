@@ -77,6 +77,7 @@ function listar() {
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
         buttons: [{
                 extend: 'pdfHtml5',
+                title: 'Usuarios',
                 orientation: 'landscape',
                 pageSize: 'LEGAL'
             },
@@ -93,7 +94,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 30, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)

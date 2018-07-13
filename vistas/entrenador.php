@@ -60,8 +60,6 @@ if($_SESSION['ficha_entrenador']==1)
                             <label>Cédula(*):</label>
                             <input type="hidden" name="identrenador" id="identrenador">
                             <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">C.I</button>
-                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC()">RUC-S.PUBLICA</button>
-                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP()">RUC-S.PRIVADA</button>
                             <input type="text" class="form-control" name="cedula_entrenador" id="cedula_entrenador" minlength="10" maxlength="13" placeholder="Cédula" required>
                           </div>
 

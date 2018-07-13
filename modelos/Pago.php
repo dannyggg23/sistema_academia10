@@ -42,7 +42,7 @@ Class Pago
   public function mostrar($idpago)
   {
 
-    $sql=sprintf("SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante,pago.impuesto FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE idpago='%s'",$idpago);
+    $sql=sprintf("SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,representante.idrepresentante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante,pago.impuesto FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE idpago='%s'",$idpago);
     return ejecutarConsultaSimpleFila($sql);
 
   }
@@ -57,10 +57,20 @@ Class Pago
 
 
   public function listar(){
-      $sql="SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario ORDER BY pago.idpago desc";
+      $sql="SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,representante.idrepresentante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario ORDER BY pago.idpago desc";
      return ejecutarConsulta($sql);
 
   }
+
+  public function listarFecha($finicio,$ffin){
+    $sql="SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,representante.idrepresentante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE pago.fecha >= '$finicio'  AND pago.fecha <= '$ffin'  ORDER BY pago.idpago desc";
+   return ejecutarConsulta($sql);
+}
+
+public function listarfechaRepresentante($finicio,$ffin,$idrepresentante){
+  $sql="SELECT pago.idpago,pago.fecha,representante.cedula_representante,representante.nombre_representante,representante.idrepresentante,usuario.nombre_usuario,pago.total,pago.tipo_documento,pago.estado,pago.serie_comprobante,pago.num_comprobante FROM `pago` INNER JOIN representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE pago.fecha >= '$finicio'  AND pago.fecha <= '$ffin' AND representante.idrepresentante='$idrepresentante'  ORDER BY pago.idpago desc";
+ return ejecutarConsulta($sql);
+}
 
   //REPORTE FACTURA
 

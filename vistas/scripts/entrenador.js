@@ -198,6 +198,7 @@ function listar() {
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
         buttons: [{
                 extend: 'pdfHtml5',
+                title: 'Entrenadores',
                 orientation: 'landscape',
                 pageSize: 'LEGAL'
             },
@@ -214,7 +215,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 50, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)
@@ -299,8 +300,11 @@ function validarcedula() {
 
     var cedula_representante = $('#cedula_entrenador').val();
     $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
+
+        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
+
         tabla.ajax.reload();
+
     });
 
 

@@ -28,8 +28,6 @@
 
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 
-   
-
  </style>
   </head>
   <body class="hold-transition skin-blue-light sidebar-mini">
@@ -102,29 +100,18 @@
               </a>
             </li>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-map-marker"></i>
-                <span>Sucursales</span>
-                <i class="fa fa-angle-left pull-right"></i>
+            <li>
+              <a href="sucursal.php">
+                <i class="fa fa-map-marker"></i> <span>Sucursales</span>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="sucursal.php"><i class="fa fa-circle-o"></i> Sucursal</a></li>
-              </ul>
             </li>
 
-          <li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Categorías</span>
-                 <i class="fa fa-angle-left pull-right"></i>
+            <li>
+              <a href="chsucursales.php">
+                <i class="fa fa-th"></i> <span>Categorías</span>
               </a>
-              <ul class="treeview-menu">
-                <li><a href="horario.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
-                <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
-                <li><a href="chsucursales.php"><i class="fa fa-circle-o"></i> Asignar a Sucursales</a></li>
-              </ul>
             </li>
+      
 
             <li class="treeview">
                 <a href="#">
@@ -146,13 +133,14 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="representante.php"><i class="fa fa-circle-o"></i> Representante</a></li>
+
                 <li><a href="alumno.php"><i class="fa fa-circle-o"></i> Alumno</a></li>
                 <li><a href="ficha_alumno.php"><i class="fa fa-circle-o"></i> Ficha</a></li>
+                <li><a href="representante.php"><i class="fa fa-circle-o"></i> Representante</a></li>
+                
               </ul>
             </li>
 
-          
               <li class="treeview">
                   <a href="#">
                     <i class="fa fa-credit-card"></i>
@@ -164,27 +152,17 @@
                   </ul>
                 </li>
 
-                <li class="treeview">
-                    <a href="#">
-                      <i class="fa fa-list-ul"></i>
-                      <span>Jugadores</span>
-                       <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-
-                    <ul class="treeview-menu">
-                      <li><a href="repressentante.php"><i class="fa fa-circle-o"></i> Asistencia</a></li>
-                      <li><a href="repressentante.php"><i class="fa fa-circle-o"></i> Hablilidad</a></li>
-                    </ul>
-                  </li>
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-folder"></i> <span>Configuración</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
+                <li><a href="horario.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
+                <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                <!--<li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>-->
 
               </ul>
             </li>
@@ -196,7 +174,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="cpagos.php"><i class="fa fa-circle-o"></i> Consulta de pagos</a></li>
-                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de fichas</a></li>
+                 <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de Alumnos</a></li>
                 <li><a href="cdeudores.php"><i class="fa fa-circle-o"></i> Consulta de Deudores</a></li>
               </ul>
             </li>
@@ -214,8 +192,6 @@
               
               </ul>
             </li>
-
-
 
             <li>
               <a href="#">

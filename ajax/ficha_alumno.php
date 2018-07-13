@@ -129,7 +129,7 @@ switch ($_GET["op"]){
 
 		$categoria=new Chsucursales;
 
-		$rspta=$categoria->horarioCategoriaSucursal($idsucursal,$idcategoria);
+		$rspta=$categoria->horarioCategoriaSucursalAlumno($idsucursal,$idcategoria);
 
 		echo "<option> -- Seleccione --- </option>";
 		

@@ -141,7 +141,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idrepresentante . '>' . $reg->cedula_representante . '</option>';
+					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.'</option>';
 				}
 	break;
 

@@ -82,15 +82,96 @@ switch ($_GET["op"]){
 
 	break;
 
+	case 'listarFecha':
+
+	$finicio=$_GET['finicio'];
+	$ffin=$_GET['ffin'];
+
+		$rspta=$pago->listarFecha($finicio,$ffin);
+ 		//Vamos a declarar un array
+ 		$data= Array();
+
+ 		while ($reg=$rspta->fetch_object()){
+ 			$data[]=array(
+ 				"0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->idpago.')"><i class="fa fa-pencil"></i></button>',
+ 				"1"=>$reg->fecha,
+ 				"2"=>$reg->cedula_representante,
+ 				"3"=>$reg->nombre_representante,
+       			"4"=>$reg->nombre_usuario,
+       			"5"=>$reg->tipo_documento,
+
+ 				"6"=>$reg->serie_comprobante.'-'.$reg->num_comprobante,
+ 				"7"=>$reg->total,
+      			"8"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+ 				'<span class="label bg-red">Anulado</span>'
+ 				);
+ 		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
+ 		echo json_encode($results);
+
+	break;
+	
+	case 'listarfechaRepresentante':
+
+	$finicio=$_GET['finicio'];
+	$ffin=$_GET['ffin'];
+	$idrepresentante=$_GET['idrepresentante'];
+
+		$rspta=$pago->listarfechaRepresentante($finicio,$ffin,$idrepresentante);
+ 		//Vamos a declarar un array
+ 		$data= Array();
+
+ 		while ($reg=$rspta->fetch_object()){
+ 			$data[]=array(
+ 				"0"=>'<button class="btn btn-warning" onclick="mostrar('.$reg->idpago.')"><i class="fa fa-pencil"></i></button>',
+ 				"1"=>$reg->fecha,
+ 				"2"=>$reg->cedula_representante,
+ 				"3"=>$reg->nombre_representante,
+       			"4"=>$reg->nombre_usuario,
+       			"5"=>$reg->tipo_documento,
+
+ 				"6"=>$reg->serie_comprobante.'-'.$reg->num_comprobante,
+ 				"7"=>$reg->total,
+      			"8"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+ 				'<span class="label bg-red">Anulado</span>'
+ 				);
+ 		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
+ 		echo json_encode($results);
+
+	break;
+
 	case "selectRepresentante":
 		require_once "../modelos/Representante.php";
 		$representante = new Representante();
 
 		$rspta = $representante->select();
+		echo '<option>--Seleccione--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idrepresentante . '>' . $reg->cedula_representante . '</option>';
+					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.'</option>';
+				}
+	break;
+
+	case "selectRepresentante2":
+		require_once "../modelos/Representante.php";
+		$representante = new Representante();
+
+		$rspta = $representante->select();
+		echo '<option>--Seleccione--</option>';
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.'</option>';
 				}
 	break;
 

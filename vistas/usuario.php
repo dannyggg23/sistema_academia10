@@ -10,7 +10,7 @@ else
 {
 
 require 'header.php';
-if($_SESSION['acceso']==1)
+if($_SESSION['Configuracion']==1)
 {
 ?>
 <!--Contenido-->

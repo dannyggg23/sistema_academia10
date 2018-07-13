@@ -10,6 +10,8 @@ $encargado_sucursal=isset($_POST["encargado_sucursal"])? limpiarCadena($_POST["e
 $ciudad_idCiudad=isset($_POST["ciudad_idCiudad"])? limpiarCadena($_POST["ciudad_idCiudad"]):"";
 $estado=isset($_POST["estado"])? limpiarCadena($_POST["estado"]):"";
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
+$latitud_sucursal=isset($_POST["latitud_sucursal"])? limpiarCadena($_POST["latitud_sucursal"]):"";
+$longitud_sucursal=isset($_POST["longitud_sucursal"])? limpiarCadena($_POST["longitud_sucursal"]):"";
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
@@ -28,11 +30,11 @@ switch ($_GET["op"]){
 		}
 
 		if (empty($idsucursal)){
-			$rspta=$sucursal->insertar($nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen);
+			$rspta=$sucursal->insertar($nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal);
 			echo $rspta ? "Datos registrados" : "No se pudo registrar";
 		}
 		else {
-			$rspta=$sucursal->editar($idsucursal,$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen);
+			$rspta=$sucursal->editar($idsucursal,$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal);
 			echo $rspta ? "Datos actualizado" : "No se pudo actualizar";
 		}
 	break;

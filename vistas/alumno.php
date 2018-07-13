@@ -74,7 +74,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Género(*):</label>
                             <select id="genero_alumno" name="genero_alumno" class="form-control selectpicker"  placeholder="Seleccione un item" required>
-                            <option value="1" >--Seleccione--</option>
+                            <option>--Seleccione--</option>
                               <option value="Masculino">Masculino</option>
                               <option value="Femenino">Femenino</option>
                             </select>
@@ -121,7 +121,7 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Imagen:</label>
-                            <input type="file" class="form-control" name="imagen" id="imagen">
+                            <input type="file" class="form-control" name="imagen" id="imagen"  required>
                             <input type="hidden" name="imagenactual" id="imagenactual">
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>

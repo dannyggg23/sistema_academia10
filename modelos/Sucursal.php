@@ -6,12 +6,13 @@ Class Sucursal
 
   }
 
-  public function insertar( $nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen){
-    $sql=sprintf("INSERT INTO `sucursal`( `nombre_sucursal`, `direrccion_ducursal`, `telefono_sucursal`, `encargado_sucursal`, `ciudad_idCiudad`,imagen) VALUES ('%s','%s','%s','%s','%s','%s')",$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen);
+  public function insertar( $nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal){
+    $sql=sprintf("INSERT INTO `sucursal`( `nombre_sucursal`, `direrccion_ducursal`, `telefono_sucursal`, `encargado_sucursal`, `ciudad_idCiudad`,imagen,latitud_sucursal,
+    longitud_sucursal) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')",$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal);
     return ejecutarConsulta($sql);
   }
 
-  public function editar($idsucursal,$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen)
+  public function editar($idsucursal,$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal)
   {
   $sql=sprintf("UPDATE `sucursal` SET
     `nombre_sucursal`='%s',
@@ -19,8 +20,10 @@ Class Sucursal
     `telefono_sucursal`='%s',
     `encargado_sucursal`='%s',
     `ciudad_idCiudad`='%s',
-    `imagen`='%s'
-    WHERE `idsucursal`='%s'",$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$idsucursal);
+    `imagen`='%s',
+    latitud_sucursal='%s',
+    longitud_sucursal='%s'
+    WHERE `idsucursal`='%s'",$nombre_sucursal,$direrccion_ducursal,$telefono_sucursal,$encargado_sucursal,$ciudad_idCiudad,$imagen,$latitud_sucursal,$longitud_sucursal,$idsucursal);
     return ejecutarConsulta($sql);
   }
   public function desactivar($idsucursal)

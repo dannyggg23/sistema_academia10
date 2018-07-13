@@ -11,7 +11,7 @@ else
 
 require 'header.php';
 
-if($_SESSION['categoria']==1)
+if($_SESSION['Configuracion']==1)
 {
 ?>
 <!--Contenido-->

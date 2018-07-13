@@ -12,6 +12,15 @@ function init() {
         $('#representante_idrepresentante').selectpicker('refresh');
 
     });
+
+    $.post("../ajax/cpagos.php?op=selectRepresentante2", function(r) {
+        $("#representante").html(r);
+        $('#representante').selectpicker('refresh');
+
+    });
+
+    console.log($('#fechaDesde').val());
+    console.log($('#fechaHasta').val());
 }
 
 //Función limpiar
@@ -79,9 +88,10 @@ function listar() {
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: [
-
-
+        buttons: ['copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdf'
         ],
         "ajax": {
             url: '../ajax/cpagos.php?op=listar',
@@ -92,7 +102,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 50, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)
@@ -111,7 +121,7 @@ function mostrar(idpago) {
         $("#impuesto").val(data.impuesto);
         $("#tipo_documento").val(data.tipo_documento);
         $('#tipo_documento').selectpicker('refresh');
-        $("#representante_idrepresentante").val(data.representante_idrepresentante);
+        $("#representante_idrepresentante").val(data.idrepresentante);
         $('#representante_idrepresentante').selectpicker('refresh');
         $("#idpago").val(data.idpago);
 
@@ -127,6 +137,80 @@ function mostrar(idpago) {
     });
 
 
+}
+
+function listarfecha() {
+
+    var fechaDesde = $('#fechaDesde').val();
+    var fechaHasta = $('#fechaHasta').val();
+
+    if (fechaDesde == "") {
+        swal("ERROR", "Seleccione una fecha de inicio", "error").then((value) => {
+            $('#fechaDesde').val("");
+        });
+    } else {
+        tabla = $('#tbllistado').dataTable({
+            "aProcessing": true, //Activamos el procesamiento del datatables
+            "aServerSide": true, //Paginación y filtrado realizados por el servidor
+            dom: 'Bfrtip', //Definimos los elementos del control de tabla
+            buttons: ['copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdf'
+            ],
+            "ajax": {
+                url: '../ajax/cpagos.php?op=listarFecha&finicio=' + fechaDesde + '&ffin=' + fechaHasta,
+                type: "get",
+                dataType: "json",
+                error: function(e) {
+                    console.log(e.responseText);
+                }
+            },
+            "bDestroy": true,
+            "iDisplayLength": 50, //Paginación
+            "order": [
+                    [0, "desc"]
+                ] //Ordenar (columna,orden)
+        }).DataTable();
+    }
+}
+
+
+function listarfechaRepresentante() {
+
+    var fechaDesde = $('#fechaDesde').val();
+    var fechaHasta = $('#fechaHasta').val();
+    var representante = $('#representante').val();
+
+    if (fechaDesde == "") {
+        swal("ERROR", "Seleccione una fecha de inicio", "error").then((value) => {
+            $('#fechaDesde').val("");
+        });
+    } else {
+        tabla = $('#tbllistado').dataTable({
+            "aProcessing": true, //Activamos el procesamiento del datatables
+            "aServerSide": true, //Paginación y filtrado realizados por el servidor
+            dom: 'Bfrtip', //Definimos los elementos del control de tabla
+            buttons: ['copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdf'
+            ],
+            "ajax": {
+                url: '../ajax/cpagos.php?op=listarfechaRepresentante&finicio=' + fechaDesde + '&ffin=' + fechaHasta + '&idrepresentante=' + representante,
+                type: "get",
+                dataType: "json",
+                error: function(e) {
+                    console.log(e.responseText);
+                }
+            },
+            "bDestroy": true,
+            "iDisplayLength": 50, //Paginación
+            "order": [
+                    [0, "desc"]
+                ] //Ordenar (columna,orden)
+        }).DataTable();
+    }
 }
 
 

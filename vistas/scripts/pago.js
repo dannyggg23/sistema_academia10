@@ -102,6 +102,7 @@ function listar() {
         buttons: [{
                 extend: 'pdfHtml5',
                 orientation: 'landscape',
+                title: 'Facturas',
                 pageSize: 'LEGAL'
             },
             'copyHtml5',
@@ -156,7 +157,7 @@ function listarArticulos() {
                 }
             },
             "bDestroy": true,
-            "iDisplayLength": 10, //Paginación
+            "iDisplayLength": 50, //Paginación
             "order": [
                     [0, "desc"]
                 ] //Ordenar (columna,orden)
@@ -211,7 +212,7 @@ function mostrar(idpago) {
         $("#impuesto").val(data.impuesto);
         $("#tipo_documento").val(data.tipo_documento);
         $('#tipo_documento').selectpicker('refresh');
-        $("#representante_idrepresentante").val(data.representante_idrepresentante);
+        $("#representante_idrepresentante").val(data.idrepresentante);
         $('#representante_idrepresentante').selectpicker('refresh');
         $("#idpago").val(data.idpago);
 

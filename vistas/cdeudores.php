@@ -18,6 +18,22 @@ require 'headerconsultas.php';
                     <!-- /.box-header -->
                     <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
+
+                      <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Sucursal</label>
+                            <select id="sucursal_idsucursal" name="sucursal_idsucursal" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresSucursales(this.value)" required></select>
+                      </div>
+
+                         <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Categoria</label>
+                            <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresCategorias(this.value)" required></select>
+                         </div>
+
+                         <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Horario</label>
+                            <select id="horario_idhorario" name="horario_idhorario" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresHorario(this.value)" required></select>
+                         </div>
+
                         <table id="tbllistadodeudores" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
                             <th>Ficha</th>

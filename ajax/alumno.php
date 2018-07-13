@@ -53,7 +53,7 @@ switch ($_GET["op"]){
 			$descuento_ficha_alumno,
 			$bandera
 			);
-			echo $rspta ? "Datos registrados" : "No se pudo registrar";
+			echo $rspta;
 		}
 		else {
 			$rspta=$alumno->editar($idalumno,
@@ -127,7 +127,7 @@ switch ($_GET["op"]){
 
 		$rspta = $representante->select();
 
-		echo "<option > -- Seleccione --- </option>";
+		echo "<option> -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -177,7 +177,7 @@ switch ($_GET["op"]){
 
 		$categoria=new Chsucursales;
 
-		$rspta=$categoria->horarioCategoriaSucursal($idsucursal,$idcategoria);
+		$rspta=$categoria->horarioCategoriaSucursalAlumno($idsucursal,$idcategoria);
 
 		echo "<option> -- Seleccione --- </option>";
 		

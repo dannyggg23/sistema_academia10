@@ -177,7 +177,7 @@ switch ($_GET["op"]){
 			in_array(3, $valores)?$_SESSION['ficha_alumno']=1:$_SESSION['ficha_alumno']=0;
 			in_array(4, $valores)?$_SESSION['ficha_entrenador']=1:$_SESSION['ficha_entrenador']=0;
 			in_array(5, $valores)?$_SESSION['pagos']=1:$_SESSION['pagos']=0;
-			in_array(6, $valores)?$_SESSION['acceso']=1:$_SESSION['acceso']=0;
+			in_array(6, $valores)?$_SESSION['Configuracion']=1:$_SESSION['Configuracion']=0;
 			in_array(7, $valores)?$_SESSION['escritorio']=1:$_SESSION['escritorio']=0;
 			in_array(8, $valores)?$_SESSION['noticias']=1:$_SESSION['noticias']=0;
 

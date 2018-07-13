@@ -35,6 +35,11 @@ function limpiar() {
     $("#imagenactual").val("");
     $("#imagen").val("");
 
+    $("#latitud_sucursal").val("");
+    $("#longitud_sucursal").val("");
+
+    $("#imagenmuestra").hide();
+
 }
 
 //Función mostrar formulario
@@ -66,6 +71,8 @@ function listar() {
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
         buttons: [{
                 extend: 'pdfHtml5',
+                title: 'Sucursales',
+                messageTop: 'Listado de sucursales ',
                 orientation: 'landscape',
                 pageSize: 'LEGAL'
 
@@ -83,7 +90,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 50, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)
@@ -128,6 +135,8 @@ function mostrar(idsucursal) {
         $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src", "../files/sucursales/" + data.imagen);
         $("#imagenactual").val(data.imagen);
+        $("#latitud_sucursal").val(data.latitud_sucursal);
+        $("#longitud_sucursal").val(data.longitud_sucursal);
 
 
     })

@@ -75,6 +75,11 @@ Class Chsucursales
     return ejecutarConsulta($sql);
   }
 
+  public function horarioCategoriaSucursalAlumno($idsucursal,$idcategoria){
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal.idsucursal='%s' and categoria.idcategoria='%s' AND horario.estado=1  GROUP BY horario.nombre",$idsucursal,$idcategoria);
+    return ejecutarConsulta($sql);
+  }
+
 
 }
  ?>

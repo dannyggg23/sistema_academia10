@@ -332,6 +332,7 @@ function listar() {
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
         buttons: [{
                 extend: 'pdfHtml5',
+                title: 'Alumnos',
                 orientation: 'landscape',
                 pageSize: 'LEGAL'
             },
@@ -348,7 +349,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 50, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)
@@ -369,9 +370,32 @@ function guardaryeditar(e) {
         processData: false,
 
         success: function(datos) {
-            bootbox.alert(datos);
-            mostrarform(false);
-            tabla.ajax.reload();
+
+            if (datos == true) {
+                swal("CORRECTO", "Alumno registradao", "success");
+                mostrarform(false);
+                listar();
+
+            } else {
+
+                if (datos > 0) {
+
+                    swal("CORRECTO", "Alumno registradao", "success").then((value) => {
+                        var url = "http://localhost:8082/sistema_academia10/reportes/ficha_alumno.php?id=" + datos;
+                        window.open(url, '_blank');
+                    });
+
+                    mostrarform(false);
+                    listar();
+
+                } else {
+
+                    swal("INCORRECTO", "Error al guardar", "error");
+
+                }
+
+            }
+
         }
 
     });

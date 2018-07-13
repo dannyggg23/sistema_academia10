@@ -110,11 +110,13 @@ function listar() {
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: [
+        buttons: [{
+                extend: 'pdfHtml5',
+                title: 'Categorías de Entrenadores'
+            },
             'copyHtml5',
             'excelHtml5',
-            'csvHtml5',
-            'pdf'
+            'csvHtml5'
         ],
         "ajax": {
             url: '../ajax/ficha_entrenador.php?op=listar',
@@ -125,7 +127,7 @@ function listar() {
             }
         },
         "bDestroy": true,
-        "iDisplayLength": 10, //Paginación
+        "iDisplayLength": 50, //Paginación
         "order": [
                 [0, "desc"]
             ] //Ordenar (columna,orden)

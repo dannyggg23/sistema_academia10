@@ -79,6 +79,16 @@ if($_SESSION['sucursal']==1)
                             <label>Teléfono(*):</label>
                             <input type="text" class="form-control" name="telefono_sucursal" id="telefono_sucursal" maxlength="10" placeholder="Ingrese el número de teléfono" required>
                           </div>
+
+                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Latitud(*):</label>
+                            <input type="text" class="form-control" name="latitud_sucursal" id="latitud_sucursal" maxlength="100" placeholder="Ingrese la latitud de la nueva sucursal" required>
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Longitud(*):</label>
+                            <input type="text" class="form-control" name="longitud_sucursal" id="longitud_sucursal" maxlength="100" placeholder="Ingrese la longitud de la nueva sucursal" required>
+                          </div>
+
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Encargado(*):</label>
                             <input type="text" class="form-control" name="encargado_sucursal" id="encargado_sucursal" maxlength="70" placeholder="Ingrese el nombre del encargado" required>
