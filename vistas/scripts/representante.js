@@ -251,66 +251,31 @@ function activar(idrepresentante) {
 }
 
 function validarcedula() {
-
-    var cedula_representante = $('#cedula_representante').val();
-    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-
+    if ($("#checkbox2").is(':checked')) {} else {
+        var cedula_representante = $('#cedula_representante').val();
+        $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+            if (e == "Cédula válida") { swal("CORRECTO", e, "success") } else {
+                swal("ERROR", e, "error");
+                $('#cedula_representante').val("");
+            }
+            tabla.ajax.reload();
+        });
+    }
 }
 
-function validarRUC() {
 
-    var cedula_representante = $('#cedula_representante').val();
-    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-}
-
-function validarRUCP() {
-
-    var cedula_representante = $('#cedula_representante').val();
-    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-}
 
 
 function validarcedula1() {
-
-    var cedula_representante = $('#cedula_conyugue_representante').val();
-    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-
+    if ($("#checkbox3").is(':checked')) {} else {
+        var cedula_representante = $('#cedula_conyugue_representante').val();
+        $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+            if (e == "Cédula válida") { swal("CORRECTO", e, "success") } else {
+                swal("ERROR", e, "error");
+                $('#cedula_conyugue_representante').val("");
+            }
+            tabla.ajax.reload();
+        });
+    }
 }
-
-function validarRUC1() {
-
-    var cedula_representante = $('#cedula_conyugue_representante').val();
-    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-}
-
-function validarRUCP1() {
-
-    var cedula_representante = $('#cedula_conyugue_representante').val();
-    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-}
-
 init();

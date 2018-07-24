@@ -49,19 +49,22 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
-				 "0"=>($reg->estado)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
-				    '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info"> <i class="fa fa-file"></i> </button></a>'.	
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg->idficha_alumno.')"><i class="fa fa-close"></i></button>':
-					 '<button class="btn btn-warning" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
-					 '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info"> <i class="fa fa-file"></i> </button></a>'.	
- 					' <button class="btn btn-primary" onclick="activar('.$reg->idficha_alumno.')"><i class="fa fa-check"></i></button>',
+				 "0"=>($reg->estado)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+				    '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info btn-xs"> <i class="fa fa-file"></i> </button></a>'.	
+ 					' <button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->idficha_alumno.')"><i class="fa fa-close"></i></button>':
+					 '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
+					 '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info btn-xs"> <i class="fa fa-file"></i> </button></a>'.	
+ 					' <button class="btn btn-primary btn-xs" onclick="activar('.$reg->idficha_alumno.')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg->numeroFicha_alumno,
  				"2"=>$reg->nombre_alumno,
- 				"3"=>$reg->nombre_sucursal,
- 				"4"=>$reg->nombre_categoria,
-       			"5"=>$reg->horario,
-       			"6"=>$reg->fecha_acceso,
-      			"7"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				"3"=>$reg->genero_alumno,
+ 				"4"=>$reg->nombre_sucursal,
+ 				"5"=>$reg->nombre_categoria,
+       			"6"=>$reg->horario,
+       			"7"=>$reg->hora_inicio."|".$reg->hora_fin,
+       			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+				"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -73,14 +76,14 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 
 	break;
-
+ 
 	case "selectAlumno":
 		require_once "../modelos/Alumno.php";
 		$alumno = new Alumno();
 
 		$rspta = $alumno->select();
 
-		echo '<option >--Seleccione--</option>';
+		echo '<option value="" >--Seleccione--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -96,7 +99,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo "<option > -- SELECCIONE --- </option>";
+		echo "<option value='' > -- SELECCIONE --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -113,7 +116,7 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->categoriasSucursal($sucursal);
 
-		echo "<option > -- Seleccione --- </option>";
+		echo "<option value='' > -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -131,7 +134,7 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->horarioCategoriaSucursalAlumno($idsucursal,$idcategoria);
 
-		echo "<option> -- Seleccione --- </option>";
+		echo "<option value=''> -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -148,7 +151,7 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->selectCategoriass();
 
-		echo "<option> -- Seleccione --- </option>";
+		echo "<option value=''> -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -167,7 +170,7 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->selectHorarios();
 
-		echo "<option> -- Seleccione --- </option>";
+		echo "<option value=''> -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())

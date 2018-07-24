@@ -289,7 +289,7 @@ function cargarDeudoresSucursales1(idsucursal) {
 
         ],
         "ajax": {
-            url: '../ajax/cfichas.php?op=listarDeudoresSucursal&id=' + idsucursal,
+            url: '../ajax/cfichas.php?op=listarDeudoresSucursal1&id=' + idsucursal,
             type: "get",
             dataType: "json",
             error: function(e) {
@@ -323,7 +323,7 @@ function cargarDeudoresCategorias1(idcategoria) {
 
             ],
             "ajax": {
-                url: '../ajax/cfichas.php?op=listarDeudoresCategorias&id=' + idcategoria,
+                url: '../ajax/cfichas.php?op=listarDeudoresCategorias1&id=' + idcategoria,
                 type: "get",
                 dataType: "json",
                 error: function(e) {
@@ -350,7 +350,7 @@ function cargarDeudoresCategorias1(idcategoria) {
 
             ],
             "ajax": {
-                url: '../ajax/cfichas.php?op=listarDeudoresSucursalCategorias&idsucursal=' + idsucursal + '&idcategoria=' + idcategoria,
+                url: '../ajax/cfichas.php?op=listarDeudoresSucursalCategorias1&idsucursal=' + idsucursal + '&idcategoria=' + idcategoria,
                 type: "get",
                 dataType: "json",
                 error: function(e) {
@@ -383,7 +383,7 @@ function cargarDeudoresHorario1(idhorario) {
 
             ],
             "ajax": {
-                url: '../ajax/cfichas.php?op=listarDeudoresHorario&id=' + idhorario,
+                url: '../ajax/cfichas.php?op=listarDeudoresHorario1&id=' + idhorario,
                 type: "get",
                 dataType: "json",
                 error: function(e) {
@@ -411,7 +411,7 @@ function cargarDeudoresHorario1(idhorario) {
 
             ],
             "ajax": {
-                url: '../ajax/cfichas.php?op=listarDeudoresCategoriaHorario&idcategoria=' + idcategoria + '&idhorario=' + idhorario,
+                url: '../ajax/cfichas.php?op=listarDeudoresCategoriaHorario1&idcategoria=' + idcategoria + '&idhorario=' + idhorario,
                 type: "get",
                 dataType: "json",
                 error: function(e) {
@@ -438,7 +438,7 @@ function cargarDeudoresHorario1(idhorario) {
 
             ],
             "ajax": {
-                url: '../ajax/cfichas.php?op=listarDeudoresSucursalesCategoriaHorario&idsucursal=' + idsucursal + '&idcategoria=' + idcategoria + '&idhorario=' + idhorario,
+                url: '../ajax/cfichas.php?op=listarDeudoresSucursalesCategoriaHorario1&idsucursal=' + idsucursal + '&idcategoria=' + idcategoria + '&idhorario=' + idhorario,
                 type: "get",
                 dataType: "json",
                 error: function(e) {

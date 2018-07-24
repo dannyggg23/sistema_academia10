@@ -38,9 +38,11 @@ $rsptav = $venta->pagocabecera($_GET["id"]);
 
 $regv = $rsptav->fetch_object();
 
+$totalFactura;
 $cedularepresentante=$regv->cedula_representante;
 $email_representante=$regv->email_representante;
 $fecha_representante=$regv->fecha;
+$nombre_representante=$regv->nombre_representante;
 
 //Establecemos la configuración de la factura
 $pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
@@ -60,6 +62,8 @@ $pdf->addDate( $regv->fecha);
 $pdf->addClientAdresse(utf8_decode($regv->nombre_representante),"Domicilio: ".utf8_decode($regv->direccion_representante),utf8_decode("Cédula: ").$regv->cedula_representante,"Email: ".$regv->email_representante,"Telefono: ".$regv->telefono_representante);
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
+
+
 
 $cols=array( "FICHA"=>30,
              "DESCRIPCION"=>71,
@@ -124,7 +128,14 @@ $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 $mail->IsSMTP(); // telling the class to use SMTP
 
-$body ="Comprobante de Factura ";
+
+################################################################################################
+
+//CREAR CABECERA DE FACTURA
+
+###############################################################################################
+
+$body =utf8_decode("Saludos ".$nombre_representante.' el comprobante de pago a sido generado con éxito y se encuentra disponible');
 
 try {
      //$mail->Host       = "mail.gmail.com"; // SMTP server
@@ -136,11 +147,11 @@ try {
       $mail->SMTPKeepAlive = true;
       $mail->Mailer = "smtp";
       $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
-      $mail->Password   = "..Danny..3Burguer";            // GMAIL password
+      $mail->Password   = "..Danny..3Burguer";    // GMAIL password
       $mail->AddAddress($email_representante, 'abc');
-      $mail->SetFrom('dannyggg23@gmail.com', 'Admin');
+      $mail->SetFrom('dannyggg23@gmail.com', 'Escuela del 10');
       $mail->addAttachment($factura_num);         // Add attachments
-      $mail->Subject = 'Comprobante de pago La Escuela del 10';
+      $mail->Subject = 'Resivo de pago La Escuela del 10';
       $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
       $mail->MsgHTML($body);
       $mail->Send();

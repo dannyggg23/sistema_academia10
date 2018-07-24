@@ -279,6 +279,7 @@ function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alum
             '<td> <input type="number" name="numero_meses_pago[]" id="numero_meses_pago[]" onchange="modificarSubtotales()"  value="' + n_meses + '" > </td>' +
             '<td> <input type="number" name="precio_pago[]" id="precio_pago[]" onchange="modificarSubtotales()" value="' + precio + '"> </td>' +
             '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento_ficha_alumno + '" >%</td>' +
+            '<td> <select id="productos_servicios_idproductos_servicios[]" name="productos_servicios_idproductos_servicios[]"  data-live-search="true"><option value="1">MENSUALIDAD</option><option value="2">INSCRIPCION</option></select></td>' +
             '<td> <span name="subtotal" id="subtotal' + cont + '">' + subtotal + '</span> </td>' +
             '<td> <button type="button" onclick="modificarSubtotales()" class="btn btn-info"> <i class="fa fa-refresh"></i> </button> </td>' +
             '</tr>';

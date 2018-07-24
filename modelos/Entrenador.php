@@ -57,7 +57,7 @@ Class Entrenador
         $sql_ficha_entrenador=sprintf("INSERT INTO `ficha_entrenador`( `fechaApertura_entrenador`,  `entrenador_identrenador`, `sucursal_categorias_idsucursal_categorias`) VALUES (CURDATE(),'%s','%s')",$identrenador,$idsucursal_categorias);
       
        $sql_categoria=sprintf("UPDATE `sucursal_categorias` SET 
-       `disponible`=0 
+       `disponible`=1
        WHERE idsucursal_categorias='%s'",$idsucursal_categorias);
         ejecutarConsulta($sql_categoria) or $sw=false;
         ejecutarConsulta($sql_ficha_entrenador) or $sw=false;
@@ -157,7 +157,7 @@ Class Entrenador
     return ejecutarConsultaSimpleFila($sql);
   }
   public function listar(){
-      $sql="SELECT * from entrenador"; 
+      $sql="SELECT `identrenador`, `cedula_entrenador`, `nombre_entrenador`, `direccion_entrenador`, `email_entrenador`, `telefono_entrenador`, `celular_entrenador`, `imagen_entrenador`, `usuario`, `clave`, `estado`, `token`, `descripcion`, `genero_entrenador`, `titulo_entrenador`, `fechanacimiento_entrenador`,TIMESTAMPDIFF(YEAR,entrenador.fechanacimiento_entrenador,CURDATE()) AS edad FROM `entrenador`"; 
      return ejecutarConsulta($sql);
 
   }

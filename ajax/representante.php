@@ -137,7 +137,7 @@ break;
 
 		$rspta = $ciudad->select();
 
-		echo '<option >-- Seleccione --</option>';
+		echo '<option value="" >-- Seleccione --</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -150,7 +150,6 @@ break;
 		$ciudad = new Ciudad();
 		$rspta = $ciudad->selectidciudad($_POST["ciudad"]);
 		echo json_encode($rspta);
-		
 	break;
 
 }

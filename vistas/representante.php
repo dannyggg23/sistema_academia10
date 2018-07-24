@@ -54,37 +54,31 @@ if($_SESSION['ficha_alumno']==1)
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Cédula(*):</label>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">CI</button>
-                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC()">RUC-SP</button>
-                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP()">RUC-SPRIVADA</button>
+                            <label>Cédula(*):</label><label class="checkbox-inline">(   <input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
                             <input type="hidden" name="idrepresentante" id="idrepresentante">
-                            <input type="text" class="form-control" name="cedula_representante" id="cedula_representante" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
+                            <input type="text" class="form-control" name="cedula_representante" id="cedula_representante" onblur="validarcedula()" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
                           </div>
 
                         
 
                         <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Nombre(*):</label>
-                            <input type="text" class="form-control" name="nombre_representante" id="nombre_representante" placeholder="Nombres y apellidos del representante" maxlength="70" minlength="10" required>
+                            <input type="text" class="form-control" name="nombre_representante" id="nombre_representante" placeholder="Ingrese los Apellidos y Nombres" maxlength="70" minlength="10" required>
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Cédula Cónyugue(*):</label>
-                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula1()">CI</button>
-                            <button type="button" class="btn btn-success btn-xs" onclick="validarRUC1()">RUC-SP</button>
-                            <button type="button" class="btn btn-danger btn-xs" onclick="validarRUCP1()">RUC-SPRIVADA</button>
-                            <input type="text" class="form-control" name="cedula_conyugue_representante" id="cedula_conyugue_representante" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
+                            <label>Cédula Cónyugue(*):</label><label class="checkbox-inline">(<input type="checkbox" name="checkbox3" id="checkbox3">P)</label>
+                            <input type="text" class="form-control" name="cedula_conyugue_representante" id="cedula_conyugue_representante" onblur="validarcedula1()" placeholder="Documento de identidad" maxlength="13" minlength="10" required>
                           </div>
                         <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Nombre Cónyugue(*):</label>
-                            <input type="text" class="form-control" name="nombre_conyugue_representante" id="nombre_conyugue_representante" placeholder="Nombres y apellidos" maxlength="70" minlength="10" required>
+                            <input type="text" class="form-control" name="nombre_conyugue_representante" id="nombre_conyugue_representante" placeholder="Ingrese los Apellidos y Nombres" maxlength="70" minlength="10" required>
                           </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Género(*):</label>
                             <select id="genero_representante" name="genero_representante" class="form-control selectpicker"  placeholder="Seleccione un item" required>
-                            <option >--  Seleccione  --</option>
+                            <option value="" >--  Seleccione  --</option>
                               <option value="Masculino">Masculino</option>
                               <option value="Femenino">Femenino</option>
                             </select>
@@ -132,7 +126,7 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
                           
                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Lugar trabajo(*):</label>
+                            <label>Lugar de Trabajo(*):</label>
                             <input type="text" class="form-control" name="lugar_trabajo_representante" id="lugar_trabajo_representante" placeholder="Lugar de trabajo del representante" maxlength="70"  required>
                           </div>
 

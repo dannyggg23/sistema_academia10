@@ -105,19 +105,22 @@ if($_SESSION['pagos']==1)
                            </a>
                           </div>
 
+
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            
+                  
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                               <thead style="background-color: #A9D0F5">
                                 <th>Opciones</th>
                                 <th>Ficha</th>
-                                <th>N° Meses</th>
+                                <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Descuento</th>
+                                <th>Servicio</th>
                                 <th>Subtotal</th>
                               </thead>
                               <tfoot>
                                 <th>TOTAL</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

@@ -99,7 +99,7 @@ Class Alumno
     return ejecutarConsultaSimpleFila($sql);
   }
   public function listar(){
-      $sql="SELECT alumno.*,representante.cedula_representante,TIMESTAMPDIFF(YEAR,alumno.fecha_nacimiento,CURDATE()) AS edad FROM `alumno` INNER JOIN representante on representante.idrepresentante=alumno.representante_idrepresentante";
+      $sql="SELECT alumno.*,representante.cedula_representante,representante.nombre_representante,TIMESTAMPDIFF(YEAR,alumno.fecha_nacimiento,CURDATE()) AS edad FROM `alumno` INNER JOIN representante on representante.idrepresentante=alumno.representante_idrepresentante";
      return ejecutarConsulta($sql);
   }
 

@@ -270,6 +270,8 @@ function limpiar() {
     $('#representante_idrepresentante').selectpicker('refresh');
 
     $("#tipo_sangre_alumno").val("");
+    $('#tipo_sangre_alumno').selectpicker('refresh');
+
     $("#escuela_alumno").val("");
     $("#fecha_nacimiento").val("");
     $("#posicion_alumno").val("");
@@ -418,6 +420,8 @@ function mostrar(idalumno) {
 
 
         $("#tipo_sangre_alumno").val(data.tipo_sangre_alumno);
+        $('#tipo_sangre_alumno').selectpicker('refresh');
+
         $("#escuela_alumno").val(data.escuela_alumno);
         $("#fecha_nacimiento").val(data.fecha_nacimiento);
         $("#posicion_alumno").val(data.posicion_alumno);
@@ -465,11 +469,19 @@ function activar(idalumno) {
 
 function validarcedula() {
 
-    var cedula_representante = $('#cedula_alumno').val();
-    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
-        tabla.ajax.reload();
-    });
+    if ($("#checkbox2").is(':checked')) {} else {
+        var cedula_representante = $('#cedula_alumno').val();
+        $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+            if (e == "Cédula válida") { swal("CORRECTO", e, "success") } else {
+                swal("ERROR", e, "error");
+                $('#cedula_alumno').val("");
+            }
+
+            tabla.ajax.reload();
+
+        });
+
+    }
 }
 
 function validarcedularepresentante() {
@@ -481,13 +493,6 @@ function validarcedularepresentante() {
     });
 }
 
-function validarcedularepresentanteconyugue() {
 
-    var cedula_representante = $('#cedula_conyugue_representante').val();
-    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
-        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
-        tabla.ajax.reload();
-    });
-}
 
 init();

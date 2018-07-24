@@ -53,7 +53,8 @@ switch ($_GET["op"]){
        			"3"=>$reg->nombre_sucursal,
        			"4"=>$reg->nombre_categoria,
        			"5"=>$reg->nombre,
-      			"6"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+       			"6"=>$reg->hora_inicio.'|'.$reg->hora_fin,
+      			"7"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -76,7 +77,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->identrenador . '>' . $reg->cedula_entrenador . '</option>';
+					echo '<option value=' . $reg->identrenador . '>' . $reg->cedula_entrenador ." | ".$reg->nombre_entrenador. '</option>';
 				}
 	break;
 

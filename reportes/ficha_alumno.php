@@ -350,7 +350,7 @@ $mail = new PHPMailer\PHPMailer\PHPMailer(); // the true param means it will thr
     
     $mail->IsSMTP(); // telling the class to use SMTP
     
-    $body ="FICHA DE INSCRIPCION LA ESCUELA DEL 10";
+    $body =utf8_decode("TE DAMOS LA MAS CORDIAL BIENVENIDA A FORMAR PARTE DE LA ESCUELA DE FUTBOL CON MAYOR PROYECCION A NIVEL NACIONAL 'LA ESCUELA DEL 10' \n Adjuntamos tu hoja de inscripción \n Atentamente, \n La Gerencia \n www.escueladel10.com");
     
     try {
          //$mail->Host       = "mail.gmail.com"; // SMTP server
@@ -358,16 +358,17 @@ $mail = new PHPMailer\PHPMailer\PHPMailer(); // the true param means it will thr
           $mail->SMTPAuth   = true;                  // enable SMTP authentication
           $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
           $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+         //$mail->Host       = "smtp.hotmail.com";      // sets GMAIL as the SMTP server
           $mail->Port       = 465;   // set the SMTP port for the GMAIL server
           $mail->SMTPKeepAlive = true;
           $mail->Mailer = "smtp";
           $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
           $mail->Password   = "..Danny..3Burguer";            // GMAIL password
           $mail->AddAddress($email_representante, 'abc');
-          $mail->SetFrom('dannyggg23@gmail.com', 'Admin');
+          $mail->SetFrom('dannyggg23@gmail.com', 'Escuela del 10');
           $mail->addAttachment('bookings/'.$cedulaalumno.'.pdf');         // Add attachments
-          $mail->Subject = 'FICHA DE INSCRIPCION';
-          $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+          $mail->Subject = 'Bienvenido a la Escuela del 10';
+          $mail->AltBody = ''; // optional - MsgHTML will create an alternate automatically
           $mail->MsgHTML($body);
           $mail->Send();
           echo "Message Sent OK</p>\n";
@@ -377,9 +378,7 @@ $mail = new PHPMailer\PHPMailer\PHPMailer(); // the true param means it will thr
           echo $e->getMessage(); //Boring error messages from anything else!
     }
     
-
     ############################
-
 }
   
 

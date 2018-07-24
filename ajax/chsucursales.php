@@ -13,11 +13,11 @@ switch ($_GET["op"]){
 
 		if (empty($idsucursal_categorias)){
 			$rspta=$sucursal_categorias->insertar($sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario);
-			echo $rspta ? "Datos registrados" : "No se pudo registrar";
+			echo $rspta ? "Datos registrados" : "No se pudo registrar O ya se encuentra registrado";
 		}
 		else {
 			$rspta=$sucursal_categorias->editar($idsucursal_categorias,$sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario);
-			echo $rspta ? "Datos actualizado" : "No se pudo actualizar";
+			echo $rspta ? "Datos actualizado" : "No se pudo actualizar Seleccione valores nuevos";
 		}
 	break;
 
@@ -73,7 +73,7 @@ switch ($_GET["op"]){
 
 		$rspta = $horario->select();
 
-		echo '<option>--Seleccione--</option>';
+		echo '<option value="">--Seleccione un Horario--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -88,7 +88,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo '<option>--Seleccione--</option>';
+		echo '<option value="">--Seleccione una Sucursal--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -102,7 +102,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo '<option>--Seleccione--</option>';
+		echo '<option value="">--Seleccione una Categoría--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{

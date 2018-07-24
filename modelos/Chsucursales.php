@@ -8,20 +8,45 @@ Class Chsucursales
 
   public function insertar($sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario){
 
-    $sql=sprintf("INSERT INTO `sucursal_categorias`( `sucursal_idsucursal`, `categoria_idcategoria`, `horario_idhorario`) 
-    VALUES ('%s','%s','%s')",$sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario);
-    return ejecutarConsulta($sql);
+    $sql_select="SELECT * FROM `sucursal_categorias` WHERE sucursal_categorias.sucursal_idsucursal='$sucursal_idsucursal' AND sucursal_categorias.categoria_idcategoria='$categoria_idcategoria' AND sucursal_categorias.horario_idhorario='$horario_idhorario'";
+    $row=ejecutarConsulta($sql_select);
+    $reg=$row->fetch_object();
+
+    if(empty($reg))
+    {
+      $sql=sprintf("INSERT INTO `sucursal_categorias`( `sucursal_idsucursal`, `categoria_idcategoria`, `horario_idhorario`) 
+      VALUES ('%s','%s','%s')",$sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario);
+      return ejecutarConsulta($sql);
+    }
+    else
+    {
+      return false;
+    }
+
   }
 
   public function editar($idsucursal_categorias,$sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario)
   {
+
+    $sql_select="SELECT * FROM `sucursal_categorias` WHERE sucursal_categorias.sucursal_idsucursal='$sucursal_idsucursal' AND sucursal_categorias.categoria_idcategoria='$categoria_idcategoria' AND sucursal_categorias.horario_idhorario='$horario_idhorario'";
+    $row=ejecutarConsulta($sql_select);
+    $reg=$row->fetch_object();
+
+    if(empty($reg))
+    {
+
   $sql=sprintf("UPDATE `sucursal_categorias` SET 
  
   `sucursal_idsucursal`='%s',
   `categoria_idcategoria`='%s',
   `horario_idhorario`='%s'
    WHERE idsucursal_categorias ='%s'",$sucursal_idsucursal, $categoria_idcategoria,$horario_idhorario,$idsucursal_categorias);
-    return ejecutarConsulta($sql);
+  return ejecutarConsulta($sql);
+    }
+  else
+  {
+    return false;
+  }
   }
 
   public function desactivar($idsucursal_categorias)
@@ -61,7 +86,7 @@ Class Chsucursales
   }
 
   public function horarioCategoriaSucursal($idsucursal,$idcategoria){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal.idsucursal='%s' and categoria.idcategoria='%s' AND horario.estado=1 AND sucursal_categorias.disponible=0 GROUP BY horario.nombre",$idsucursal,$idcategoria);
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal.idsucursal='%s' and categoria.idcategoria='%s' AND horario.estado=1 AND sucursal_categorias.disponible=0 GROUP BY horario.nombre",$idsucursal,$idcategoria);
     return ejecutarConsulta($sql);
   }
 
@@ -71,7 +96,7 @@ Class Chsucursales
   }
 
   public function selectHorarios(){
-    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE horario.estado=1 GROUP BY horario.nombre");
+    $sql=sprintf("SELECT sucursal_categorias.idsucursal_categorias,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal_categorias.categoria_idcategoria FROM `sucursal_categorias` INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE horario.estado=1");
     return ejecutarConsulta($sql);
   }
 

@@ -28,7 +28,7 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		if (empty($idpago)){
-			$rspta=$pago->insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$_POST["ficha_alumno_idficha_alumno"],$_POST["numero_meses_pago"],$_POST["precio_pago"],$_POST["descuento_pago"]);
+			$rspta=$pago->insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$_POST["ficha_alumno_idficha_alumno"],$_POST["numero_meses_pago"],$_POST["precio_pago"],$_POST["descuento_pago"],$_POST["productos_servicios_idproductos_servicios"]);
 			echo $rspta;
 		}
 		else {
@@ -57,9 +57,10 @@ switch ($_GET["op"]){
 		echo '<thead style="background-color: #A9D0F5">
                                 <th>Opciones</th>
                                 <th>Ficha</th>
-                                <th>N° Meses</th>
+                                <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Descuento</th>
+                                <th>Servicio</th>
                                 <th>Subtotal</th>
                               </thead>';
 
@@ -68,7 +69,7 @@ switch ($_GET["op"]){
 			$sub=$reg->numero_meses_pago * $reg->precio_pago;
 			$subtotal=$sub-$reg->descuento_pago;
 
-			echo '<tr class="filas" ><td></td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$subtotal.'</td></tr>';
+			echo '<tr class="filas" ><td></td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$reg->nombre_productos_servicios.'</td><td>'.$subtotal.'</td></tr>';
 			$rtotal=$rtotal+$subtotal;
 			$sub=0;
 			$subtotal=0;
@@ -78,6 +79,7 @@ switch ($_GET["op"]){
 
 		echo '<tfoot>
                                 <th>TOTAL</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -137,7 +139,7 @@ switch ($_GET["op"]){
 
 		$rspta = $representante->select();
 
-		echo '<option>--Seleccione--</option>';
+		echo '<option value="">--Seleccione--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -159,7 +161,7 @@ switch ($_GET["op"]){
  				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idficha_alumno.',\''.$reg->numeroFicha_alumno.'\',\''.$reg->descuento_ficha_alumno.'\')"><span class="fa fa-plus"></span></button>',
  				"1"=>$reg->cedula_alumno,
  				"2"=>$reg->nombre_alumno,
- 				"3"=>$reg->fecha_acceso,
+ 				"3"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info">'.$reg->fecha_acceso.'</label>',
        			"4"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >"
  				);
  		}

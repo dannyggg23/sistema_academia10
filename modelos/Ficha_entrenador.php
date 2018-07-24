@@ -57,7 +57,7 @@ WHERE idsucursal_categorias='%s'",$sucursal_categorias_idsucursal_categorias);
 
 
   public function listar(){
-    $sql="SELECT entrenador.cedula_entrenador,entrenador.nombre_entrenador,ficha_entrenador.estado,ficha_entrenador.idficha_entrenador,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,sucursal_categorias.idsucursal_categorias from entrenador INNER JOIN ficha_entrenador on ficha_entrenador.entrenador_identrenador=entrenador.identrenador INNER JOIN sucursal_categorias on sucursal_categorias.idsucursal_categorias=ficha_entrenador.sucursal_categorias_idsucursal_categorias INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario";
+    $sql="SELECT entrenador.cedula_entrenador,entrenador.nombre_entrenador,ficha_entrenador.estado,ficha_entrenador.idficha_entrenador,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,sucursal_categorias.idsucursal_categorias,horario.hora_inicio,horario.hora_fin from entrenador INNER JOIN ficha_entrenador on ficha_entrenador.entrenador_identrenador=entrenador.identrenador INNER JOIN sucursal_categorias on sucursal_categorias.idsucursal_categorias=ficha_entrenador.sucursal_categorias_idsucursal_categorias INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario";
     return ejecutarConsulta($sql);
   }
 

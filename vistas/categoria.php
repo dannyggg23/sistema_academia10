@@ -57,7 +57,7 @@ if($_SESSION['Configuracion']==1)
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Descripción(*):</label>
-                              <input type="text" class="form-control" name="descripcion_categoria" id="descripcion_categoria" maxlength="40" placeholder="Nombre" required>
+                              <textarea type="text" class="form-control" name="descripcion_categoria" id="descripcion_categoria" maxlength="200" placeholder="Ingrese la Descripción de la categoría" required></textarea>
                           </div>
 
 

@@ -34,8 +34,12 @@ if($_SESSION['ficha_alumno']==1)
                             <th>Opciones</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
+                            <th>Género</th>
                             <th>Edad</th>
                             <th>Posición</th>
+                            <th>Peso</th>
+                            <th>Talla</th>
+                            <th>T.Sangre</th>
                             <th>Representante</th>
                             <th>Imagen</th>
                             <th>Estado</th>
@@ -46,8 +50,12 @@ if($_SESSION['ficha_alumno']==1)
                           <th>Opciones</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
+                            <th>Género</th>
                             <th>Edad</th>
                             <th>Posición</th>
+                            <th>Peso KG</th>
+                            <th>Talla M</th>
+                            <th>T.Sangre</th>
                             <th>Representante</th>
                             <th>Imagen</th>
                             <th>Estado</th>
@@ -58,10 +66,9 @@ if($_SESSION['ficha_alumno']==1)
                         <form name="formulario" id="formulario" method="POST">
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Cédula(*):</label>
+                            <label>Cédula(*):</label><label class="checkbox-inline">(   <input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
                             <input type="hidden" name="idalumno" id="idalumno">
-                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">CI</button>
-                            <input type="text" class="form-control" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" onkeyup = "if(event.keyCode == 13) validarcedula()" required>
+                            <input type="text" class="form-control" onblur="validarcedula()" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" onkeyup = "if(event.keyCode == 13) validarcedula()" required>
                           </div>
 
                          
@@ -74,7 +81,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Género(*):</label>
                             <select id="genero_alumno" name="genero_alumno" class="form-control selectpicker"  placeholder="Seleccione un item" required>
-                            <option>--Seleccione--</option>
+                            <option value="">--Seleccione--</option>
                               <option value="Masculino">Masculino</option>
                               <option value="Femenino">Femenino</option>
                             </select>
@@ -82,7 +89,19 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Tipo de sangre(*):</label>
-                              <input type="text" class="form-control" name="tipo_sangre_alumno" id="tipo_sangre_alumno" maxlength="50"  placeholder="Tipo de Sangre" required>
+                            
+                              <select id="tipo_sangre_alumno" name="tipo_sangre_alumno" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" required>
+                              <option value="">--Seleccione una opción--</option>                              
+                              <option value="O negativo">O negativo</option>
+                              <option value="O positivo">O positivo</option>
+                              <option value="A negativo">A negativo</option>
+                              <option value="A positivo">A positivo</option>
+                              <option value="B negativo">B negativo</option>
+                              <option value="B positivo">B positivo</option>
+                              <option value="AB negativo">AB negativo</option>
+                              <option value="AB positivo">AB positivo</option>
+                              </select>
+
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -96,7 +115,7 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Representante(*):</label><button type="button" id="modalrepresentante" name="modalrepresentante" class="btn btn-primary" >+</button>
+                            <label>Representante(*):</label><button type="button" id="modalrepresentante" name="modalrepresentante" class="btn btn-primary btn-xs" >+</button>
                             <select id="representante_idrepresentante" name="representante_idrepresentante" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" required></select>
                            
                           </div>
@@ -106,31 +125,37 @@ if($_SESSION['ficha_alumno']==1)
                               <input type="text" class="form-control" name="posicion_alumno" id="posicion_alumno" placeholder="Pocición en la que juega" maxlength="30" required>
                           </div>
 
+
                          
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Peso(*):</label>
-                              <input type="text" class="form-control" name="peso_alumno" id="peso_alumno" placeholder="Peso" maxlength="20" required>
+                              <input type="text" class="form-control" name="peso_alumno" id="peso_alumno" placeholder="Peso Kilogramos" maxlength="20" required>
                           </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Talla(*):</label>
-                              <input type="text" class="form-control" name="talla_alumno" id="talla_alumno" placeholder="Talla" maxlength="20" required>
+                              <input type="text" class="form-control" name="talla_alumno" id="talla_alumno" placeholder="Talla Metros" maxlength="20" required>
                           </div>
 
-
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Imagen:</label>
-                            <input type="file" class="form-control" name="imagen" id="imagen"  required>
+                            <input type="file" class="form-control" name="imagen" id="imagen">
                             <input type="hidden" name="imagenactual" id="imagenactual">
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>
+
+
+
+                         
 
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Como se entero de la Acdemia(*):</label>
                               <input type="text" class="form-control" name="informacion_alumno" id="informacion_alumno" placeholder="Cómo se entero de nuestra academia" maxlength="100" required>
                           </div>
 
+                          
+                         
 
 
                           <br>
@@ -138,13 +163,11 @@ if($_SESSION['ficha_alumno']==1)
                           <br>
                           
                           <div  class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>LLENAR CAMPOS DE FICHA :</label>
-
-                            <input type="hidden" name="bandera" id="bandera">
-                          
-                          <input type="checkbox" name="acceptRules" class="inline checkbox" id="checkbox1" name="checkbox1" >
-                           
-                          
+                          <label class="container">LLenar campos de Ficha
+                          <input type="hidden" name="bandera" id="bandera">
+                            <input type="checkbox" id="checkbox1" name="checkbox1">
+                            <span class="checkmark"></span>
+                          </label>
                           </div>
 
                           <div id="ocultar3" name="ocultar3" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

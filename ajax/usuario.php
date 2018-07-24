@@ -180,6 +180,7 @@ switch ($_GET["op"]){
 			in_array(6, $valores)?$_SESSION['Configuracion']=1:$_SESSION['Configuracion']=0;
 			in_array(7, $valores)?$_SESSION['escritorio']=1:$_SESSION['escritorio']=0;
 			in_array(8, $valores)?$_SESSION['noticias']=1:$_SESSION['noticias']=0;
+			in_array(9, $valores)?$_SESSION['productos_servicios']=1:$_SESSION['productos_servicios']=0;
 
 		}
 		//echo $logina. " ".$clavehash;

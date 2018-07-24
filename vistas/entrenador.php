@@ -35,8 +35,11 @@ if($_SESSION['ficha_entrenador']==1)
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Género</th>
+                            <th>Edad</th>
                             <th>Título</th>
-                            <th>Teléfono</th>
+                            <th>Celular</th>
+                            <th>Dirección</th>
+                            <th>Email</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
@@ -47,8 +50,11 @@ if($_SESSION['ficha_entrenador']==1)
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Género</th>
+                            <th>Edad</th>
                             <th>Título</th>
-                            <th>Teléfono</th>
+                            <th>Celular</th>
+                            <th>Dirección</th>
+                            <th>Email</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </tfoot>
@@ -56,15 +62,13 @@ if($_SESSION['ficha_entrenador']==1)
                     </div>
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
+                        
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Cédula(*):</label>
+                            <label>Cédula(*):</label><label class="checkbox-inline">(   <input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
                             <input type="hidden" name="identrenador" id="identrenador">
-                            <button type="button" class="btn btn-primary btn-xs" onclick="validarcedula()">C.I</button>
-                            <input type="text" class="form-control" name="cedula_entrenador" id="cedula_entrenador" minlength="10" maxlength="13" placeholder="Cédula" required>
+                            <input type="text" class="form-control" onblur="validarcedula()" name="cedula_entrenador" id="cedula_entrenador" minlength="10" maxlength="13" placeholder="Cédula" required>
                           </div>
 
-
-                      
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Nombre(*):</label>
                               <input type="text" class="form-control" name="nombre_entrenador" id="nombre_entrenador" minlength="" maxlength="40" placeholder="Nombre" required>
@@ -79,13 +83,13 @@ if($_SESSION['ficha_entrenador']==1)
                           </div>
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Teléfono(*):</label>
-                              <input type="text" class="form-control" name="telefono_entrenador" id="telefono_entrenador" maxlength="9" placeholder="Teléfono" required>
+                            <label>Teléfono:</label>
+                              <input type="text" class="form-control" name="telefono_entrenador" id="telefono_entrenador" maxlength="9" placeholder="Teléfono">
                           </div>
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Celular:</label>
-                              <input type="text" class="form-control" name="celular_entrenador" id="celular_entrenador" maxlength="10" placeholder="Celular">
+                            <label>Celular(*):</label>
+                              <input type="text" class="form-control" name="celular_entrenador" id="celular_entrenador" maxlength="10" placeholder="Celular" required>
                           </div>
 
                       
@@ -131,15 +135,14 @@ if($_SESSION['ficha_entrenador']==1)
                            <br>
                           <br>
                           <br>
+
                           
                           <div  class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>LLENAR CAMPOS DE FICHA :</label>
-
-                            <input type="hidden" name="bandera" id="bandera">
-                          
-                          <input type="checkbox" name="acceptRules" class="inline checkbox" id="checkbox1" name="checkbox1" >
-                           
-                          
+                          <label class="container">LLenar campos de Ficha
+                          <input type="hidden" name="bandera" id="bandera">
+                            <input type="checkbox" id="checkbox1" name="checkbox1">
+                            <span class="checkmark"></span>
+                          </label>
                           </div>
 
 
@@ -155,7 +158,7 @@ if($_SESSION['ficha_entrenador']==1)
                             <label>Categoría(*):</label>
                             <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarHorario(this.value)"></select>
                           </div>
-
+ 
                           <div id="ocultar2" name="ocultar2" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Horario(*):</label>
                             <select id="idsucursal_categorias" name="idsucursal_categorias" class="form-control selectpicker" data-live-search="true"></select>

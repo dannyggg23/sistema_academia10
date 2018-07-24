@@ -102,10 +102,13 @@ switch ($_GET["op"]){
  				"1"=>$reg->cedula_entrenador,
  				"2"=>$reg->nombre_entrenador,
  				"3"=>$reg->genero_entrenador,
- 				"4"=>$reg->titulo_entrenador,
- 				"5"=>$reg->telefono_entrenador,
- 				"6"=>"<img src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
- 				"7"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				"4"=>$reg->edad,
+ 				"5"=>$reg->titulo_entrenador,
+ 				"6"=>$reg->celular_entrenador,
+ 				"7"=>$reg->direccion_entrenador,
+ 				"8"=>$reg->email_entrenador,
+ 				"9"=>"<img src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
+ 				"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -157,7 +160,7 @@ switch ($_GET["op"]){
 		$idcategoria = ($_GET["horarioCategoria"]);
 
 		$categoria=new Chsucursales;
-
+ 
 		$rspta=$categoria->horarioCategoriaSucursal($idsucursal,$idcategoria);
 
 		echo "<option> -- Seleccione --- </option>";
@@ -165,7 +168,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idsucursal_categorias . '>' . $reg->nombre . '</option>';
+					echo '<option value=' . $reg->idsucursal_categorias . '>' . $reg->nombre .' | '.$reg->hora_inicio.' - '.$reg->hora_fin.'</option>';
 				}
 	break;
 }

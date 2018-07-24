@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 
   </head>
-  <body class="hold-transition skin-blue-light sidebar-mini">
+  <body class="hold-transition skin-blue-light sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
       <header class="main-header">
@@ -67,26 +67,26 @@
             <li class="header"></li>
             <li>
               <a href="escritorio.php">
-                <i class="fa fa-tasks"></i> <span>Escritorio</span>
+                <i class="fa fa-tasks fa-lg" ></i> <span>Escritorio</span>
               </a>
             </li>
 
             <li>
               <a href="sucursal.php">
-                <i class="fa fa-map-marker"></i> <span>Sucursales</span>
+                <i class="fa fa-map-marker fa-lg"></i> <span>Sucursales</span>
               </a>
             </li>
 
             <li>
               <a href="chsucursales.php">
-                <i class="fa fa-th"></i> <span>Categorías</span>
+                <i class="fa fa-th fa-lg"></i> <span>Categorías</span>
               </a>
             </li>
       
 
             <li class="treeview">
                 <a href="#">
-                  <i class="fa fa-file-text-o"></i>
+                  <i class="fa fa-file-text-o fa-lg"></i>
                   <span>Entrenadores</span>
                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -99,7 +99,7 @@
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-file-text"></i>
+                <i class="fa fa-file-text fa-lg"></i>
                 <span>Alumnos</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -112,22 +112,34 @@
               </ul>
             </li>
 
+             <li class="treeview">
+              <a href="#">
+                <i class="fa fa-soccer-ball-o fa-lg"></i>
+                <span>Productos-Servicios</span>
+                 <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="categoria_ps.php"><i class="fa fa-circle-o"></i> Categorías</a></li>
+                <li><a href="productos_servicios.php"><i class="fa fa-circle-o"></i> Productos-Servicios</a></li>
+              </ul>
+            </li>
+
               <li class="treeview">
                   <a href="#">
-                    <i class="fa fa-credit-card"></i>
+                    <i class="fa fa-dollar fa-lg"></i>
                     <span>Pagos</span>
                      <i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="pago.php"><i class="fa fa-circle-o"></i> Factura</a></li>
+                    <li><a href="pago.php"><i class="fa fa-circle-o"></i> Mensualidades</a></li>
+                    <li><a href="pago.php"><i class="fa fa-circle-o"></i> Productos-Servicios</a></li>
                   </ul>
                 </li>
 
-              
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Configuración</span>
+                <i class="fa fa-gears fa-lg"></i> <span>Configuración</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -141,7 +153,7 @@
 
           <li class="treeview">
               <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Consultas</span>
+                <i class="fa fa-bar-chart fa-lg"></i> <span>Consultas</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -154,12 +166,12 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Noticias</span>
+                <i class="fa fa-newspaper-o fa-lg"></i> <span>Noticias</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
               
-              <li><a href="noticias.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
+                <li><a href="noticias.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
                  <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
               
               </ul>
@@ -183,4 +195,3 @@
         </section>
         <!-- /.sidebar -->
       </aside>
-

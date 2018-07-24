@@ -92,7 +92,7 @@ switch ($_GET["op"]){
 
 		$rspta = $ciudad->select();
 
-		echo '<option value="0">--  Seleccione una ciudad  --</option>';
+		echo '<option value="">--Seleccione una ciudad--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{

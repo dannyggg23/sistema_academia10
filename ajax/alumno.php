@@ -104,11 +104,15 @@ switch ($_GET["op"]){
  				 '<button class="btn btn-primary btn-xs" onclick="activar('.$reg->idalumno.')"><i class="fa fa-check"></i></button> ',
  				"1"=>$reg->cedula_alumno,
  				"2"=>$reg->nombre_alumno,
- 				"3"=>$reg->edad,
- 				"4"=>$reg->posicion_alumno,
- 				"5"=>$reg->cedula_representante,
- 				"6"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
- 				"7"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				"3"=>$reg->genero_alumno,
+ 				"4"=>$reg->edad,
+ 				"5"=>$reg->posicion_alumno,
+ 				"6"=>$reg->peso_alumno." KG",
+ 				"7"=>$reg->talla_alumno." M",
+ 				"8"=>$reg->tipo_sangre_alumno,
+ 				"9"=>$reg->nombre_representante,
+ 				"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+ 				"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}
@@ -127,12 +131,12 @@ switch ($_GET["op"]){
 
 		$rspta = $representante->select();
 
-		echo "<option> -- Seleccione --- </option>";
+		echo "<option value=''> -- Seleccione un Representante --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idrepresentante . '>' . $reg->cedula_representante . '</option>';
+					echo '<option value=' . $reg->idrepresentante . '>' . $reg->cedula_representante ." | ".$reg->nombre_representante. '</option>';
 				}
 	break;
 

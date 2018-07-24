@@ -8,8 +8,10 @@ if(!isset($_SESSION['nombre']))
 }
 else
 {
+
 require 'header.php';
-if($_SESSION['ficha_entrenador']==1)
+
+if($_SESSION['productos_servicios']==1)
 {
 ?>
 <!--Contenido-->
@@ -21,7 +23,7 @@ if($_SESSION['ficha_entrenador']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Ficha del Entrenador <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h1 class="box-title">Productos-Servicios <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -30,57 +32,48 @@ if($_SESSION['ficha_entrenador']==1)
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
-
                             <th>Opciones</th>
-                            <th>Entrenador</th>
                             <th>Nombre</th>
-                            <th>Sucursal</th>
-                            <th>Categoria</th>
-                            <th>Horario</th>
-                            <th>Hora</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
                             <th>Estado</th>
-
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            
-                          <th>Opciones</th>
-                            <th>Entrenador</th>
+                            <th>Opciones</th>
                             <th>Nombre</th>
-                            <th>Sucursal</th>
-                            <th>Categoria</th>
-                            <th>Horario</th>
-                            <th>Hora</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
                             <th>Estado</th>
-
                           </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Entrenador(*):</label>
-                            <input type="hidden" name="idficha_entrenador" id="idficha_entrenador">
-                            <select id="entrenador_identrenador" name="entrenador_identrenador" class="form-control selectpicker" data-live-search="true" required></select>
+                            <label>Nombre(*):</label>
+                            <input type="hidden" name="idproductos_servicios" id="idproductos_servicios">
+                            <input type="text" class="form-control" name="nombre_productos_servicios" id="nombre_productos_servicios"  maxlength="45" placeholder="Nombre del Producto o Servicio" required>
+                          </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Precio(*):</label>
+                            <input type="number" class="form-control" name="precio_productos_servicios" id="precio_productos_servicios"  maxlength="45" placeholder="Precio del Producto o Servicio" required>
+                          </div>
+
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Descripción(*):</label>
+                              <textarea type="text" class="form-control" name="descripcion_productos_servicios" id="descripcion_productos_servicios" maxlength="200" placeholder="Ingrese la Descripción del Producto o Servicio" required></textarea>
                           </div>
 
 
-                      <div  id="ocultar" name="ocultar" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Sucursal(*):</label>
-                           
-                            <select id="sucursal_idsucursal" name="sucursal_idsucursal" class="form-control selectpicker" data-live-search="true"  required onchange="cargarCategorias(this.value)"></select>
-                           
-                          </div>
-
-                          <div id="ocultar1" name="ocultar1" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                         <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Categoría(*):</label>
-                            <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true" required onchange="cargarHorario(this.value)"></select>
-                          </div>
-
-                          <div id="ocultar2" name="ocultar2" class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Horario(*):</label>
-                            <select id="idsucursal_categorias" name="idsucursal_categorias" class="form-control selectpicker" required data-live-search="true"></select>
+                            <select id="categorias_productos_servicios_idcategorias_productos_servicios" name="categorias_productos_servicios_idcategorias_productos_servicios" class="form-control selectpicker"  placeholder="Seleccione un item" required>
+                            </select>
                           </div>
 
 
@@ -108,7 +101,7 @@ else
 require 'footer.php';
 ?>
 
-<script type="text/javascript" src="scripts/ficha_entrenador.js"></script>
+<script type="text/javascript" src="scripts/productos_servicios.js"></script>
 <?php
 }
 

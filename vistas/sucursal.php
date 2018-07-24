@@ -67,7 +67,6 @@ if($_SESSION['sucursal']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Ciudad(*):</label>
                             <select id="ciudad_idCiudad" name="ciudad_idCiudad" class="form-control selectpicker"  data-live-search="true" required>
-                            <option >--Seleccione--</option>
                             </select>
                           </div>
 

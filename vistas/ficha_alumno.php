@@ -21,7 +21,7 @@ if($_SESSION['ficha_alumno']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Ficha del Alumno <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar </button>  <a target="_blank" href="../reportes/rptalumnos.php"><button class="btn btn-info">Reporte</button></a></h1>
+                          <h1 class="box-title">Ficha del Alumno <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar </button> <!-- <a target="_blank" href="../reportes/rptalumnos.php"><button class="btn btn-info">Reporte</button></a>--></h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -34,10 +34,13 @@ if($_SESSION['ficha_alumno']==1)
                             <th>Opciones</th>
                             <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Género</th>
                             <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
+                            <th>Insc.</th>
                             <th>Estado</th>
 
                           </thead>
@@ -48,10 +51,13 @@ if($_SESSION['ficha_alumno']==1)
                             <th>Opciones</th>
                             <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Género</th>
                             <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
+                            <th>Insc.</th>
                             <th>Estado</th>
 
                           </tfoot>
@@ -62,7 +68,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Número de ficha(*):</label>
                             <input type="hidden" name="idficha_alumno" id="idficha_alumno">
-                            <input   type="text" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno" minlength="10" maxlength="13" placeholder="Número de ficha" required>
+                            <input type="text" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno" minlength="10" maxlength="13" placeholder="Número de ficha" disabled required>
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -97,6 +103,7 @@ if($_SESSION['ficha_alumno']==1)
                             <label>Categoría(*):</label>
                             <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarHorario(this.value)"></select>
                           </div>
+
 
                           <div id="ocultar2" name="ocultar2" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Horario(*):</label>

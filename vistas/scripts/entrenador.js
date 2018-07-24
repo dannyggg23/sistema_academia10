@@ -27,9 +27,6 @@ function init() {
 
 $("#checkbox1").on('change', function() {
     if ($(this).is(':checked')) {
-
-
-
         $('#bandera').val("true");
 
         console.log($('#bandera').val());
@@ -37,8 +34,6 @@ $("#checkbox1").on('change', function() {
         $("#ocultar").show();
         $("#ocultar1").show();
         $("#ocultar2").show();
-
-
 
         $("#sucursal_idsucursal").attr("required", true);
         $("#categoria_idcategoria").attr("required", true);
@@ -298,36 +293,20 @@ function activar(identrenador) {
 
 function validarcedula() {
 
-    var cedula_representante = $('#cedula_entrenador').val();
-    $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+    if ($("#checkbox2").is(':checked')) {
 
-        e == "Cédula válida" ? swal("CORRECTO", e, "success") : swal("ERROR", e, "error");
-
-        tabla.ajax.reload();
-
-    });
-
-
-}
-
-function validarRUC() {
-
-    var cedula_representante = $('#cedula_entrenador').val();
-    $.post("../ajax/representante.php?op=validarRUC", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
-}
-
-function validarRUCP() {
-
-    var cedula_representante = $('#cedula_entrenador').val();
-    $.post("../ajax/representante.php?op=validarRUCP", { cedula_representante: cedula_representante }, function(e) {
-        bootbox.alert(e);
-        tabla.ajax.reload();
-    });
-
+    } else {
+        var cedula_representante = $('#cedula_entrenador').val();
+        $.post("../ajax/representante.php?op=validarcedula", { cedula_representante: cedula_representante }, function(e) {
+            if (e == "Cédula válida") {
+                swal("CORRECTO", e, "success")
+            } else {
+                swal("ERROR", e, "error");
+                $('#cedula_entrenador').val("");
+            }
+            tabla.ajax.reload();
+        });
+    }
 }
 
 

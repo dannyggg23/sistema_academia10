@@ -59,10 +59,6 @@ $("#sucursal_idsucursal").change(function() {
 
     $('#categoria_idcategoria').find('option').remove();
 
-
-
-
-
     $.post("../ajax/ficha_alumno.php?op=selectCategoria&sucursalCategoria=" + idsucursal, function(r) {
         $("#categoria_idcategoria").html(r);
         $('#categoria_idcategoria').selectpicker('refresh');
