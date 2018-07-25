@@ -1,52 +1,5 @@
 var tabla;
 
-//############################################################----MOSTRAR CATEGORIAS POR SUCURSALES---###################################################
-
-function cargarCategorias(idsucursal) {
-
-    console.log("entra al ajax");
-
-    $("#sucursal_categorias_idsucursal_categorias").val("");
-    $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
-    $('#sucursal_categorias_idsucursal_categorias').find('option').remove();
-
-
-    $("#categoria_idcategoria").val("");
-    $('#categoria_idcategoria').selectpicker('refresh');
-
-    $('#categoria_idcategoria').find('option').remove();
-
-    $.post("../ajax/alumno.php?op=selectCategoria&sucursalCategoria=" + idsucursal, function(r) {
-        $("#categoria_idcategoria").html(r);
-        $('#categoria_idcategoria').selectpicker('refresh');
-
-    });
-
-}
-//############################################################-  FIN MOSTRAR CATEGORIAS POR SUCURSALES---###################################################
-
-
-//############################################################----MOSTRAR HORARIOS POR SUCURSALES Y CATEGORIAS ---###################################################
-
-function cargarHorario(idcategoria) {
-    var idsucursal = $('#sucursal_idsucursal').val();
-
-    $("#sucursal_categorias_idsucursal_categorias").val("");
-    $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
-    $('#sucursal_categorias_idsucursal_categorias').find('option').remove();
-
-    $.post("../ajax/alumno.php?op=selectHorario&sucursalCategoria=" + idsucursal + "&horarioCategoria=" + idcategoria, function(r) {
-        $("#sucursal_categorias_idsucursal_categorias").html(r);
-        $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
-    });
-
-}
-
-//############################################################---- FIN MOSTRAR HORARIOS POR SUCURSALES Y CATEGORIAS ---###################################################
-
 
 //Función que se ejecuta al inicio
 function init() {
@@ -57,27 +10,7 @@ function init() {
         guardaryeditar(e);
     })
 
-
-    $.post("../ajax/ficha_alumno.php?op=selectSucursal", function(r) {
-        $("#sucursal_idsucursal").html(r);
-        $('#sucursal_idsucursal').selectpicker('refresh');
-    });
-
-    $.post("../ajax/ficha_alumno.php?op=selectCategorias", function(r) {
-        $("#categoria_idcategoria").html(r);
-        $('#categoria_idcategoria').selectpicker('refresh');
-    });
-
-    $.post("../ajax/ficha_alumno.php?op=selectHorarios", function(r) {
-        $("#sucursal_categorias_idsucursal_categorias").html(r);
-        $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-    });
-
-
     $("#imagenmuestra").hide();
-
-
-
 }
 
 //Función limpiar
@@ -89,9 +22,6 @@ function limpiar() {
     $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#imagen").val("");
-    $("#sucursal_categorias_idsucursal_categorias").val("");
-    $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
 
 }
 
@@ -132,7 +62,7 @@ function listar() {
             'csvHtml5',
         ],
         "ajax": {
-            url: '../ajax/noticias.php?op=listar',
+            url: '../ajax/noticias.php?op=listarTodos',
             type: "get",
             dataType: "json",
             error: function(e) {
@@ -171,10 +101,10 @@ function guardaryeditar(e) {
 }
 
 function mostrar(idnoticias) {
-    $.post("../ajax/noticias.php?op=mostrar", { idnoticias: idnoticias }, function(data, status) {
+    $.post("../ajax/noticias.php?op=mostrarTodos", { idnoticias: idnoticias }, function(data, status) {
         data = JSON.parse(data);
-        mostrarform(true);
 
+        mostrarform(true);
 
         $("#idnoticias").val(data.idnoticias);
         $("#titulo").val(data.titulo);
@@ -184,16 +114,6 @@ function mostrar(idnoticias) {
         $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src", "../files/noticias/" + data.imagen);
         $("#imagenactual").val(data.imagen);
-
-        $("#sucursal_categorias_idsucursal_categorias").val(data.sucursal_categorias_idsucursal_categorias);
-        $('#sucursal_categorias_idsucursal_categorias').selectpicker('refresh');
-
-
-        $("#sucursal_idsucursal").val(data.idsucursal);
-        $('#sucursal_idsucursal').selectpicker('refresh');
-
-        $("#categoria_idcategoria").val(data.idcategoria);
-        $('#categoria_idcategoria').selectpicker('refresh');
 
     })
 }

@@ -34,10 +34,6 @@ if($_SESSION['noticias']==1)
                             <th>Titulo</th>
                             <th>Fecha</th>
                             <th>Descripción</th>
-                            <th>Sucursal</th>
-                            <th>Categoría</th>
-                            <th>Horario</th>
-                            <th>Hora</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
@@ -48,10 +44,6 @@ if($_SESSION['noticias']==1)
                             <th>Titulo</th>
                             <th>Fecha</th>
                             <th>Descripción</th>
-                            <th>Sucursal</th>
-                            <th>Categoría</th>
-                            <th>Horario</th>
-                            <th>Hora</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </tfoot>
@@ -86,23 +78,6 @@ if($_SESSION['noticias']==1)
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>
 
-                           <div  id="ocultar" name="ocultar" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Sucursal(*):</label>
-                           
-                            <select id="sucursal_idsucursal" name="sucursal_idsucursal" class="form-control selectpicker" data-live-search="true"  onchange="cargarCategorias(this.value)"></select>
-                           
-                          </div>
-
-                          <div id="ocultar1" name="ocultar1" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Categoría(*):</label>
-                            <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarHorario(this.value)"></select>
-                          </div>
-
-                          <div id="ocultar2" name="ocultar2" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Horario(*):</label>
-                            <select id="sucursal_categorias_idsucursal_categorias" name="sucursal_categorias_idsucursal_categorias" class="form-control selectpicker" data-live-search="true"></select>
-                          </div>
-
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 
@@ -127,7 +102,7 @@ else
 require 'footer.php';
 ?>
 
-<script type="text/javascript" src="scripts/noticias.js"></script>
+<script type="text/javascript" src="scripts/noticias_todos.js"></script>
 
 <?php
 }

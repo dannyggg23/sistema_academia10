@@ -160,9 +160,11 @@
                  <li><a href="cfichas.php"><i class="fa fa-circle-o"></i> Consulta de Alumnos</a></li>
                 <li><a href="cdeudores.php"><i class="fa fa-circle-o"></i> Consulta de Deudores</a></li>
                 <li><a href="asistencia.php"><i class="fa fa-circle-o"></i> Consulta de Asistencias</a></li>
+                <li><a href="cpagosfichas.php"><i class="fa fa-circle-o"></i>Reporte mensualidades</a></li>
               </ul>
             </li>
 
+            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-newspaper-o fa-lg"></i> <span>Noticias</span>
@@ -171,6 +173,7 @@
               <ul class="treeview-menu">
               
                 <li><a href="noticias.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
+                <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias para todos</a></li>
                  <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
               
               </ul>
