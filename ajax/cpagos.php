@@ -21,9 +21,10 @@ switch ($_GET["op"]){
 		echo '<thead style="background-color: #A9D0F5">
                                 <th>Opciones</th>
                                 <th>Ficha</th>
-                                <th>N° Meses</th>
+                                <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Descuento</th>
+                                <th>Servicio</th>
                                 <th>Subtotal</th>
                               </thead>';
 
@@ -32,7 +33,7 @@ switch ($_GET["op"]){
 			$sub=$reg->numero_meses_pago * $reg->precio_pago;
 			$subtotal=$sub-$reg->descuento_pago;
 
-			echo '<tr class="filas" ><td></td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$subtotal.'</td></tr>';
+			echo '<tr class="filas" ><td></td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$reg->nombre_productos_servicios.'</td><td>'.$subtotal.'</td></tr>';
 			$rtotal=$rtotal+$subtotal;
 			$sub=0;
 			$subtotal=0;
@@ -42,6 +43,7 @@ switch ($_GET["op"]){
 
 		echo '<tfoot>
                                 <th>TOTAL</th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
@@ -158,7 +160,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.'</option>';
+					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.' | '.$reg->nombre_representante.'</option>';
 				}
 	break;
 
@@ -171,7 +173,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.'</option>';
+					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.' | '.$reg->nombre_representante.'</option>';
 				}
 	break;
 

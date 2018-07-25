@@ -25,7 +25,7 @@ require 'headerconsultas.php';
                             <label>Sucursal</label>
                             <select id="sucursal_idsucursal" name="sucursal_idsucursal" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresSucursales1(this.value)" required></select>
                       </div>
-
+ 
                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Categoria</label>
                             <select id="categoria_idcategoria" name="categoria_idcategoria" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresCategorias1(this.value)" required></select>
@@ -44,7 +44,9 @@ require 'headerconsultas.php';
                             <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
+                            <th>Ins</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
@@ -58,6 +60,7 @@ require 'headerconsultas.php';
                             <th>Categoria</th>
                             <th>Horario</th>
                             <th>Acceso</th>
+                            <th>Ins</th>
                             <th>Imagen</th>
                             <th>Estado</th>
 

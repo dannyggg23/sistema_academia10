@@ -2,7 +2,7 @@
 require_once "../modelos/Ficha_alumno.php";
 
 $ficha_alumno=new Ficha_alumno();
-
+ 
 switch ($_GET["op"]){
 	
 	case 'listar':
@@ -20,10 +20,11 @@ switch ($_GET["op"]){
  				"3"=>$reg->nombre_sucursal,
  				"4"=>$reg->nombre_categoria,
        			"5"=>$reg->horario,
-       			"6"=>$reg->fecha_acceso,
-       			"7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-      			"8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
 		 }
@@ -280,16 +281,17 @@ switch ($_GET["op"]){
 	 while ($reg=$rspta->fetch_object()){
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
-			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+				"1"=>$reg->nombre_alumno,
+				"2"=>$reg->genero_alumno,
+ 				"3"=>$reg->nombre_sucursal,
+ 				"4"=>$reg->nombre_categoria,
+       			"5"=>$reg->horario,
+       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				'<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -311,16 +313,17 @@ case 'listarDeudoresCategorias1':
 	 while ($reg=$rspta->fetch_object()){
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
-			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+				"1"=>$reg->nombre_alumno,
+				"2"=>$reg->genero_alumno,
+ 				"3"=>$reg->nombre_sucursal,
+ 				"4"=>$reg->nombre_categoria,
+       			"5"=>$reg->horario,
+       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+ 				'<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -349,12 +352,13 @@ case 'listarDeudoresSucursalCategorias1':
 			"2"=>$reg->genero_alumno,
 			"3"=>$reg->nombre_sucursal,
 			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+		    "5"=>$reg->horario,
+			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -382,12 +386,13 @@ case 'listarDeudoresHorario1':
 			"2"=>$reg->genero_alumno,
 			"3"=>$reg->nombre_sucursal,
 			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+		    "5"=>$reg->horario,
+			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -415,12 +420,13 @@ case 'listarDeudoresCategoriaHorario1':
 			"2"=>$reg->genero_alumno,
 			"3"=>$reg->nombre_sucursal,
 			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+		    "5"=>$reg->horario,
+			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -450,12 +456,13 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
 			"2"=>$reg->genero_alumno,
 			"3"=>$reg->nombre_sucursal,
 			"4"=>$reg->nombre_categoria,
-			  "5"=>$reg->horario,
-			  "6"=>$reg->fecha_acceso,
-			  "7"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-
-			 "8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
-			'<span class="label bg-red">Desactivado</span>'
+		    "5"=>$reg->horario,
+			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(

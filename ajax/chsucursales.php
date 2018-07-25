@@ -66,6 +66,7 @@ switch ($_GET["op"]){
 
 	break;
 	
+	
 
 	case "selectHorario":
 		require_once "../modelos/Horario.php";

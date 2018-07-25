@@ -84,14 +84,26 @@ function cancelarform() {
 
 //Función Listar
 function listar() {
+
+
     tabla = $('#tbllistado').dataTable({
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: ['copyHtml5',
+        buttons: [{
+                extend: 'colvis',
+                text: 'Visibles'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'REPORTE TOTAL DE FACTURAS',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }, 'copyHtml5',
             'excelHtml5',
             'csvHtml5',
-            'pdf'
         ],
         "ajax": {
             url: '../ajax/cpagos.php?op=listar',
@@ -144,6 +156,10 @@ function listarfecha() {
     var fechaDesde = $('#fechaDesde').val();
     var fechaHasta = $('#fechaHasta').val();
 
+    var desde = $("#fechaDesde").val();
+    var hasta = $("#fechaHasta").val();
+
+
     if (fechaDesde == "") {
         swal("ERROR", "Seleccione una fecha de inicio", "error").then((value) => {
             $('#fechaDesde').val("");
@@ -153,10 +169,19 @@ function listarfecha() {
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE FACTURAS ' + " \n Inicio: " + desde + " -   hasta: " + hasta,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
             ],
             "ajax": {
                 url: '../ajax/cpagos.php?op=listarFecha&finicio=' + fechaDesde + '&ffin=' + fechaHasta,
@@ -178,9 +203,14 @@ function listarfecha() {
 
 function listarfechaRepresentante() {
 
+    var desde = $("#fechaDesde").val();
+    var hasta = $("#fechaHasta").val();
+    var representante = $("#representante").val();
+
     var fechaDesde = $('#fechaDesde').val();
     var fechaHasta = $('#fechaHasta').val();
-    var representante = $('#representante').val();
+
+    var representantede = $('select[name="representante"] option:selected').text();
 
     if (fechaDesde == "") {
         swal("ERROR", "Seleccione una fecha de inicio", "error").then((value) => {
@@ -191,10 +221,22 @@ function listarfechaRepresentante() {
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    messageTop: 'DANNY GUSTAVO GRACIA GALARZA',
+                    title: 'REPORTE DE FACTURAS ' + "\n Inicio: " + desde + " -   hasta: " + hasta + " \n Representante: " + representantede,
+                    messageTop: 'PDF created by PDFMake with Buttons for DataTables.',
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
+
             ],
             "ajax": {
                 url: '../ajax/cpagos.php?op=listarfechaRepresentante&finicio=' + fechaDesde + '&ffin=' + fechaHasta + '&idrepresentante=' + representante,
@@ -212,7 +254,6 @@ function listarfechaRepresentante() {
         }).DataTable();
     }
 }
-
 
 
 init();
