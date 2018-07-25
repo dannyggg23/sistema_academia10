@@ -74,7 +74,7 @@ if($_SESSION['ficha_alumno']==1)
                          
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Nombre(*):</label>
-                              <input type="text" class="form-control" name="nombre_alumno" id="nombre_alumno" minlength="10" maxlength="70" placeholder="Nombre del alumno" required>
+                              <input type="text" class="form-control" name="nombre_alumno" id="nombre_alumno" minlength="10" maxlength="70" placeholder="INGRESE LOS APELLIDOS Y NOMBRES" required>
                           </div>
 
 
@@ -162,7 +162,7 @@ if($_SESSION['ficha_alumno']==1)
                           <br>
                           <br>
                           
-                          <div  class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div id="campos_ficha" name="campos_ficha"  class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <label class="container">LLenar campos de Ficha
                           <input type="hidden" name="bandera" id="bandera">
                             <input type="checkbox" id="checkbox1" name="checkbox1">

@@ -75,8 +75,12 @@ function limpiar() {
     $("#sucursal_idsucursal").val("");
     $('#sucursal_idsucursal').selectpicker('refresh');
 
+    $('#categoria_idcategoria').find('option').remove();
+
     $("#categoria_idcategoria").val("");
     $('#categoria_idcategoria').selectpicker('refresh');
+
+    $('#idsucursal_categorias').find('option').remove();
 
     $("#idsucursal_categorias").val("");
     $('#idsucursal_categorias').selectpicker('refresh');

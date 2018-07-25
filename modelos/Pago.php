@@ -98,7 +98,20 @@ public function listarfechaRepresentante($finicio,$ffin,$idrepresentante){
 }
 
 public function pagodetalle($idpago){
-  $sql="SELECT detalle_pago.iddetalle_pago, detalle_pago.pago_idpago, detalle_pago.ficha_alumno_idficha_alumno, detalle_pago.numero_meses_pago, detalle_pago.precio_pago, detalle_pago.descuento_pago,ficha_alumno.numeroFicha_alumno,alumno.cedula_alumno,alumno.nombre_alumno, (detalle_pago.numero_meses_pago*detalle_pago.precio_pago-detalle_pago.descuento_pago) as subtotal FROM detalle_pago INNER JOIN ficha_alumno ON ficha_alumno.idficha_alumno=detalle_pago.ficha_alumno_idficha_alumno INNER JOIN alumno on alumno.idalumno=ficha_alumno.alumno_idalumno WHERE detalle_pago.pago_idpago='$idpago'";
+  $sql="SELECT detalle_pago.iddetalle_pago, 
+  detalle_pago.pago_idpago, 
+  detalle_pago.ficha_alumno_idficha_alumno, 
+  detalle_pago.numero_meses_pago, 
+  detalle_pago.precio_pago, 
+  detalle_pago.descuento_pago,
+  ficha_alumno.numeroFicha_alumno,
+  alumno.cedula_alumno,alumno.nombre_alumno,
+  (detalle_pago.numero_meses_pago*detalle_pago.precio_pago-detalle_pago.descuento_pago) as subtotal, 
+  productos_servicios.nombre_productos_servicios FROM detalle_pago 
+  INNER JOIN ficha_alumno ON ficha_alumno.idficha_alumno=detalle_pago.ficha_alumno_idficha_alumno 
+  INNER JOIN alumno on alumno.idalumno=ficha_alumno.alumno_idalumno 
+  INNER JOIN productos_servicios ON productos_servicios.idproductos_servicios=detalle_pago.productos_servicios_idproductos_servicios 
+  WHERE detalle_pago.pago_idpago='$idpago'";
  return ejecutarConsulta($sql);
 
 }

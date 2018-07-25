@@ -136,7 +136,7 @@ function sizeOfText( $texte, $largeur )
 // Company
 function addSociete( $nom, $adresse,$logo,$ext_logo )
 {
-	$x1 = 45;
+	$x1 = 50;
 	$y1 = 8;
 	//Positionnement en bas
 	$this->Image($logo , 5 ,3, 40 , 40 , $ext_logo);
@@ -255,8 +255,8 @@ function addClientAdresse( $cliente,$domicilio,$num_documento,$email,$telefono )
 {
 	$r1     = $this->w - 180;
 	$r2     = $r1 + 68;
-	$y1     = 40;
-	$this->SetXY( $r1+20, $y1);
+	$y1     = 47;
+	$this->SetXY( $r1, $y1);
 	$this->SetFont( "Arial", "B", 10);
 	$this->MultiCell( 200, 4, "CLIENTE");
 	$this->SetXY( $r1, $y1+5);

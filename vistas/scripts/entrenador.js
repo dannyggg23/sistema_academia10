@@ -157,6 +157,10 @@ function limpiar() {
     $("#idsucursal_categorias").val("");
     $('#idsucursal_categorias').selectpicker('refresh');
 
+    $("#checkbox2").prop('checked', false);
+    $("#checkbox1").prop('checked', false);
+
+
     $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#imagen").val("");
@@ -172,6 +176,8 @@ function mostrarform(flag) {
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
         $("#btnagregar").hide();
+        $("#ocultar_ficha").show();
+        $("#imagenmuestra").hide();
     } else {
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
@@ -245,6 +251,9 @@ function mostrar(identrenador) {
         data = JSON.parse(data);
         mostrarform(true);
 
+
+        $("#ocultar_ficha").hide();
+        $("#imagenmuestra").show();
 
         $("#identrenador").val(data.identrenador);
         $("#cedula_entrenador").val(data.cedula_entrenador);

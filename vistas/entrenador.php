@@ -64,7 +64,7 @@ if($_SESSION['ficha_entrenador']==1)
                         <form name="formulario" id="formulario" method="POST">
                         
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>Cédula(*):</label><label class="checkbox-inline">(   <input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
+                            <label>Cédula(*):</label><label class="checkbox-inline">(<input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
                             <input type="hidden" name="identrenador" id="identrenador">
                             <input type="text" class="form-control" onblur="validarcedula()" name="cedula_entrenador" id="cedula_entrenador" minlength="10" maxlength="13" placeholder="Cédula" required>
                           </div>
@@ -114,12 +114,12 @@ if($_SESSION['ficha_entrenador']==1)
 
                            <div class="form-group col-lg-12 col-md-12 col-sm-6 col-xs-12">
                             <label>Dirección(*):</label>
-                              <input type="text" class="form-control" name="direccion_entrenador" id="direccion_entrenador" placeholder="Ingrese su dirección de domicilio" maxlength="100" required>
+                              <input type="text" class="form-control" name="direccion_entrenador" id="direccion_entrenador" placeholder="Ingrese su dirección de domicilio" maxlength="200" required>
                           </div>
 
-                          <div class="form-group col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Descripción:</label>
-                              <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Breve descripción del entrenador" maxlength="200">
+                              <textarea type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Breve descripción del entrenador" maxlength="500"></textarea>
                           </div>
 
 
@@ -137,7 +137,7 @@ if($_SESSION['ficha_entrenador']==1)
                           <br>
 
                           
-                          <div  class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div id="ocultar_ficha" name="ocultar_ficha"  class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <label class="container">LLenar campos de Ficha
                           <input type="hidden" name="bandera" id="bandera">
                             <input type="checkbox" id="checkbox1" name="checkbox1">

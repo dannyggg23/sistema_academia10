@@ -65,17 +65,17 @@ $pdf->addClientAdresse(utf8_decode($regv->nombre_representante),"Domicilio: ".ut
 
 
 
-$cols=array( "FICHA"=>30,
-             "DESCRIPCION"=>71,
-             "N.MESES"=>22,
-             "P.M."=>25,
-             "DSCTO"=>20,
-             "SUBTOTAL"=>22);
+$cols=array( "PRODUCTO"=>34,
+             "DESCRIPCION"=>75,
+             "CANTIDAD"=>20,
+             "PRECIO"=>23,
+             "DSCTO"=>18,
+             "SUBTOTAL"=>20);
 $pdf->addCols( $cols);
-$cols=array( "FICHA"=>"L",
+$cols=array( "PRODUCTO"=>"L",
              "DESCRIPCION"=>"L",
-             "N.MESES"=>"C",
-             "P.M."=>"R",
+             "CANTIDAD"=>"C",
+             "PRECIO"=>"R",
              "DSCTO" =>"R",
              "SUBTOTAL"=>"C");
 $pdf->addLineFormat( $cols);
@@ -87,10 +87,10 @@ $y= 89;
 $rsptad = $venta->pagodetalle($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
-  $line = array( "FICHA"=> "$regd->numeroFicha_alumno",
-                "DESCRIPCION"=> utf8_decode("$regd->cedula_alumno"." "."$regd->nombre_alumno".""),
-                "N.MESES"=> "$regd->numero_meses_pago",
-                "P.M."=> "$regd->precio_pago",
+  $line = array( "PRODUCTO"=> "$regd->nombre_productos_servicios",
+                "DESCRIPCION"=> utf8_decode(""." "."$regd->nombre_alumno".""),
+                "CANTIDAD"=> "$regd->numero_meses_pago",
+                "PRECIO"=> "$regd->precio_pago",
                 "DSCTO" => "$regd->descuento_pago",
                 "SUBTOTAL"=> "$regd->subtotal");
             $size = $pdf->addLine( $y, $line );

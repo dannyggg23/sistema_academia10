@@ -148,7 +148,7 @@ switch ($_GET["op"]){
 
 		$rspta = $sucursal->select();
 
-		echo "<option > -- SELECCIONE --- </option>";
+		echo "<option value='' > -- SELECCIONE --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -165,7 +165,7 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->categoriasSucursal($sucursal);
 
-		echo "<option > -- Seleccione --- </option>";
+		echo "<option value='' > -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
@@ -183,12 +183,12 @@ switch ($_GET["op"]){
 
 		$rspta=$categoria->horarioCategoriaSucursalAlumno($idsucursal,$idcategoria);
 
-		echo "<option> -- Seleccione --- </option>";
+		echo "<option value=''> -- Seleccione --- </option>";
 		
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idsucursal_categorias . '>' . $reg->nombre . '</option>';
+					echo '<option value=' . $reg->idsucursal_categorias . '>' . $reg->nombre . '| '.$reg->hora_inicio.'-'.$reg->hora_fin.'</option>';
 				}
 	break;
 }

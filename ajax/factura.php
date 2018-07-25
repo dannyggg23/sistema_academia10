@@ -1,9 +1,9 @@
 <?php
-require_once "../modelos/Pago.php";
+require_once "../modelos/Factura.php";
 if (strlen(session_id()) < 1)
 	session_start();
 
-$pago=new Pago(); 
+$pago=new Factura(); 
 $idpago=isset($_POST["idpago"])? limpiarCadena($_POST["idpago"]):"";
 
 $representante_idrepresentante=isset($_POST["representante_idrepresentante"])? limpiarCadena($_POST["representante_idrepresentante"]):"";
@@ -55,13 +55,13 @@ switch ($_GET["op"]){
 		$rtotal=0;
 
 		echo '<thead style="background-color: #A9D0F5">
-                                <th>Opciones</th>
-                                <th>Ficha</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Descuento</th>
-                                <th>Servicio</th>
-                                <th>Subtotal</th>
+							  <th>Opciones</th>
+							  <th>Producto-Servicio</th>
+							  <th>Cantidad</th>
+							  <th>Precio</th>
+							  <th>Descuento</th>
+							  <th>Alumno</th>
+							  <th>Subtotal</th>
                               </thead>';
 
 		while($reg=$rspta->fetch_object())
@@ -69,7 +69,7 @@ switch ($_GET["op"]){
 			$sub=$reg->numero_meses_pago * $reg->precio_pago;
 			$subtotal=$sub-$reg->descuento_pago;
 
-			echo '<tr class="filas" ><td></td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$reg->nombre_productos_servicios.'</td><td>'.$subtotal.'</td></tr>';
+			echo '<tr class="filas" ><td></td><td>'.$reg->nombre_productos_servicios.'</td><td>'.$reg->numero_meses_pago.'</td><td>'.$reg->precio_pago.'</td><td>'.$reg->descuento_pago.'</td><td>'.$reg->numeroFicha_alumno.'</td><td>'.$subtotal.'</td></tr>';
 			$rtotal=$rtotal+$subtotal;
 			$sub=0;
 			$subtotal=0;
@@ -144,25 +144,41 @@ switch ($_GET["op"]){
 		while ($reg = $rspta->fetch_object())
 				{
 					echo '<option value='.$reg->idrepresentante.'>'.$reg->cedula_representante.' | '.$reg->nombre_representante.'</option>';
+					
 				}
-	break;
+		break;
+		
+		case "selectFicha":
+		require_once "../modelos/Ficha_alumno.php";
+		$representante = new Ficha_alumno();
+		$id=$_GET['id'];
+
+		$rspta = $representante->listarFicha_Representante($id);
+
+		echo '<option value="">--Seleccione--</option>';
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value='.$reg->idficha_alumno.'>'.$reg->numeroFicha_alumno.' | '.$reg->nombre_alumno.' | '.$reg->descuento_ficha_alumno.' %</option>';
+				}
+	    break;
 
 	case "listarFichas":
-		require_once "../modelos/Ficha_alumno.php";
-		$ficha_alumno = new Ficha_alumno();
-        $idrepresentante=$_GET['id'];
+		require_once "../modelos/Productos_servicios.php";
+		$categoria = new Productos_servicios();
+      
 
-		$rspta=$ficha_alumno->listarFicha_Representante($idrepresentante);
+		$rspta=$categoria->listar_modal();
  		//Vamos a declarar un array
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idficha_alumno.',\''.$reg->numeroFicha_alumno.'\',\''.$reg->descuento_ficha_alumno.'\')"><span class="fa fa-plus"></span></button>',
- 				"1"=>$reg->cedula_alumno,
- 				"2"=>$reg->nombre_alumno,
- 				"3"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info">'.$reg->fecha_acceso.'</label>',
-       			"4"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >"
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idproductos_servicios.',\''.$reg->nombre_productos_servicios.'\',\''.$reg->precio_productos_servicios.'\')"><span class="fa fa-plus"></span></button>',
+ 				"1"=>$reg->nombre_productos_servicios,
+ 				"2"=>$reg->precio_productos_servicios,
+ 				"3"=>$reg->descripcion_productos_servicios,
+ 				"4"=>$reg->nombre_categoria_productos
  				);
  		}
  		$results = array(
@@ -173,6 +189,28 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 
 	
+	break;
+
+	
+	case "selectFichaDescuento":
+	require_once "../modelos/Factura.php";
+	$representante = new Factura();
+	$id=$_GET['id'];
+
+	$rspta = $representante->listarFicha_descuento($id);
+
+	$reg = $rspta->fetch_object();
+	
+		if(empty($reg))
+		{
+			echo 0;
+		}
+		else
+		{
+			echo $reg->descuento_ficha_alumno;
+
+		}
+				
 	break;
 
 

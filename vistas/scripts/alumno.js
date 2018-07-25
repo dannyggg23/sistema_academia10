@@ -290,6 +290,9 @@ function limpiar() {
     $("#idsucursal_categorias").val("");
     $('#idsucursal_categorias').selectpicker('refresh');
 
+    $("#checkbox2").prop('checked', false);
+    $("#checkbox1").prop('checked', false);
+
     $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#imagen").val("");
@@ -311,6 +314,9 @@ function mostrarform(flag) {
         $("#btnagregar").hide();
         $("#checkbox1").show();
         $("#imagenmuestra").hide();
+        $("#campos_ficha").show();
+
+
 
     } else {
         $("#listadoregistros").show();
@@ -408,6 +414,9 @@ function mostrar(idalumno) {
     $.post("../ajax/alumno.php?op=mostrar", { idalumno: idalumno }, function(data, status) {
         data = JSON.parse(data);
         mostrarform(true);
+
+        $("#campos_ficha").hide();
+
 
         $("#representante_idrepresentante").val(data.representante_idrepresentante);
         $('#representante_idrepresentante').selectpicker('refresh');

@@ -7,16 +7,16 @@ function init() {
     mostrarform(false);
     listar();
 
-
     $("#tipo_documento").val("Factura");
     $("#tipo_documento").selectpicker();
 
     $("#formulario").on("submit", function(e) {
+
         guardaryeditar(e);
+
     })
 
-
-    $.post("../ajax/pago.php?op=selectRepresentante", function(r) {
+    $.post("../ajax/factura.php?op=selectRepresentante", function(r) {
         $("#representante_idrepresentante").html(r);
         $('#representante_idrepresentante').selectpicker('refresh');
 
@@ -107,7 +107,7 @@ function listar() {
             'csvHtml5'
         ],
         "ajax": {
-            url: '../ajax/pago.php?op=listar',
+            url: '../ajax/factura.php?op=listar',
             type: "get",
             dataType: "json",
             error: function(e) {
@@ -134,9 +134,6 @@ function listarArticulos() {
             $('#myModal').modal('hide');
         });
 
-
-
-
     } else {
         tabla = $('#tblarticulos').dataTable({
             "aProcessing": true, //Activamos el procesamiento del datatables
@@ -146,7 +143,7 @@ function listarArticulos() {
 
             ],
             "ajax": {
-                url: '../ajax/pago.php?op=listarFichas&id=' + idrepresentante,
+                url: '../ajax/factura.php?op=listarFichas',
                 type: "get",
                 dataType: "json",
                 error: function(e) {
@@ -172,7 +169,7 @@ function guardaryeditar(e) {
     var formData = new FormData($("#formulario")[0]);
 
     $.ajax({
-        url: "../ajax/pago.php?op=guardaryeditar",
+        url: "../ajax/factura.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -199,7 +196,7 @@ function guardaryeditar(e) {
 }
 
 function mostrar(idpago) {
-    $.post("../ajax/pago.php?op=mostrar", { idpago: idpago }, function(data, status) {
+    $.post("../ajax/factura.php?op=mostrar", { idpago: idpago }, function(data, status) {
         data = JSON.parse(data);
         mostrarform(true);
 
@@ -220,7 +217,7 @@ function mostrar(idpago) {
 
     });
 
-    $.post("../ajax/pago.php?op=listarDetalle&id=" + idpago, function(r) {
+    $.post("../ajax/factura.php?op=listarDetalle&id=" + idpago, function(r) {
         $("#detalles").html(r);
     });
 
@@ -260,30 +257,39 @@ function marcarImpuesto() {
 
 }
 
-function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alumno) {
+function agregarDetalle(idproductos_servicios, nombre_productos_servicios, precio_productos_servicios) {
 
     var n_meses = 1;
-    var precio = 25;
     var descuento = 0;
 
-    if (idficha_alumno != "") {
+    if (idproductos_servicios != "") {
 
-        var subtotal = (n_meses * precio) - descuento;
+        var subtotal = (n_meses * precio_productos_servicios) - descuento;
 
         var fila = '<tr class="filas" id="fila' + cont + '">' +
             '<td> <button type="button" class="btn btn-danger" onclick="eliminarDetalle(' + cont + ')">X</button> </td>' +
-            '<td> <input type="hidden" name="ficha_alumno_idficha_alumno[]" id="ficha_alumno_idficha_alumno[]" value="' + idficha_alumno + '" >' + numeroFicha_alumno + '</td>' +
+            '<td> <input type="hidden" name="productos_servicios_idproductos_servicios[]" id="productos_servicios_idproductos_servicios[]" value="' + idproductos_servicios + '" >' + nombre_productos_servicios + '</td>' +
             '<td> <input type="number" name="numero_meses_pago[]" id="numero_meses_pago[]" onchange="modificarSubtotales()"  value="' + n_meses + '" > </td>' +
-            '<td> <input type="number" name="precio_pago[]" id="precio_pago[]" onchange="modificarSubtotales()" value="' + precio + '"> </td>' +
-            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" value="' + descuento_ficha_alumno + '" >%</td>' +
-            '<td> <select id="productos_servicios_idproductos_servicios[]" name="productos_servicios_idproductos_servicios[]"  data-live-search="true"><option value="1">MENSUALIDAD</option><option value="2">INSCRIPCION</option></select></td>' +
+            '<td> <input type="number" name="precio_pago[]" id="precio_pago[]" onchange="modificarSubtotales()" value="' + precio_productos_servicios + '"> </td>' +
+            '<td> <input type="number" name="descuento_pago[]" id="descuento_pago[]" onchange="modificarSubtotales()" class="descuento"  value="0" >%</td>' +
+            '<td> <select id="ficha_alumno_idficha_alumno[]" name="ficha_alumno_idficha_alumno[]" class="principal"   data-live-search="true" required><option>seleccione</option></select></td>' +
             '<td> <span name="subtotal" id="subtotal' + cont + '">' + subtotal + '</span> </td>' +
             '<td> <button type="button" onclick="modificarSubtotales()" class="btn btn-info"> <i class="fa fa-refresh"></i> </button> </td>' +
             '</tr>';
-        cont++;
-        detalles++;
 
         $('#detalles').append(fila);
+
+        swal("CORRECTO", "Ingresado correctamente", "success").then((value) => {
+            var representante = $("#representante_idrepresentante").val();
+            $.post("../ajax/factura.php?op=selectFicha&id=" + representante, function(r) {
+
+                $("select.principal").html(r);
+                $("select.principal").selectpicker('refresh');
+            });
+        });
+
+        cont++;
+        detalles++;
         modificarSubtotales();
 
     } else {
@@ -291,23 +297,38 @@ function agregarDetalle(idficha_alumno, numeroFicha_alumno, descuento_ficha_alum
     }
 }
 
+
+
 function modificarSubtotales() {
 
-    console.log("modificar subtotales");
+
     var cant = document.getElementsByName("numero_meses_pago[]");
     var prec = document.getElementsByName("precio_pago[]");
     var desc = document.getElementsByName("descuento_pago[]");
+    // var ficha = document.getElementsByName("ficha_alumno_idficha_alumno[]");
     var sub = document.getElementsByName("subtotal");
 
+
     for (var i = 0; i < cant.length; i++) {
+
         var inpC = cant[i];
         var inpP = prec[i];
         var inpD = desc[i];
         var inpS = sub[i];
+        //var fichab = ficha[i];
+
+        //$.post("../ajax/factura.php?op=selectFichaDescuento&id=" + fichab.value, function(r) {
+        //  inpD.value = r;
+        //});
+
 
         inpS.value = (inpC.value * inpP.value) - (((inpC.value * inpP.value) * inpD.value) / 100);
 
+
+
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+        //document.getElementsByName("descuento_pago[]")[i].value = inpD.value;
+
 
         console.log(inpS.value);
     }

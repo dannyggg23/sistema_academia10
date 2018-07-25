@@ -111,8 +111,7 @@
                 
               </ul>
             </li>
-
-             <li class="treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-soccer-ball-o fa-lg"></i>
                 <span>Productos-Servicios</span>
@@ -124,15 +123,15 @@
               </ul>
             </li>
 
-              <li class="treeview">
+             <li class="treeview">
                   <a href="#">
                     <i class="fa fa-dollar fa-lg"></i>
-                    <span>Pagos</span>
+                    <span>Facturación</span>
                      <i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
                     <li><a href="pago.php"><i class="fa fa-circle-o"></i> Mensualidades</a></li>
-                    <li><a href="pago.php"><i class="fa fa-circle-o"></i> Productos-Servicios</a></li>
+                    <li><a href="factura.php"><i class="fa fa-circle-o"></i> Productos-Servicios</a></li>
                   </ul>
                 </li>
 

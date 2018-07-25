@@ -60,6 +60,13 @@ Class Productos_servicios
     return ejecutarConsulta($sql);
   }
 
+  public function listar_modal(){
+    $sql="SELECT productos_servicios.*,categorias_productos_servicios.nombre_categoria_productos FROM `productos_servicios` 
+    INNER JOIN categorias_productos_servicios 
+    ON categorias_productos_servicios.idcategorias_productos_servicios=productos_servicios.categorias_productos_servicios_idcategorias_productos_servicios WHERE productos_servicios.estado=1";
+    return ejecutarConsulta($sql);
+  }
+
    public function select(){
     $sql="SELECT * FROM `productos_servicios` where productos_servicios.estado=1";
     return ejecutarConsulta($sql);
