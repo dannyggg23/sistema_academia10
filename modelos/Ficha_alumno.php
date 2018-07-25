@@ -94,37 +94,126 @@ Class Ficha_alumno
   }
 
   public function listarDeudores(){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE()";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE() ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
 
   public function listarDeudoresSucursales($id){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() and sucursal.idsucursal='$id'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE() AND sucursal.idsucursal='$id' ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
 
   public function listarDeudoresCategorias($id){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() and categoria.idcategoria='$id'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE() AND categoria.idcategoria='$id' ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
 
   public function listarDeudoresSucursalCategorias($idsucursal,$idcategoria){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() AND sucursal.idsucursal='$idsucursal' AND categoria.idcategoria='$idcategoria'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE() AND sucursal.idsucursal='$idsucursal' AND categoria.idcategoria='$idcategoria' ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
   
   public function listarDeudoresHorario($id){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() AND horario.idhorario='$id'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE() AND horario.idhorario='$id' ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
   
   public function listarDeudoresCategoriaHorario($idcategoria,$idhorario){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() AND categoria.idcategoria='$idcategoria' AND horario.idhorario='$idhorario'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE()
+    AND categoria.idcategoria='$idcategoria' AND horario.idhorario='$idhorario'
+    ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
   
   public function listarDeudoresSucursalesCategoriaHorario($idsucursal,$idcategoria,$idhorario){
-    $sql="SELECT ficha_alumno.*,alumno.cedula_alumno,alumno.genero_alumno,alumno.nombre_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,alumno.imagen_alumno FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() AND sucursal.idsucursal='$idsucursal' AND categoria.idcategoria='$idcategoria' AND horario.idhorario='$idhorario'";
+    $sql="SELECT ficha_alumno.*,
+    alumno.cedula_alumno,alumno.genero_alumno,
+    alumno.nombre_alumno,sucursal.nombre_sucursal,
+    categoria.nombre_categoria,horario.nombre as horario,
+    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
+    CURDATE() as fecha_actual 
+    FROM `ficha_alumno` 
+    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.fecha_acceso <= CURDATE()
+    AND sucursal.idsucursal='$idsucursal' AND categoria.idcategoria='$idcategoria' 
+    AND horario.idhorario='$idhorario'
+    ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
 

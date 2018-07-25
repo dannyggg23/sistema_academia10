@@ -53,12 +53,13 @@ require 'headerconsultas.php';
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            <th>Ficha</th>
+                          <th>Ficha</th>
                             <th>Alumno</th>
                             <th>Género</th>
-                            <th>Sucursal</th> 
+                            <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
                             <th>Ins</th>
                             <th>Imagen</th>

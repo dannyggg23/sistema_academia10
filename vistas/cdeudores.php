@@ -33,33 +33,35 @@ require 'headerconsultas.php';
                             <label>Horario</label>
                             <select id="horario_idhorario" name="horario_idhorario" class="form-control selectpicker" data-live-search="true"  onchange="cargarDeudoresHorario(this.value)" required></select>
                          </div>
-
+ 
                         <table id="tbllistadodeudores" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
-                            <th>Ficha</th>
+                          <th>Ficha</th>
                             <th>Alumno</th>
                             <th>Género</th>
-                            <th>Sucursal</th>                            
+                            <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
+                            <th>Ins</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                            <th>Ficha</th>
+                          <th>Ficha</th>
                             <th>Alumno</th>
                             <th>Género</th>
-
-                            <th>Sucursal</th>                            
+                            <th>Sucursal</th>
                             <th>Categoria</th>
                             <th>Horario</th>
+                            <th>Hora</th>
                             <th>Acceso</th>
+                            <th>Ins</th>
                             <th>Imagen</th>
                             <th>Estado</th>
-
                           </tfoot>
                         </table>
                     </div>

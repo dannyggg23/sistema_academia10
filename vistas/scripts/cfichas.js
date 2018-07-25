@@ -69,10 +69,19 @@ function listarDeudores() {
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: ['copyHtml5',
+        buttons: [{
+                extend: 'colvis',
+                text: 'Visibles'
+            }, {
+                extend: 'pdfHtml5',
+                title: 'REPORTE DE ALUMNOS QUE ADEUDAN ',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]
+                }
+            }, 'copyHtml5',
             'excelHtml5',
-            'csvHtml5',
-            'pdf'
+            'csvHtml5'
 
         ],
         "ajax": {
@@ -92,6 +101,8 @@ function listarDeudores() {
 }
 
 function cargarDeudoresSucursales(idsucursal) {
+    var sucurs = $('select[name="sucursal_idsucursal"] option:selected').text();
+
     console.log(idsucursal);
     $('#categoria_idcategoria').val("--Seleccione--");
     $('#categoria_idcategoria').selectpicker('refresh');
@@ -103,10 +114,19 @@ function cargarDeudoresSucursales(idsucursal) {
         "aProcessing": true, //Activamos el procesamiento del datatables
         "aServerSide": true, //Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip', //Definimos los elementos del control de tabla
-        buttons: ['copyHtml5',
+        buttons: [{
+                extend: 'colvis',
+                text: 'Visibles'
+            }, {
+                extend: 'pdfHtml5',
+                title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs,
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [0, 1, 2, 4, 5, 6, 7, 8, 10]
+                }
+            }, 'copyHtml5',
             'excelHtml5',
-            'csvHtml5',
-            'pdf'
+            'csvHtml5'
 
         ],
         "ajax": {
@@ -132,15 +152,28 @@ function cargarDeudoresCategorias(idcategoria) {
 
     var idsucursal = $('#sucursal_idsucursal').val();
 
-    if (idsucursal == "--Seleccione--") {
+    var sucurs = $('select[name="sucursal_idsucursal"] option:selected').text();
+    var categ = $('select[name="categoria_idcategoria"] option:selected').text();
+
+
+    if (idsucursal == "") {
         tabla1 = $('#tbllistadodeudores').dataTable({
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Categoría: ' + categ,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 5, 6, 7, 8, 10]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
 
             ],
             "ajax": {
@@ -164,10 +197,19 @@ function cargarDeudoresCategorias(idcategoria) {
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs + ' \n Categoría: ' + categ,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 5, 6, 7, 8, 10]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
 
             ],
             "ajax": {
@@ -192,15 +234,29 @@ function cargarDeudoresHorario(idhorario) {
     var idsucursal = $('#sucursal_idsucursal').val();
     var idcategoria = $('#categoria_idcategoria').val();
 
-    if (idsucursal == "--Seleccione--" && idcategoria == "--Seleccione--") {
+    var sucurs = $('select[name="sucursal_idsucursal"] option:selected').text();
+    var categ = $('select[name="categoria_idcategoria"] option:selected').text();
+    var horar = $('select[name="horario_idhorario"] option:selected').text();
+
+
+    if (idsucursal == "" && idcategoria == "") {
         tabla1 = $('#tbllistadodeudores').dataTable({
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE ALUMNOS MATRICULADOS \n Horario: ' + horar,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 7, 8, 10]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
 
             ],
             "ajax": {
@@ -220,15 +276,24 @@ function cargarDeudoresHorario(idhorario) {
     }
 
 
-    if (idsucursal == "--Seleccione--" && idcategoria !== "--Seleccione--") {
+    if (idsucursal == "" && idcategoria !== "") {
         tabla1 = $('#tbllistadodeudores').dataTable({
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Categoria: ' + categ + ' \n Horario: ' + horar,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 7, 8, 10]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
 
             ],
             "ajax": {
@@ -247,15 +312,24 @@ function cargarDeudoresHorario(idhorario) {
         }).DataTable();
     }
 
-    if (idsucursal !== "--Seleccione--" && idcategoria !== "--Seleccione--") {
+    if (idsucursal !== "" && idcategoria !== "") {
         tabla1 = $('#tbllistadodeudores').dataTable({
             "aProcessing": true, //Activamos el procesamiento del datatables
             "aServerSide": true, //Paginación y filtrado realizados por el servidor
             dom: 'Bfrtip', //Definimos los elementos del control de tabla
-            buttons: ['copyHtml5',
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Visibles'
+                }, {
+                    extend: 'pdfHtml5',
+                    title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs + ' \n Categoria: ' + categ + ' \n Horario: ' + horar,
+                    pageSize: 'LEGAL',
+                    exportOptions: {
+                        columns: [0, 1, 2, 7, 8, 10]
+                    }
+                }, 'copyHtml5',
                 'excelHtml5',
-                'csvHtml5',
-                'pdf'
+                'csvHtml5'
 
             ],
             "ajax": {
