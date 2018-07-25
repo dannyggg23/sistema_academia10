@@ -25,7 +25,7 @@ function init() {
 function limpiar() {
     $("#idsucursal").val("");
     $("#nombre_sucursal").val("");
-    $("#direccion_sucursal").val("");
+    $("#direrccion_ducursal").val("");
     $("#telefono_sucursal").val("");
     $("#encargado_sucursal").val("");
     $("#ciudad_idCiudad").val("0");
