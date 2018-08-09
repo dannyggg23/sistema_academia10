@@ -86,6 +86,17 @@ if($_SESSION['noticias']==1)
                             <img src="" width="150px" height="120px" id="imagenmuestra">
                           </div>
 
+                          <table style="font-size:11px;">
+    <tr>
+        <td id="ci0" width="85px">0504353210 </td>
+        <td id="name0">
+            <a id="hr0" href="/js/paymentview.php?id=0&token=mLEyk01awYenMZcH-cSN0NSzVvaHDj-q86JyyMUo8Do=&dt=klrIBPRevXWIFl9_3_rmf7LrowxnAVKQRUwJPqHjtiY=" onclick="return OpenSplash(this.href,600,460)" title="Click para acceder al nombre completo y datos de la c&eacute;dula">
+                <strong>Garcia xxxxxxxx Danny xxxxxxxx</strong>
+            </a>
+        </td>
+    </tr>
+</table>
+
                            <div  id="ocultar" name="ocultar" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Sucursal(*):</label>
                            

@@ -100,9 +100,7 @@ Class Usuario
   public function verificar($login,$clave){
 
     $sql=sprintf("SELECT `idusuario`, `nombre_usuario`, `cedula_usuario`, `direccion_usuario`, `telefono_usuario`, `celular_usuario`, `email_usuario`, `cargo_usuario`,`imagen_usuario` FROM `usuario` WHERE  login_usuario = '%s' AND clave_usuario='%s' AND estado='1'",$login,$clave);
-
       return ejecutarConsulta($sql);
-
   }
 }
  ?>

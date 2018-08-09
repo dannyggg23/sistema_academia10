@@ -105,12 +105,12 @@ if($_SESSION['Configuracion']==1)
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Login(*):</label>
-                              <input type="text" class="form-control" name="login_usuario" id="login_usuario" minlength="4" maxlength="15" placeholder="Login" required="">
+                              <input type="text" class="form-control" name="login_usuario" id="login_usuario" minlength="4" maxlength="20" placeholder="Login" required="">
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Clave(*):</label>
-                              <input type="password" class="form-control" name="clave_usuario" id="clave_usuario" minlength="3" maxlength="15" placeholder="Login" required>
+                              <input type="password" class="form-control" name="clave_usuario" id="clave_usuario" minlength="3" maxlength="20" placeholder="Login" required>
                           </div>
 
 

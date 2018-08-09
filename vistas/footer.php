@@ -25,6 +25,7 @@
     <script src="../public/js/bootbox.min.js"></script>
     <script src="../public/js/sweetalert.min.js"></script>
     <script src="../public/js/bootstrap-select.min.js"></script>
+    <script src="../public/js/sha256.js"></script>
   
   </body>
 </html>

@@ -130,6 +130,7 @@ function mostrar(idusuario) {
         mostrarform(true);
 
 
+
         $("#idusuario").val(data.idusuario);
         $("#nombre_usuario").val(data.nombre_usuario);
         $("#cedula_usuario	").val(data.cedula_usuario);
@@ -142,7 +143,7 @@ function mostrar(idusuario) {
         $("#cargo_usuario").val(data.cargo_usuario);
 
         $("#login_usuario").val(data.login_usuario);
-        $("#clave_usuario").val(data.clave_usuario);
+        $("#clave_usuario").val(sha256(data.clave_usuario));
 
         $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src", "../files/usuarios/" + data.imagen_usuario);
