@@ -212,18 +212,13 @@
             </li>
 
             <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
+              <a href="notificaciones.php">
+                <i class="fa fa-bell-o fa-lg"></i> <span>Notificaciones</span>
+                <small class="label pull-right bg-red">°</small>
               </a>
             </li>
 
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>
+        
 
           </ul>
         </section>
