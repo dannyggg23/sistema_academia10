@@ -23,6 +23,14 @@ if($_SESSION['ficha_entrenador']==1)
                   <div class="box">
                     <div class="box-header with-border">
                           <h1 class="box-title">Entrenador <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+
+                          <ul class="nav nav-tabs pull-right">
+                           <li class="active"><a href="entrenador.php">Entrenador</a></li>
+                           <li><a href="ficha_entrenador.php">Asignar Categorias</a></li>
+                           </ul>
+                       
+
+
                         <div class="box-tools pull-right">
                         </div>
                     </div>

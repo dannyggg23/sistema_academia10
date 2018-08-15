@@ -117,32 +117,18 @@
       
 
             <li class="treeview">
-                <a href="#">
+                <a href="entrenador.php">
                   <i class="fa fa-file-text-o fa-lg"></i>
                   <span>Entrenadores</span>
-                   <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                  
-                  <li><a href="entrenador.php"><i class="fa fa-circle-o"></i> Entrenador</a></li>
-                  <li><a href="ficha_entrenador.php"><i class="fa fa-circle-o"></i> Asignar categorias</a></li>
-                </ul>
               </li>
 
-          <li class="treeview">
-              <a href="#">
+           <li class="treeview">
+              <a href="alumno.php">
                 <i class="fa fa-file-text fa-lg"></i>
                 <span>Alumnos</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-
-                <li><a href="alumno.php"><i class="fa fa-circle-o"></i> Alumno</a></li>
-                <li><a href="ficha_alumno.php"><i class="fa fa-circle-o"></i> Ficha</a></li>
-                <li><a href="representante.php"><i class="fa fa-circle-o"></i> Representante</a></li>
                 
-              </ul>
-            </li>
+              </a>
 
              <li class="treeview">
               <a href="#">

@@ -23,6 +23,13 @@ if($_SESSION['ficha_alumno']==1)
                   <div class="box">
                     <div class="box-header with-border">
                           <h1 class="box-title">Alumno <button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                         
+                          <ul class="nav nav-tabs pull-right">
+                           <li class="active"><a href="alumno.php">Alumno</a></li>
+                           <li><a href="ficha_alumno.php">Ficha</a></li>
+                           <li><a href="representante.php">Representante</a></li>
+                           </ul>
+                        
                         <div class="box-tools pull-right">
                         </div>
                     </div>
