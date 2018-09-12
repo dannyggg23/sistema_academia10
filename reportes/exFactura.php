@@ -21,7 +21,7 @@ $email_representante;
 $fecha_representante;
 $logo = "logo.jpg";
 $ext_logo = "jpg";
-$empresa = "NOMBRE EMPRESA";
+$empresa = "LA ESCUELA DEL 10";
 $documento = "DUCUMENTO DE IDENTIDAD";
 $direccion = "DIRECCION";
 $telefono = "TELEFONO";
@@ -131,7 +131,7 @@ $mail->IsSMTP(); // telling the class to use SMTP
 
 ################################################################################################
 
-//CREAR CABECERA DE FACTURA
+//COMPROBANTE
 
 ###############################################################################################
 
@@ -146,10 +146,10 @@ try {
       $mail->Port       = 465;   // set the SMTP port for the GMAIL server
       $mail->SMTPKeepAlive = true;
       $mail->Mailer = "smtp";
-      $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
-      $mail->Password   = "..Danny..3Burguer";    // GMAIL password
+      $mail->Username   = "email@gmail.com";  // GMAIL username  ######### CAMBIAR ##########
+      $mail->Password   = "pass";    // GMAIL password           ######### CAMBIAR ##########
       $mail->AddAddress($email_representante, 'abc');
-      $mail->SetFrom('dannyggg23@gmail.com', 'Escuela del 10');
+      $mail->SetFrom('email@gmail.com', 'Escuela del 10');//     ######### CAMBIAR ##########
       $mail->addAttachment($factura_num);         // Add attachments
       $mail->Subject = 'Resivo de pago La Escuela del 10';
       $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically

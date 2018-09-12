@@ -362,10 +362,10 @@ $mail = new PHPMailer\PHPMailer\PHPMailer(); // the true param means it will thr
           $mail->Port       = 465;   // set the SMTP port for the GMAIL server
           $mail->SMTPKeepAlive = true;
           $mail->Mailer = "smtp";
-          $mail->Username   = "dannyggg23@gmail.com";  // GMAIL username
-          $mail->Password   = "..Danny..3Burguer";            // GMAIL password
+          $mail->Username   = "gmail@gmail.com";  // GMAIL username   ######### CAMBIAR ##########
+          $mail->Password   = "pass";            // GMAIL password    ######### CAMBIAR ##########
           $mail->AddAddress($email_representante, 'abc');
-          $mail->SetFrom('dannyggg23@gmail.com', 'Escuela del 10');
+          $mail->SetFrom('gmail@gmail.com', 'Escuela del 10');        ######### CAMBIAR ##########
           $mail->addAttachment('bookings/'.$cedulaalumno.'.pdf');         // Add attachments
           $mail->Subject = 'Bienvenido a la Escuela del 10';
           $mail->AltBody = ''; // optional - MsgHTML will create an alternate automatically
