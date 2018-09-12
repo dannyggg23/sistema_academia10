@@ -4,6 +4,8 @@ require_once "../modelos/Usuario.php";
 
 $usuario=new Usuario();
 
+$clavedes;
+
 $idusuario=isset($_POST["idusuario"])? limpiarCadena($_POST["idusuario"]):"";
 
 $nombre_usuario=isset($_POST["nombre_usuario"])? limpiarCadena($_POST["nombre_usuario"]):"";
@@ -75,6 +77,15 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'clave':
+
+		$myobj=array(
+			'clave'=> $_SESSION['pass'],
+			'danny'=>'clave'
+		);
+ 		echo  json_encode($myobj);
+	break;
+
 	case 'listar':
 		$rspta=$usuario->listar();
  		//Vamos a declarar un array
@@ -134,7 +145,6 @@ switch ($_GET["op"]){
 	while ($reg=$rspta->fetch_object()) {
 		
 		$sw=in_array($reg->idpermiso, $valores)?'checked':'';
-
 		echo '<li> <input type="checkbox"  '.$sw.'  name="permiso[]" value="'.$reg->idpermiso.'">'.$reg->nombre.'</li>';
 	
 	}
@@ -146,6 +156,8 @@ switch ($_GET["op"]){
 
 		$logina=$_POST['logina'];
 		$clavea=$_POST['clavea'];
+		$_SESSION['pass']=$clavea;
+
 
 		//HASH SHA256 EN LA CONTRASEÑA
 		$clavehash=hash("SHA256", $clavea);
@@ -158,6 +170,7 @@ switch ($_GET["op"]){
 			$_SESSION['nombre']=$fetch->nombre_usuario;
 			$_SESSION['imagen']=$fetch->imagen_usuario;
 			$_SESSION['login']=$fetch->login_usuario;
+			
 
 			//Obtenems los permisos del usuario
 			$marcados=$usuario->listarmarcados($fetch->idusuario);

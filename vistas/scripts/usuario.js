@@ -125,9 +125,23 @@ function guardaryeditar(e) {
 }
 
 function mostrar(idusuario) {
+
+    $.post("../ajax/usuario.php?op=clave", function(data, status) {
+        mostrarform(true);
+
+        data = JSON.parse(data);
+
+
+        $("#clave_usuario").val(data.clave);
+
+
+
+    });
+
+
     $.post("../ajax/usuario.php?op=mostrar", { idusuario: idusuario }, function(data, status) {
         data = JSON.parse(data);
-        mostrarform(true);
+
 
 
 
@@ -143,7 +157,7 @@ function mostrar(idusuario) {
         $("#cargo_usuario").val(data.cargo_usuario);
 
         $("#login_usuario").val(data.login_usuario);
-        $("#clave_usuario").val(sha256(data.clave_usuario));
+        //$("#clave_usuario").val(a);
 
         $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src", "../files/usuarios/" + data.imagen_usuario);
