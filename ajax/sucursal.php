@@ -1,6 +1,10 @@
 <?php
 require_once "../modelos/Sucursal.php";
 
+        header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Origin: *");
+
 $sucursal=new Sucursal();
 $idsucursal=isset($_POST["idsucursal"])? limpiarCadena($_POST["idsucursal"]):"";
 $nombre_sucursal=isset($_POST["nombre_sucursal"])? limpiarCadena($_POST["nombre_sucursal"]):"";
@@ -15,6 +19,7 @@ $longitud_sucursal=isset($_POST["longitud_sucursal"])? limpiarCadena($_POST["lon
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
+	
 	if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
 		{
 			$imagen=$_POST["imagenactual"];

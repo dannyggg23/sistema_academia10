@@ -24,7 +24,10 @@ class Sucursales extends REST_Controller {
     public function index_get($pagina=0)
     {
         $pagina=$pagina*5;
-        $query = $this->db->query("SELECT `idsucursal`, `nombre_sucursal`, `direrccion_ducursal`, `telefono_sucursal`, `encargado_sucursal`,`imagen`, ciudad.ciudad,provincia.provincia, `estado` FROM `sucursal` INNER JOIN ciudad ON ciudad.idCiudad=sucursal.ciudad_idCiudad INNER JOIN provincia ON provincia.idProvincia=ciudad.IDPROVINCIA LIMIT " .$pagina.",5");
+        
+        $query = $this->db->query("SELECT sucursal.*, ciudad.ciudad,provincia.provincia  FROM `sucursal` INNER JOIN ciudad ON ciudad.idCiudad=sucursal.ciudad_idCiudad INNER JOIN provincia ON provincia.idProvincia=ciudad.IDPROVINCIA LIMIT " .$pagina.",5");
+
+
         $respuesta = array(
             'error' => FALSE,
             'sucursales' => $query->result_array()

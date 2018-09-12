@@ -1,6 +1,10 @@
 <?php
 require_once "../modelos/Horario.php";
 
+ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    header("Access-Control-Allow-Origin: *");
+
 $horario=new horario();
 
 $idhorario=isset($_POST["idhorario"])? limpiarCadena($_POST["idhorario"]):"";

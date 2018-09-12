@@ -1,6 +1,10 @@
 <?php
 require_once "../modelos/Categoria.php";
 
+ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    header("Access-Control-Allow-Origin: *");
+
 $categoria=new Categoria();
 $idcategoria=isset($_POST["idcategoria"])? limpiarCadena($_POST["idcategoria"]):"";
 $nombre_categoria=isset($_POST["nombre_categoria"])? limpiarCadena($_POST["nombre_categoria"]):"";

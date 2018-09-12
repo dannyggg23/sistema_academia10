@@ -1,6 +1,11 @@
 <?php
 require_once "../modelos/Ficha_entrenador.php";
 
+        header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+        header("Access-Control-Allow-Origin: *");
+
+
 $ficha_entrenador=new Ficha_entrenador();
 
 $idficha_entrenador=isset($_POST["idficha_entrenador"])? limpiarCadena($_POST["idficha_entrenador"]):"";

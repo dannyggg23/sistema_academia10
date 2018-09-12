@@ -1,8 +1,12 @@
 <?php 
 require_once "../modelos/Alumno.php";
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    header("Access-Control-Allow-Origin: *");
 
 $alumno=new Alumno();
 $idalumno=isset($_POST["idalumno"])? limpiarCadena($_POST["idalumno"]):"";
+
 $cedula_alumno=isset($_POST["cedula_alumno"])? limpiarCadena($_POST["cedula_alumno"]):"";
 $nombre_alumno=isset($_POST["nombre_alumno"])? limpiarCadena($_POST["nombre_alumno"]):"";
 $genero_alumno=isset($_POST["genero_alumno"])? limpiarCadena($_POST["genero_alumno"]):"";
@@ -17,7 +21,7 @@ $talla_alumno=isset($_POST["talla_alumno"])? limpiarCadena($_POST["talla_alumno"
 $informacion_alumno=isset($_POST["informacion_alumno"])? limpiarCadena($_POST["informacion_alumno"]):"";
 $idsucursal_categorias=isset($_POST["idsucursal_categorias"])? limpiarCadena($_POST["idsucursal_categorias"]):"";
 $descuento_ficha_alumno=isset($_POST["descuento_ficha_alumno"])? limpiarCadena($_POST["descuento_ficha_alumno"]):"";
-
+ 
 $bandera=isset($_POST["bandera"])? limpiarCadena($_POST["bandera"]):"";
 
 switch ($_GET["op"]){

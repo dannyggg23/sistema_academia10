@@ -1,6 +1,11 @@
 <?php
 require_once "../modelos/Chsucursales.php";
 
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    header("Access-Control-Allow-Origin: *");
+
+
 $sucursal_categorias=new Chsucursales();
 
 $idsucursal_categorias=isset($_POST["idsucursal_categorias"])? limpiarCadena($_POST["idsucursal_categorias"]):"";
