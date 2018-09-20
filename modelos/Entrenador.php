@@ -139,7 +139,51 @@ Class Entrenador
      $identrenador);
     return ejecutarConsulta($sql);
   }
+///
+public function editar_movil($identrenador,
+  $cedula_entrenador,
+  $nombre_entrenador,
+  $direccion_entrenador,
+  $email_entrenador,
+  $telefono_entrenador,
+  $celular_entrenador,
+  $descripcion,
+  $genero_entrenador,
+  $titulo_entrenador,
+  $fechanacimiento_entrenador,
+  $usuario,
+  $clave)
+  {
+  $sql=sprintf("UPDATE `entrenador` SET 
+    `cedula_entrenador`='%s',
+    `nombre_entrenador`='%s',
+    `direccion_entrenador`='%s',
+    `email_entrenador`='%s',
+    `telefono_entrenador`='%s',
+    `celular_entrenador`='%s',
+    `descripcion`='%s',
+    genero_entrenador='%s',
+    titulo_entrenador='%s',
+    fechanacimiento_entrenador='%s',
+    usuario='%s',
+    clave='%s'
+     WHERE `identrenador`='%s'",$cedula_entrenador,
+     $nombre_entrenador,
+     $direccion_entrenador,
+     $email_entrenador,
+     $telefono_entrenador,
+     $celular_entrenador,
+     $descripcion,
+     $genero_entrenador,
+     $titulo_entrenador,
+     $fechanacimiento_entrenador,
+     $usuario,
+     $clave,
+     $identrenador);
+    return ejecutarConsulta($sql);
+  }
 
+//
   public function desactivar($identrenador)
   {
     $sql=sprintf("UPDATE entrenador SET estado='0'  WHERE `identrenador`='%s' ",$identrenador);

@@ -29,8 +29,11 @@ $fechanacimiento_entrenador=isset($_POST["fechanacimiento_entrenador"])? limpiar
 $idsucursal_categorias=isset($_POST["idsucursal_categorias"])? limpiarCadena($_POST["idsucursal_categorias"]):"";
 $bandera=isset($_POST["bandera"])? limpiarCadena($_POST["bandera"]):"";
 
-
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
+
+$usuario=isset($_POST["usuario"])? limpiarCadena($_POST["usuario"]):"";
+
+$clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
@@ -73,6 +76,24 @@ switch ($_GET["op"]){
 			$fechanacimiento_entrenador);
 			echo $rspta ? "Datos actualizados" : "No se pudo actualizar";
 		}
+	break;
+
+
+    case 'actualizar_movil':
+		$rspta=$entrenador->editar_movil($identrenador,
+        $cedula_entrenador,
+        $nombre_entrenador,
+        $direccion_entrenador,
+        $email_entrenador,
+        $telefono_entrenador,
+        $celular_entrenador,
+        $descripcion,
+        $genero_entrenador,
+        $titulo_entrenador,
+        $fechanacimiento_entrenador,
+        $usuario,
+        $clave);
+ 		echo $rspta ? "Datos Desactivados" : "No se puede desactivar";
 	break;
 
 	case 'desactivar':

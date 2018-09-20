@@ -1,5 +1,3 @@
-
-
 <?php
 require "../config/Conexion.php";
 Class Asistencia
@@ -7,6 +5,43 @@ Class Asistencia
   public function _construct(){
 
   }
+
+public function insertar($asistencia_alumno, $fecha_asistencia,$ficha_alumno_idficha_alumno){
+
+    $sql_select="SELECT * FROM `asistencia` 
+    WHERE asistencia.ficha_alumno_idficha_alumno='$ficha_alumno_idficha_alumno' 
+    AND asistencia.fecha_asistencia='$fecha_asistencia'";
+
+    $row=ejecutarConsulta($sql_select);
+    $reg=$row->fetch_object();
+
+    if(empty($reg))
+    {
+      $sql=sprintf("INSERT INTO `asistencia`(`asistencia_alumno`, `fecha_asistencia`, `ficha_alumno_idficha_alumno`) VALUES ('$asistencia_alumno','$fecha_asistencia','$ficha_alumno_idficha_alumno')");
+      return ejecutarConsulta($sql);
+    }
+    else
+    {
+       $sql=sprintf("UPDATE `asistencia` SET 
+        `asistencia_alumno`='$asistencia_alumno'
+        WHERE fecha_asistencia='$fecha_asistencia' AND 
+        ficha_alumno_idficha_alumno='$ficha_alumno_idficha_alumno' ");
+      return ejecutarConsulta($sql);
+    }
+
+  }
+
+  public function editar($idasistencia,$asistencia_alumno, $fecha_asistencia,$ficha_alumno_idficha_alumno){
+
+      $sql=sprintf("UPDATE `asistencia` SET 
+        `asistencia_alumno`='$asistencia_alumno',
+        `fecha_asistencia`='$fecha_asistencia',
+        `ficha_alumno_idficha_alumno`='$ficha_alumno_idficha_alumno' 
+        WHERE  `idasistencia`='$idasistencia'");
+      return ejecutarConsulta($sql);
+   
+  }
+
 
   public function listar(){
     $sql="SELECT 

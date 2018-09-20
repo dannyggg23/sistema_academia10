@@ -1,9 +1,33 @@
 <?php
 require_once "../modelos/Asistencia.php";
 
+require_once "../modelos/Alumno.php";
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
+    header("Access-Control-Allow-Origin: *");
+
 $ficha_alumno=new Asistencia();
 
+$asistencia_alumno=isset($_POST["asistencia_alumno"])? limpiarCadena($_POST["asistencia_alumno"]):"";
+$fecha_asistencia=isset($_POST["fecha_asistencia"])? limpiarCadena($_POST["fecha_asistencia"]):"";
+$ficha_alumno_idficha_alumno=isset($_POST["ficha_alumno_idficha_alumno"])? limpiarCadena($_POST["ficha_alumno_idficha_alumno"]):"";
+
+
+
 switch ($_GET["op"]){
+
+	case 'guardaryeditar':
+
+		if (empty($idcategoria)){
+			$rspta=$ficha_alumno->insertar($asistencia_alumno, $fecha_asistencia,$ficha_alumno_idficha_alumno);
+			echo $rspta ? "Datos registrados" : "No se pudo registrar";
+		}
+		else {
+			$rspta=$ficha_alumno->editar($idasistencia,$asistencia_alumno, $fecha_asistencia,$ficha_alumno_idficha_alumno);
+			echo $rspta ? "Datos actualizados" : "No se pudo actualizar";
+		}
+	break;
+
 	
 	case 'listar':
 		$rspta=$ficha_alumno->listar();
