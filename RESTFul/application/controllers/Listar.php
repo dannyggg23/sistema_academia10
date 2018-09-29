@@ -280,6 +280,72 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
         $this->response($respuesta);   
    }
 
+   public function pagoPorRepresentante_get($representante)
+   {
+       //$pagina=$pagina*5;
+       $query = $this->db->query("  SELECT 
+       `pago`.`idpago`,
+       `pago`.`representante_idrepresentante`,
+       `pago`.`usuario_idusuario`,
+       `pago`.`fecha`,
+       `pago`.`total`,
+       `pago`.`tipo_documento`,
+       `pago`.`estado`,
+       `pago`.`serie_comprobante`,
+       `pago`.`num_comprobante`,
+       `pago`.`impuesto`,
+       `representante`.`idrepresentante`
+     FROM
+       `representante`
+       INNER JOIN `pago` ON (`representante`.`idrepresentante` = `pago`.`representante_idrepresentante`) 
+       WHERE representante.idrepresentante='$representante' ORDER BY pago.fecha DESC");
+
+       $respuesta = array(
+           'error' => FALSE,
+           'pagos' => $query->result_array()
+       );
+       $this->response($respuesta);   
+  }
+
+
+  public function detallePago_get($idpago)
+  {
+      //$pagina=$pagina*5;
+      $query = $this->db->query("SELECT 
+      `detalle_pago`.`pago_idpago`,
+      `detalle_pago`.`precio_pago`,
+      `detalle_pago`.`descuento_pago`,
+      `detalle_pago`.`numero_meses_pago`,
+      `pago`.`idpago`,
+      `detalle_pago`.`iddetalle_pago`,
+      `ficha_alumno`.`idficha_alumno`,
+      `detalle_pago`.`ficha_alumno_idficha_alumno`,
+      `detalle_pago`.`productos_servicios_idproductos_servicios`,
+      `alumno`.`idalumno`,
+      `alumno`.`nombre_alumno`,
+      `productos_servicios`.`nombre_productos_servicios`,
+      `productos_servicios`.`idproductos_servicios`,
+      `categorias_productos_servicios`.`idcategorias_productos_servicios`,
+      `categorias_productos_servicios`.`nombre_categoria_productos`
+    FROM
+      `detalle_pago`
+      INNER JOIN `pago` ON (`detalle_pago`.`pago_idpago` = `pago`.`idpago`)
+      INNER JOIN `ficha_alumno` ON (`detalle_pago`.`ficha_alumno_idficha_alumno` = `ficha_alumno`.`idficha_alumno`)
+      INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
+      INNER JOIN `productos_servicios` ON (`detalle_pago`.`productos_servicios_idproductos_servicios` = `productos_servicios`.`idproductos_servicios`)
+      INNER JOIN `categorias_productos_servicios` ON (`productos_servicios`.`categorias_productos_servicios_idcategorias_productos_servicios` = `categorias_productos_servicios`.`idcategorias_productos_servicios`)
+      WHERE pago.idpago='$idpago'");
+
+      $respuesta = array(
+          'error' => FALSE,
+          'detallePagos' => $query->result_array()
+      );
+      $this->response($respuesta);   
+ }
+
+  
+
+  
 
   //########################--ENTRENADORES--#######################//
 
