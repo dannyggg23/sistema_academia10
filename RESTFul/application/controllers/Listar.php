@@ -358,6 +358,7 @@ public function AlumnosRepresentante_get($idrepresentante)
   `alumno`.`cedula_alumno`,
   `alumno`.`nombre_alumno`,
   `ficha_alumno`.`idficha_alumno`,
+  ficha_alumno.fecha_acceso,
   `sucursal`.`idsucursal`,
   `sucursal`.`nombre_sucursal`,
   `categoria`.`idcategoria`,
@@ -395,6 +396,75 @@ public function AlumnosRepresentante_get($idrepresentante)
         $this->response($respuesta);   
    }
   
+
+
+public function AsistenciaAlumnosRepresentante_get($idalumno)
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("
+          SELECT 
+  `asistencia`.`idasistencia`,
+  `asistencia`.`asistencia_alumno`,
+  `asistencia`.`fecha_asistencia`,
+  `asistencia`.`ficha_alumno_idficha_alumno`,
+  `alumno`.`idalumno`,
+  alumno.nombre_alumno,
+alumno.cedula_alumno,
+  `ficha_alumno`.`idficha_alumno`
+FROM
+  `ficha_alumno`
+  INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
+  INNER JOIN `asistencia` ON (`ficha_alumno`.`idficha_alumno` = `asistencia`.`ficha_alumno_idficha_alumno`)
+
+  WHERE alumno.idalumno='$idalumno'");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'asistencias' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+   //##################informacion###################################
+
+public function CategoriasDisponiblesInfo_get()
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT * FROM `categoria` WHERE estado=1");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'categorias' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+
+
+   public function HorariosDisponiblesInfo_get()
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT * FROM `horario` WHERE estado=1");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'horarios' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+
+   public function NoticiasDisponiblesInfo_get()
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT * FROM `noticias` WHERE estado=1");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'noticias' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
 
    
 }

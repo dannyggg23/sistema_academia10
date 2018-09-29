@@ -7,12 +7,21 @@ Class Ficha_alumno
   }
 
 
+ 
   public function insertar($numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno){
+    
+
+    
+    
+
     $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`,sucursal_categorias_idsucursal_categorias,descuento_ficha_alumno,fecha_acceso) VALUES ('%s','%s','%s','%s','%s',CURDATE())",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
 
     return ejecutarConsulta($sql);
-
+    
   }
+
+
+  
 
   public function editar($idficha_alumno,$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno)
   {
@@ -22,7 +31,7 @@ Class Ficha_alumno
     `fechaApertura_alumno`='%s',
     `alumno_idalumno`='%s',
     `sucursal_categorias_idsucursal_categorias`='%s',
-    descuento_ficha_alumno='%s' 
+     descuento_ficha_alumno='%s' 
     WHERE  `idficha_alumno`='%s'",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno,$idficha_alumno);
     return ejecutarConsulta($sql);
 
@@ -54,7 +63,7 @@ Class Ficha_alumno
     categoria.nombre_categoria,horario.nombre as horario,
     horario.hora_inicio,
     horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -71,7 +80,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -83,7 +92,7 @@ Class Ficha_alumno
   }
 
    public function listarFicha_Representante($id){
-    $sql="SELECT  ficha_alumno.*,alumno.genero_alumno,alumno.cedula_alumno,alumno.nombre_alumno,alumno.imagen_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,horario.hora_inicio,horario.hora_fin,CURDATE() as fecha_actual,representante.idrepresentante FROM `ficha_alumno` 
+    $sql="SELECT  ficha_alumno.*,alumno.genero_alumno,alumno.cedula_alumno,alumno.nombre_alumno,alumno.imagen_alumno,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre as horario,horario.hora_inicio,horario.hora_fin,CURDATE() as fecha_actual,representante.idrepresentante ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
     INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
@@ -94,19 +103,7 @@ Class Ficha_alumno
   }
 
   public function listarDeudores(){
-    $sql="SELECT ficha_alumno.*,
-    alumno.cedula_alumno,alumno.genero_alumno,
-    alumno.nombre_alumno,sucursal.nombre_sucursal,
-    categoria.nombre_categoria,horario.nombre as horario,
-    alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
-    FROM `ficha_alumno` 
-    INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
-    INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
-    INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
-    INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
-    INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
-    WHERE ficha_alumno.fecha_acceso <= CURDATE() ORDER BY ficha_alumno.fechaApertura_alumno DESC";
+    $sql="SELECT ficha_alumno.*, alumno.cedula_alumno,alumno.genero_alumno, alumno.nombre_alumno,sucursal.nombre_sucursal, categoria.nombre_categoria,horario.nombre as horario, alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin, CURDATE() as fecha_actual, TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses FROM `ficha_alumno` INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario WHERE ficha_alumno.fecha_acceso <= CURDATE() ORDER BY ficha_alumno.fechaApertura_alumno DESC";
     return ejecutarConsulta($sql);
   }
 
@@ -116,7 +113,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -133,7 +130,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -150,7 +147,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -167,7 +164,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -184,7 +181,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -203,7 +200,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -224,7 +221,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -241,7 +238,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -258,7 +255,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -275,7 +272,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -292,7 +289,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
@@ -309,7 +306,7 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual 
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 

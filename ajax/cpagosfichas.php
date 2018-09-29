@@ -16,8 +16,12 @@ switch ($_GET["op"]){
             $anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+           // $anio2=$anio[0]-1;
+
+        
+
+            $mes1=($ano."-12-31");
+            $mes11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -38,7 +42,7 @@ switch ($_GET["op"]){
             $mes1010=($ano."-10-31");
             $mes11=($ano."-11-01");
             $mes1111=($ano."-11-30");
-            $mes12=($ano."-12-1");
+            $mes12=($ano."-12-01");
             $mes1212=($ano."-12-31");
             $fechaacceso=date_create($reg->fecha_acceso);
  			$data[]=array(
@@ -46,7 +50,7 @@ switch ($_GET["op"]){
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -59,10 +63,8 @@ switch ($_GET["op"]){
 				"13"=>($reg->fecha_acceso >= $mes11 && $reg->fecha_acceso >= $mes1111 && $reg->fechaApertura_alumno <= $mes1111 )?'X':"",
                 "14"=>($reg->fecha_acceso >= $mes12 && $reg->fecha_acceso >= $mes1212 && $reg->fechaApertura_alumno <= $mes1212 )?'X':""
                  );
-            $anio ="";
-            $ano="";
-        
-		 }
+         }
+         
 		  
  		$results = array(
  			"sEcho"=>1, //Información para el datatables
@@ -89,7 +91,7 @@ switch ($_GET["op"]){
             $ano=$anio[0];
 
             $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+            $mes11=($ano."-01-29");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -110,7 +112,7 @@ switch ($_GET["op"]){
             $mes1010=($ano."-10-31");
             $mes11=($ano."-11-01");
             $mes1111=($ano."-11-30");
-            $mes12=($ano."-12-1");
+            $mes12=($ano."-12-01");
             $mes1212=($ano."-12-31");
             $fechaacceso=date_create($reg->fecha_acceso);
  			$data[]=array(
@@ -118,6 +120,7 @@ switch ($_GET["op"]){
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
+
 				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",

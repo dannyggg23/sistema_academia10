@@ -23,6 +23,9 @@ $nombre_conyugue_representante=isset($_POST["nombre_conyugue_representante"])? l
 $barrio_representante=isset($_POST["barrio_representante"])? limpiarCadena($_POST["barrio_representante"]):"";
 $ciudad_representante=isset($_POST["ciudad_representante"])? limpiarCadena($_POST["ciudad_representante"]):"";
 
+$usuario=isset($_POST["usuario"])? limpiarCadena($_POST["usuario"]):"";
+$clave=isset($_POST["clave"])? limpiarCadena($_POST["clave"]):"";
+
 
 $estado=isset($_POST["estado"])? limpiarCadena($_POST["estado"]):"";
 
@@ -42,6 +45,16 @@ switch ($_GET["op"]){
 	case 'guardar':
 
 			$rspta=$representante->insertarModal($cedula_representante,$nombre_representante,$email_representante,$direccion_representante,$telefono_representante,$genero_representante,$fecha_nacimiento_representante,$parentesco_respresentante,$celular_representante,$lugar_trabajo_representante,$cedula_conyugue_representante,$nombre_conyugue_representante,$barrio_representante,$ciudad_representante);
+			echo $rspta;
+	
+	break;
+
+	case 'actualizar_movil':
+
+			$rspta=$representante->editar_movil($idrepresentante,$cedula_representante,$nombre_representante,$email_representante,$direccion_representante,$telefono_representante,$genero_representante,$fecha_nacimiento_representante,$parentesco_respresentante,$celular_representante,$lugar_trabajo_representante,$cedula_conyugue_representante,
+                $nombre_conyugue_representante,
+  				$barrio_representante,
+ 				$ciudad_representante,$usuario,$clave);
 			echo $rspta;
 	
 	break;

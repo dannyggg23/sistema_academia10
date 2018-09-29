@@ -46,7 +46,8 @@ if($_SESSION['ficha_alumno']==1)
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Insc.</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Estado</th>
 
                           </thead>
@@ -63,7 +64,8 @@ if($_SESSION['ficha_alumno']==1)
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Insc.</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Estado</th>
 
                           </tfoot>
@@ -74,7 +76,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Número de ficha(*):</label>
                             <input type="hidden" name="idficha_alumno" id="idficha_alumno">
-                            <input type="text" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno" minlength="10" maxlength="13" placeholder="Número de ficha" disabled required>
+                            <input type="text" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno"  placeholder="Número de ficha" required>
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

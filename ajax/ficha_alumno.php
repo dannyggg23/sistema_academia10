@@ -12,6 +12,7 @@ $descuento_ficha_alumno=isset($_POST["descuento_ficha_alumno"])? limpiarCadena($
 
 
 switch ($_GET["op"]){
+	
 	case 'guardaryeditar':
 
 		if (empty($idficha_alumno)){
@@ -48,6 +49,31 @@ switch ($_GET["op"]){
 		 $url='../reportes/ficha_alumno.php?id=';
 
  		while ($reg=$rspta->fetch_object()){
+
+ 			$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				 "0"=>($reg->estado)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idficha_alumno.')"><i class="fa fa-pencil"></i></button>'.
 				    '<a target="_blank" href="'.$url.$reg->idficha_alumno.'"> <button class="btn btn-info btn-xs"> <i class="fa fa-file"></i> </button></a>'.	
@@ -63,8 +89,11 @@ switch ($_GET["op"]){
        			"6"=>$reg->horario,
        			"7"=>$reg->hora_inicio."|".$reg->hora_fin,
        			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-				"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+
+ 				"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+
+       			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+				"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

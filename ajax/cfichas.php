@@ -12,6 +12,31 @@ switch ($_GET["op"]){
 
 
  		while ($reg=$rspta->fetch_object()){
+
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 
  				"0"=>$reg->numeroFicha_alumno,
@@ -22,9 +47,10 @@ switch ($_GET["op"]){
        			"5"=>$reg->horario,
        			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
        			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
 		 }
@@ -44,6 +70,30 @@ switch ($_GET["op"]){
  		//Vamos a declarar un array
  		$data= Array();
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -53,9 +103,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -79,6 +130,30 @@ switch ($_GET["op"]){
 
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -88,9 +163,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -112,6 +188,30 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -121,9 +221,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  			
@@ -148,6 +249,30 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -157,9 +282,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -183,6 +309,30 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -192,9 +342,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -218,6 +369,30 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -227,9 +402,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  			
@@ -255,6 +431,30 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+ 				$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -264,9 +464,10 @@ switch ($_GET["op"]){
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -291,6 +492,30 @@ switch ($_GET["op"]){
 
  
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 				"1"=>$reg->nombre_alumno,
@@ -300,9 +525,10 @@ switch ($_GET["op"]){
        			"5"=>$reg->horario,
        			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
        			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -323,6 +549,30 @@ case 'listarDeudoresCategorias1':
 	 $data= Array();
 
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 				"1"=>$reg->nombre_alumno,
@@ -332,9 +582,10 @@ case 'listarDeudoresCategorias1':
        			"5"=>$reg->horario,
        			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
        			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -358,6 +609,30 @@ case 'listarDeudoresSucursalCategorias1':
 	 $data= Array();
 
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -367,9 +642,10 @@ case 'listarDeudoresSucursalCategorias1':
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -392,6 +668,30 @@ case 'listarDeudoresHorario1':
 	 $data= Array();
 
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -401,9 +701,10 @@ case 'listarDeudoresHorario1':
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -426,6 +727,30 @@ case 'listarDeudoresCategoriaHorario1':
 	 $data= Array();
 
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -435,9 +760,10 @@ case 'listarDeudoresCategoriaHorario1':
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -462,6 +788,30 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
 	 $data= Array();
 
 	 while ($reg=$rspta->fetch_object()){
+	 		$nummeses=0;
+ 			$masnumero=0;
+ 			$bandera=false;
+
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			{
+
+ 				$nummeses=1;
+
+ 			}
+
+ 			if($reg->num_meses<0)
+ 			{
+ 				$masnumero=$reg->num_meses*-1;
+ 				$nummeses="+ ".$masnumero;
+ 			$bandera=true;
+
+
+ 			}
+ 			if($reg->num_meses>0)
+ 			{
+ 				$nummeses=$reg->num_meses;
+ 			}
+
 		 $data[]=array(
 			"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
@@ -471,9 +821,10 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
 		    "5"=>$reg->horario,
 			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
 			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"9"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }

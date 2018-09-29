@@ -36,7 +36,17 @@ Class Alumno
 
  //INSERTO EN LA FICHA DEL ALUMNO
 
-  $sql_ficha_alumno=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`, `sucursal_categorias_idsucursal_categorias`,fecha_acceso,descuento_ficha_alumno) VALUES ('%s',CURDATE(),'%s','%s',CURDATE(),'%s')",$cedula_alumno,$idalumno,$idsucursal_categorias,$descuento_ficha_alumno);
+  $sql_ficha_alumno=sprintf("INSERT INTO `ficha_alumno`
+  ( `numeroFicha_alumno`,
+   `fechaApertura_alumno`,
+   `alumno_idalumno`, 
+   `sucursal_categorias_idsucursal_categorias`,
+   fecha_acceso,descuento_ficha_alumno)
+    VALUES ('%s',CURDATE(),'%s','%s',CURDATE(),'%s')"
+    ,$cedula_alumno,
+    $idalumno,$idsucursal_categorias,
+    $descuento_ficha_alumno);
+    
   $idfich=ejecutarConsulta_retornarID($sql_ficha_alumno);
   
   

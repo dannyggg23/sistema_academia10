@@ -3,7 +3,6 @@
 
 require 'headerconsultas.php';
 
-
 ?> 
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -46,7 +45,8 @@ require 'headerconsultas.php';
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Ins</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Imagen</th>
                             <th>Estado</th>
                           </thead>
@@ -61,7 +61,8 @@ require 'headerconsultas.php';
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Ins</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Imagen</th>
                             <th>Estado</th>
 
