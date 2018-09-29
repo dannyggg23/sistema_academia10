@@ -181,7 +181,7 @@ function guardaryeditar(e) {
         success: function(datos) {
             if (datos > 0) {
                 swal("CORRECTO", "Factura registrada", "success").then((value) => {
-                    var url = "http://localhost:8082/sistema_academia10/reportes/exFactura.php?id=" + datos;
+                    var url = "https://escueladel10.com/sistema/reportes/exFactura.php?id=" + datos;
                     window.open(url, '_blank');
                 });
 

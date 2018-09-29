@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Club Deportivo</title>
+    <title>Escuela del 10</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -40,12 +40,13 @@
 
         <!-- Logo -->
         <a href="escritorio.php" class="logo">
+            <img src="../files/imagenes/default.jpg" width="30px"/>
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
             <i class="fa fa-soccer-ball-o"></i>
           </span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Club Deportivo</b></span>
+          <span class="logo-lg"><b></b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->

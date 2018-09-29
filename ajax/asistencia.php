@@ -305,7 +305,7 @@ switch ($_GET["op"]){
 		$representante = new Ficha_alumno();
 
 		$rspta = $representante->listarActivos();
-		echo '<option>--Seleccione--</option>';
+		echo '<option value="">--Seleccione--</option>';
 
 		while ($reg = $rspta->fetch_object())
 				{

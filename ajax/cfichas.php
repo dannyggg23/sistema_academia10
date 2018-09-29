@@ -17,7 +17,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -74,7 +74,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -134,7 +134,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -192,7 +192,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -253,7 +253,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -313,7 +313,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -373,7 +373,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -435,7 +435,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -496,7 +496,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -553,7 +553,7 @@ case 'listarDeudoresCategorias1':
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -613,7 +613,7 @@ case 'listarDeudoresSucursalCategorias1':
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -672,7 +672,7 @@ case 'listarDeudoresHorario1':
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -731,7 +731,7 @@ case 'listarDeudoresCategoriaHorario1':
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -792,7 +792,7 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;

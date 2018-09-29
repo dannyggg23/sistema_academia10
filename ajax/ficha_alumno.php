@@ -54,7 +54,7 @@ switch ($_GET["op"]){
  			$masnumero=0;
  			$bandera=false;
 
- 			if($reg->num_meses=="0" && $reg->fecha_acceso < $reg->fecha_actual)
+ 			if($reg->num_meses=="0" && $reg->fecha_acceso <= $reg->fecha_actual)
  			{
 
  				$nummeses=1;
@@ -65,7 +65,7 @@ switch ($_GET["op"]){
  			{
  				$masnumero=$reg->num_meses*-1;
  				$nummeses="+ ".$masnumero;
- 			$bandera=true;
+ 			    $bandera=true;
 
 
  			}

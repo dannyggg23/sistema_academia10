@@ -13,15 +13,15 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
 
-            $anio = explode("-", $reg->fecha_actual);
-            $ano=$anio[0];
+            // $anio = explode("-", $reg->fecha_actual);
+            // $ano=$anio[0];
 
            // $anio2=$anio[0]-1;
 
-        
+        $ano=$reg->ano_actual;
 
-            $mes1=($ano."-12-31");
-            $mes11=($ano."-01-30");
+            $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -50,7 +50,7 @@ switch ($_GET["op"]){
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11 )?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -87,11 +87,12 @@ switch ($_GET["op"]){
 
  
 	 while ($reg=$rspta->fetch_object()){
+         
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-29");
+             $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -121,7 +122,7 @@ switch ($_GET["op"]){
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
 
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -157,8 +158,8 @@ case 'listarDeudoresCategorias1':
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+            $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -187,7 +188,7 @@ case 'listarDeudoresCategorias1':
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -226,8 +227,8 @@ case 'listarDeudoresSucursalCategorias1':
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+            $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -256,7 +257,7 @@ case 'listarDeudoresSucursalCategorias1':
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -294,8 +295,8 @@ case 'listarDeudoresHorario1':
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+             $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -324,7 +325,7 @@ case 'listarDeudoresHorario1':
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -362,8 +363,8 @@ case 'listarDeudoresCategoriaHorario1':
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+          $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -392,7 +393,7 @@ case 'listarDeudoresCategoriaHorario1':
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",
@@ -432,8 +433,8 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
 		$anio = explode("-", $reg->fecha_actual);
             $ano=$anio[0];
 
-            $mes1=($ano."-01-01");
-            $mes11=($ano."-01-31");
+            $enero1=($ano."-01-01");
+            $enero11=($ano."-01-30");
             $mes2=($ano."-02-01");
             $mes22=($ano."-02-28");
             $mes3=($ano."-03-01");
@@ -462,7 +463,7 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
  				"0"=>$reg->numeroFicha_alumno,
                 "1"=>$reg->nombre_alumno,
                 "2"=>($reg->inscripcion)?'X':"",
-				"3"=>($reg->fecha_acceso >= $mes1 && $reg->fecha_acceso >= $mes11 && $reg->fechaApertura_alumno <= $mes11)?'X':"",
+				"3"=>($reg->fecha_acceso >= $enero1 && $reg->fecha_acceso >= $enero11 && $reg->fechaApertura_alumno <= $enero11 )?'X':"",
 				"4"=>($reg->fecha_acceso >= $mes2 && $reg->fecha_acceso >= $mes22 && $reg->fechaApertura_alumno <= $mes22 )?'X':"",
 				"5"=>($reg->fecha_acceso >= $mes3 && $reg->fecha_acceso >= $mes33 && $reg->fechaApertura_alumno <= $mes33 )?'X':"",
 				"6"=>($reg->fecha_acceso >= $mes4 && $reg->fecha_acceso >= $mes44 && $reg->fechaApertura_alumno <= $mes44 )?'X':"",

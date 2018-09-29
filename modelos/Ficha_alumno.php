@@ -14,7 +14,7 @@ Class Ficha_alumno
     
     
 
-    $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`,sucursal_categorias_idsucursal_categorias,descuento_ficha_alumno,fecha_acceso) VALUES ('%s','%s','%s','%s','%s',CURDATE())",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
+    $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`,sucursal_categorias_idsucursal_categorias,descuento_ficha_alumno,fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fechaApertura_alumno')",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
 
     return ejecutarConsulta($sql);
     
@@ -80,7 +80,8 @@ Class Ficha_alumno
     alumno.nombre_alumno,sucursal.nombre_sucursal,
     categoria.nombre_categoria,horario.nombre as horario,
     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin,
-    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() ) AS num_meses
+    CURDATE() as fecha_actual ,TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE()) AS num_meses,
+    YEAR(CURDATE()) as ano_actual
     FROM `ficha_alumno` 
     INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
     INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
