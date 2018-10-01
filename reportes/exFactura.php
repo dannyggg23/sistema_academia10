@@ -142,14 +142,14 @@ try {
       $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
       $mail->SMTPAuth   = true;                  // enable SMTP authentication
       $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-      $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+      $mail->Host       = "mail.escueladel10.com";      // sets GMAIL as the SMTP server
       $mail->Port       = 465;   // set the SMTP port for the GMAIL server
       $mail->SMTPKeepAlive = true;
       $mail->Mailer = "smtp";
-      $mail->Username   = "email@gmail.com";  // GMAIL username  ######### CAMBIAR ##########
-      $mail->Password   = "pass";    // GMAIL password           ######### CAMBIAR ##########
+      $mail->Username   = "admin@escueladel10.com";  // GMAIL username  ######### CAMBIAR ##########
+      $mail->Password   = "Admin_10.2018";    // GMAIL password           ######### CAMBIAR ##########
       $mail->AddAddress($email_representante, 'abc');
-      $mail->SetFrom('email@gmail.com', 'Escuela del 10');//     ######### CAMBIAR ##########
+      $mail->SetFrom('admin@escueladel10.com', 'Escuela del 10');//     ######### CAMBIAR ##########
       $mail->addAttachment($factura_num);         // Add attachments
       $mail->Subject = 'Resivo de pago La Escuela del 10';
       $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically

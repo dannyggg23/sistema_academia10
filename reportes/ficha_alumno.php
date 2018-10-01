@@ -357,15 +357,15 @@ $mail = new PHPMailer\PHPMailer\PHPMailer(); // the true param means it will thr
           $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
           $mail->SMTPAuth   = true;                  // enable SMTP authentication
           $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-          $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+          $mail->Host       = "mail.escueladel10.com";      // sets GMAIL as the SMTP server
          //$mail->Host       = "smtp.hotmail.com";      // sets GMAIL as the SMTP server
           $mail->Port       = 465;   // set the SMTP port for the GMAIL server
           $mail->SMTPKeepAlive = true;
           $mail->Mailer = "smtp";
-          $mail->Username   = "gmail@gmail.com";  // GMAIL username   ######### CAMBIAR ##########
-          $mail->Password   = "pass";            // GMAIL password    ######### CAMBIAR ##########
+          $mail->Username   = "admin@escueladel10.com";  // GMAIL username   ######### CAMBIAR ##########
+          $mail->Password   = "Admin_10.2018";            // GMAIL password    ######### CAMBIAR ##########
           $mail->AddAddress($email_representante, 'abc');
-          $mail->SetFrom('gmail@gmail.com', 'Escuela del 10');        ######### CAMBIAR ##########
+          $mail->SetFrom('admin@escueladel10.com', 'Escuela del 10');        ######### CAMBIAR ##########
           $mail->addAttachment('bookings/'.$cedulaalumno.'.pdf');         // Add attachments
           $mail->Subject = 'Bienvenido a la Escuela del 10';
           $mail->AltBody = ''; // optional - MsgHTML will create an alternate automatically

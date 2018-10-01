@@ -56,7 +56,7 @@ switch ($_GET["op"]){
 			$idsucursal_categorias,
 			$descuento_ficha_alumno,
 			$bandera
-			);
+			); 
 			echo $rspta;
 		}
 		else {
@@ -73,7 +73,7 @@ switch ($_GET["op"]){
 			$peso_alumno,
             $talla_alumno,
             $informacion_alumno);
-			echo $rspta ? "Datos actualizados" : "No se pudo actualizar";
+			echo $rspta;
 		}
 	break;
 

@@ -36,7 +36,8 @@ require 'headerconsultas.php';
  
                         <table id="tbllistadodeudores" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
-                          <th>Ficha</th>
+                        
+                            <th>Ficha</th>
                             <th>Alumno</th>
                             <th>Género</th>
                             <th>Sucursal</th>
@@ -44,14 +45,15 @@ require 'headerconsultas.php';
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Ins</th>
-                            <th>Imagen</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>                            
                           </tbody>
                           <tfoot>
-                          <th>Ficha</th>
+                         
+                            <th>Ficha</th>
                             <th>Alumno</th>
                             <th>Género</th>
                             <th>Sucursal</th>
@@ -59,8 +61,8 @@ require 'headerconsultas.php';
                             <th>Horario</th>
                             <th>Hora</th>
                             <th>Acceso</th>
-                            <th>Ins</th>
-                            <th>Imagen</th>
+                            <th>Deuda de Meses</th>
+                            <th>Pago de inscripción</th>
                             <th>Estado</th>
                           </tfoot>
                         </table>
