@@ -343,7 +343,35 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
       $this->response($respuesta);   
  }
 
-  
+ public function deudoresSucursal_get($id)
+ {
+     //$pagina=$pagina*5;
+     $query = $this->db->query("SELECT ficha_alumno.*, 
+     alumno.cedula_alumno,
+     alumno.genero_alumno, 
+     alumno.nombre_alumno,
+     sucursal.nombre_sucursal, 
+     categoria.nombre_categoria,
+     horario.nombre as horario, 
+     alumno.imagen_alumno,horario.hora_inicio,horario.hora_fin, CURDATE()
+      as fecha_actual, TIMESTAMPDIFF(MONTH, ficha_alumno.fecha_acceso, CURDATE() )
+       AS num_meses 
+       FROM `ficha_alumno` 
+       INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+       INNER JOIN sucursal_categorias on ficha_alumno.sucursal_categorias_idsucursal_categorias=sucursal_categorias.idsucursal_categorias 
+       INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
+       INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
+       INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+       WHERE ficha_alumno.fecha_acceso <= CURDATE() 
+        AND sucursal_categorias.idsucursal_categorias='$id' 
+        ORDER BY ficha_alumno.fechaApertura_alumno DESC");
+
+     $respuesta = array(
+         'error' => FALSE,
+         'deudores' => $query->result_array()
+     );
+     $this->response($respuesta);   
+}
 
   
 
