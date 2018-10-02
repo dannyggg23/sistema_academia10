@@ -54,6 +54,14 @@ function limpiar() {
     $(".filas").remove();
     $("#impuesto").val("12");
 
+
+    $("#subtotal_compra").val("");
+
+    $("#subtotal1").val("");
+
+
+
+
 }
 
 //Función mostrar formulario
@@ -329,9 +337,20 @@ function calcularTotales() {
         total += document.getElementsByName("subtotal")[i].value;
     }
 
-    $("#total_compra").html("$/. " + total);
+    var ivacompra = ($("#impuesto").val() * total) / 100;
 
-    $("#total").val(total);
+
+    $("#subtotal_compra").html("$/. " + total);
+
+    $("#iva_compra").html("$/. " + ivacompra);
+
+    var totalcomprah = parseFloat(total) + parseFloat(ivacompra);
+
+    $("#total_compra").html("$/. " + totalcomprah);
+
+    $("#total").val(totalcomprah);
+    $("#subtotal1").val(total);
+
 
     evaluar();
 }
@@ -344,6 +363,8 @@ function evaluar() {
         cont = 0;
 
     }
+
+
 }
 
 function eliminarDetalle(indice) {

@@ -113,7 +113,8 @@ $con_letra=strtoupper($V->ValorEnLetras($regv->total,"DOLARES"));
 $pdf->addCadreTVAs("---".$con_letra);
 
 //Mostramos el impuesto
-$pdf->addTVAs( $regv->impuesto, $regv->total,"$ ");
+$pdf->addTVAs( $regv->impuesto, $regv->subtotal,"$ ");
+
 $pdf->addCadreEurosFrancs("IVA"." $regv->impuesto %");
 
 //$pdf->Output('Reporte de Venta','I');

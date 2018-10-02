@@ -517,16 +517,18 @@ function addTVAs( $igv, $total,$moneda )
 {
 	$this->SetFont('Arial','',8);
 
+	
+
 	$re  = $this->w - 30;
 	$rf  = $this->w - 29;
 	$y1  = $this->h - 40;
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total-($total*$igv/(100))), '', '', 'R');
+	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
 	$this->SetXY( $re, $y1+10 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", ($total*$igv/(100))), '', '', 'R');
 	$this->SetXY( $re, $y1+14.8 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
+	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total+(($total*$igv/(100)))), '', '', 'R');
 	
 }
 

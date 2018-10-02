@@ -109,6 +109,8 @@ if($_SESSION['pagos']==1)
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                   
                             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                             
+                             
                               <thead style="background-color: #A9D0F5">
                                 <th>Opciones</th>
                                 <th>Ficha</th>
@@ -118,18 +120,43 @@ if($_SESSION['pagos']==1)
                                 <th>Servicio</th>
                                 <th>Subtotal</th>
                               </thead>
+
+                              
+
                               <tfoot>
-                                <th>TOTAL</th>
+                              <tr>
+                              <td>SUBTOTAL</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td><h4 id="subtotal_compra">$/. 0.00/</h4><input type="hidden" name="subtotal1" id="subtotal1"></td>
+                              </tr>
+
+                               <tr>
+                              <td>IVA</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td><h4 id="iva_compra">$/. 0.00/</h4></td>
+                              </tr>
+
+                              <tr>
+                              <th>TOTAL</th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th><h4 id="total_compra">$/. 0.00/</h4> <input type="hidden" name="total" id="total"></th>
+                              </tr>
+                             
                               </tfoot>
-
                               <tbody>
-                                
+                          
                               </tbody>
 
                             </table>
