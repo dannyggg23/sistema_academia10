@@ -16,17 +16,25 @@ if ($_SESSION['pagos']==1)
 require('Factura.php');
 
 //Establecemos los datos de la empresa
+
+require_once "../modelos/Academia.php";
+$iddatos_academia="1";
+$racademia=new Academia();
+$tablaAclademia=$racademia->mostrarfactura($iddatos_academia);
+
+$respTablaAcademia=$tablaAclademia->fetch_object();
+
 $cedularepresentante;
 $email_representante;
 $fecha_representante;
 $logo = "logo.jpg";
 $ext_logo = "jpg";
-$empresa = "LA ESCUELA DEL 10";
-$documento = "DUCUMENTO DE IDENTIDAD";
-$direccion = "DIRECCION";
-$telefono = "TELEFONO";
-$email = "EMAIL";
-
+$empresa = $respTablaAcademia->titulo_factura;
+$documento =$respTablaAcademia->documento_identidad;
+$direccion = $respTablaAcademia->direccion_academia;
+$telefono = $respTablaAcademia->telefono_academia;
+$email = $respTablaAcademia->email_academia;
+$gerentecab=$respTablaAcademia->nombre_propietario;
 //Obtenemos los datos de la cabecera de la venta actual
 
 require_once "../modelos/Pago.php";
@@ -51,6 +59,7 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método addSociete de la clase Factura
 $pdf->addSociete(utf8_decode($empresa),
                   $documento."\n" .
+                  utf8_decode("Encargado: ").utf8_decode($gerentecab)."\n" .
                   utf8_decode("Dirección: ").utf8_decode($direccion)."\n".
                   utf8_decode("Teléfono: ").$telefono."\n" .
                   "Email : ".$email,$logo,$ext_logo);

@@ -98,8 +98,8 @@ class Notificaciones extends REST_Controller {
 			'contents' => $content,
 			'headings'=> $headings,
 			'subtitle'=>$subtitle,
-			'big_picture'=>'https://image.jimcdn.com/app/cms/image/transf/dimension=204x1024:format=png/path/s04da8ad8e2cf9e25/image/icc5a42d2fd5569f6/version/1474306014/image.png',
-			'small_icon'=>'https://previews.123rf.com/images/amin268/amin2681705/amin268170500606/77890740-icono-escuela-y-edificio-s%C3%B3lidos-de-la-universidad-gr%C3%A1ficos-de-vector-de-la-biblioteca-un-modelo-llenado-.jpg'
+			'big_picture'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg',
+			'small_icon'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg'
 		);
 		
 		$fields = json_encode($fields);
@@ -158,8 +158,8 @@ class Notificaciones extends REST_Controller {
 			'contents' => $content,
 			'headings'=> $headings,
 			'subtitle'=>$subtitle,
-			'big_picture'=>'https://image.jimcdn.com/app/cms/image/transf/dimension=204x1024:format=png/path/s04da8ad8e2cf9e25/image/icc5a42d2fd5569f6/version/1474306014/image.png',
-			'small_icon'=>'https://previews.123rf.com/images/amin268/amin2681705/amin268170500606/77890740-icono-escuela-y-edificio-s%C3%B3lidos-de-la-universidad-gr%C3%A1ficos-de-vector-de-la-biblioteca-un-modelo-llenado-.jpg'
+			'big_picture'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg',
+			'small_icon'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg'
 		);
 		
 		$fields = json_encode($fields);
@@ -260,8 +260,8 @@ public function curso_post()
 			'contents' => $content,
 			'headings'=> $headings,
 			'subtitle'=>$subtitle,
-			'big_picture'=>'https://image.jimcdn.com/app/cms/image/transf/dimension=204x1024:format=png/path/s04da8ad8e2cf9e25/image/icc5a42d2fd5569f6/version/1474306014/image.png',
-			'small_icon'=>'https://previews.123rf.com/images/amin268/amin2681705/amin268170500606/77890740-icono-escuela-y-edificio-s%C3%B3lidos-de-la-universidad-gr%C3%A1ficos-de-vector-de-la-biblioteca-un-modelo-llenado-.jpg'
+			'big_picture'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg',
+			'small_icon'=>'http://www.escueladel10.com/sistema/reportes/logo.jpg'
 		);
 		
 		$fields = json_encode($fields);
