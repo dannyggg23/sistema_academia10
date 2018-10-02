@@ -8,13 +8,13 @@ Class Factura
 
   public function insertar($representante_idrepresentante,
   $usuario_idusuario,$fecha,$total,$tipo_documento,
-  $serie_comprobante,$num_comprobante,$impuesto,
+  $serie_comprobante,$num_comprobante,$impuesto,$subtotal,
   $ficha_alumno_idficha_alumno,$numero_meses_pago,
   $precio_pago,$descuento_pago,$productos_servicios_idproductos_servicios){
     $sql=sprintf("INSERT INTO `pago`( `representante_idrepresentante`, 
     `usuario_idusuario`, `fecha`, `total`, `tipo_documento`, 
-    `estado`, `serie_comprobante`, `num_comprobante`,impuesto) 
-    VALUES ('%s','%s','%s','%s','%s','Aceptado','%s','%s','%s')",
+    `estado`, `serie_comprobante`, `num_comprobante`,impuesto,subtotal) 
+    VALUES ('%s','%s','%s','%s','%s','Aceptado','%s','%s','%s','$subtotal')",
     $representante_idrepresentante,$usuario_idusuario,$fecha,$total,
     $tipo_documento,$serie_comprobante,$num_comprobante,$impuesto);
     //return ejecutarConsulta($sql);
@@ -101,7 +101,7 @@ public function listarfechaRepresentante($finicio,$ffin,$idrepresentante){
   //REPORTE FACTURA
 
   public function pagocabecera($idpago){
-    $sql="SELECT pago.idpago, pago.representante_idrepresentante, pago.usuario_idusuario, pago.fecha, pago.total, pago.tipo_documento,pago.estado, pago.serie_comprobante, pago.num_comprobante, pago.impuesto,usuario.nombre_usuario,usuario.cedula_usuario,usuario.direccion_usuario,usuario.telefono_usuario,usuario.email_usuario,representante.cedula_representante,representante.nombre_representante,representante.direccion_representante,representante.email_representante,representante.telefono_representante FROM pago INNER JOIN representante on representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE pago.idpago='$idpago'";
+    $sql="SELECT pago.idpago,pago.subtotal, pago.representante_idrepresentante, pago.usuario_idusuario, pago.fecha, pago.total, pago.tipo_documento,pago.estado, pago.serie_comprobante, pago.num_comprobante, pago.impuesto,usuario.nombre_usuario,usuario.cedula_usuario,usuario.direccion_usuario,usuario.telefono_usuario,usuario.email_usuario,representante.cedula_representante,representante.nombre_representante,representante.direccion_representante,representante.email_representante,representante.telefono_representante FROM pago INNER JOIN representante on representante.idrepresentante=pago.representante_idrepresentante INNER JOIN usuario on usuario.idusuario=pago.usuario_idusuario WHERE pago.idpago='$idpago'";
    return ejecutarConsulta($sql);
 
 }

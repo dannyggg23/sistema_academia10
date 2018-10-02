@@ -22,13 +22,13 @@ $serie_comprobante=isset($_POST["serie_comprobante"])? limpiarCadena($_POST["ser
 $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
 $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
 
-
+$subtotal=isset($_POST["subtotal1"])? limpiarCadena($_POST["subtotal1"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		if (empty($idpago)){
-			$rspta=$pago->insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$_POST["ficha_alumno_idficha_alumno"],$_POST["numero_meses_pago"],$_POST["precio_pago"],$_POST["descuento_pago"],$_POST["productos_servicios_idproductos_servicios"]);
+			$rspta=$pago->insertar($representante_idrepresentante,$usuario_idusuario,$fecha,$total,$tipo_documento,$serie_comprobante,$num_comprobante,$impuesto,$subtotal,$_POST["ficha_alumno_idficha_alumno"],$_POST["numero_meses_pago"],$_POST["precio_pago"],$_POST["descuento_pago"],$_POST["productos_servicios_idproductos_servicios"]);
 			echo $rspta;
 		}
 		else {
