@@ -373,6 +373,21 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
      $this->response($respuesta);   
 }
 
+
+public function productosServicios_get()
+ {
+     //$pagina=$pagina*5;
+     $query = $this->db->query("SELECT * FROM `productos_servicios` 
+     WHERE productos_servicios.idproductos_servicios=1 
+     OR productos_servicios.idproductos_servicios=2");
+
+     $respuesta = array(
+         'error' => FALSE,
+         'servicios' => $query->result_array()
+     );
+     $this->response($respuesta);   
+}
+
   
 
   //########################--ENTRENADORES--#######################//
