@@ -22,6 +22,8 @@ function init() {
 
     });
 
+
+
     $("#impuesto").val("12");
 
 }
@@ -45,8 +47,8 @@ function limpiar() {
     $("#tipo_documento").val("Factura");
     $("#tipo_documento").selectpicker();
 
-    $("#serie_comprobante").val("");
-    $("#num_comprobante").val("");
+    // $("#serie_comprobante").val("");
+    // $("#num_comprobante").val("");
     $("#total_compra").val("");
     $("#total").val("");
     $(".filas").remove();
@@ -63,15 +65,18 @@ function mostrarform(flag) {
         $("#formularioregistros").show();
         //$("#btnGuardar").prop("disabled",false);
         $("#btnagregar").hide();
-
-
-
-
-
         $("#btnGuardar").hide();
         $("#btnCancelar").show();
         detalles = 0;
         $("#btnAgregarArt").show();
+
+        $.post("../ajax/academia.php?op=mostrarSerieNumero", function(data, status) {
+            data = JSON.parse(data);
+            console.log(data);
+            $("#serie_comprobante").val(data.serie_factura);
+            $("#num_comprobante").val(data.numero_factura);
+
+        });
 
 
 

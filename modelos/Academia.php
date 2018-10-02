@@ -35,7 +35,13 @@ Class Academia
     return ejecutarConsulta($sql);
   }
 
+  
 
+  public function mostrarSerieNumero()
+  {
+    $sql=("SELECT * FROM `datos_academia` WHERE datos_academia.iddatos_academia=1");
+    return ejecutarConsultaSimpleFila($sql);
+  }
 
   public function listar(){
     $sql="SELECT * FROM `datos_academia`";

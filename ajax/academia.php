@@ -31,6 +31,12 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'mostrarSerieNumero':
+		$rspta=$academia->mostrarSerieNumero();
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
+	break;
+
 	case 'listar':
 		$rspta=$academia->listar();
  		//Vamos a declarar un array

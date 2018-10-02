@@ -133,6 +133,7 @@
                 <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                 <li><a href="horario.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
                 <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
+                <li><a href="academia.php"><i class="fa fa-circle-o"></i> Datos Academia</a></li>
                 <!--<li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>-->
 
               </ul>
