@@ -17,11 +17,11 @@ switch ($_GET["op"]){
 
 		if (empty($idficha_alumno)){
 			$rspta=$ficha_alumno->insertar($numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
-			echo $rspta ? "Datos registrados" : "No se pudo registrar";
+			echo $rspta;
 		}
 		else {
 			$rspta=$ficha_alumno->editar($idficha_alumno,$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
-			echo $rspta ? "Datos actualizado" : "No se pudo actualizar";
+			echo $rspta;
 		}
 	break;
 

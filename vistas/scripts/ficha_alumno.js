@@ -172,9 +172,31 @@ function guardaryeditar(e) {
         processData: false,
 
         success: function(datos) {
-            bootbox.alert(datos);
-            mostrarform(false);
-            tabla.ajax.reload();
+
+            if (datos == true) {
+                swal("CORRECTO", "Datos Actualizados", "success");
+                mostrarform(false);
+                listar();
+
+            } else {
+
+                if (datos > 0) {
+
+                    swal("CORRECTO", "Alumno registradao", "success").then((value) => {
+                        var url = "https://www.escueladel10.com/sistema/reportes/ficha_alumno.php?id=" + datos;
+                        window.open(url, '_blank');
+                    });
+
+                    mostrarform(false);
+                    listar();
+
+                } else {
+
+                    swal("INCORRECTO", "Error al guardar", "error");
+
+                }
+
+            }
         }
 
     });

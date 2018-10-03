@@ -16,7 +16,7 @@ Class Ficha_alumno
 
     $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`,sucursal_categorias_idsucursal_categorias,descuento_ficha_alumno,fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fechaApertura_alumno')",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
 
-    return ejecutarConsulta($sql);
+    return ejecutarConsulta_retornarID($sql);
     
   }
 

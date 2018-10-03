@@ -380,7 +380,7 @@ function guardaryeditar(e) {
         success: function(datos) {
 
             if (datos == true) {
-                swal("CORRECTO", "Alumno registradao", "success");
+                swal("CORRECTO", "Datos Actualizados", "success");
                 mostrarform(false);
                 listar();
 
