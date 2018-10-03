@@ -49,8 +49,9 @@ Class Factura
       $sql=("UPDATE `datos_academia` SET 
      `numero_factura`= numero_factura+1 
      WHERE `iddatos_academia`=1");
-    return ejecutarConsulta($sql);
+    $id=ejecutarConsulta($sql);
     }
+    
     return $idpagonew;
 
   }

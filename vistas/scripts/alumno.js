@@ -389,7 +389,7 @@ function guardaryeditar(e) {
                 if (datos > 0) {
 
                     swal("CORRECTO", "Alumno registradao", "success").then((value) => {
-                        var url = "https://escueladel10.com/sistema/reportes/ficha_alumno.php?id=" + datos;
+                        var url = "https://www.escueladel10.com/sistema/reportes/ficha_alumno.php?id=" + datos;
                         window.open(url, '_blank');
                     });
 

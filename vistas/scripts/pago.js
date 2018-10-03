@@ -193,7 +193,7 @@ function guardaryeditar(e) {
         success: function(datos) {
             if (datos > 0) {
                 swal("CORRECTO", "Factura registrada", "success").then((value) => {
-                    var url = "https://escueladel10.com/sistema/reportes/exFactura.php?id=" + datos;
+                    var url = "https://www.escueladel10.com/sistema/reportes/exFactura.php?id=" + datos;
                     window.open(url, '_blank');
                 });
 
