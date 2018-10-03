@@ -16,6 +16,8 @@ if($_SESSION['pagos']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
+
+      
       <div class="content-wrapper">        
         <!-- Main content -->
         <section class="content">
@@ -63,6 +65,7 @@ if($_SESSION['pagos']==1)
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Representante(*):</label>
                             <input type="hidden" name="idpago" id="idpago">
+                            <input type="hidden" class="form-control" name="impuesto" id="impuesto" maxlength="10" placeholder="Impuesto" required>
                             <select id="representante_idrepresentante" name="representante_idrepresentante" class="form-control selectpicker" data-live-search="true" required></select>
                           </div>
 
@@ -84,20 +87,16 @@ if($_SESSION['pagos']==1)
                           </div>
 
 
-                         <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                         <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <label>Serie:</label>
                               <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" maxlength="7" placeholder="Serie" required="">
                           </div>
 
-                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <label>Número:</label>
                               <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="10" placeholder="Número" required="">
                           </div>
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Iva:</label>
-                              <input type="text" class="form-control" name="impuesto" id="impuesto" maxlength="10" placeholder="Impuesto" required>
-                          </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                            <a data-toggle="modal" href="#myModal">
@@ -125,33 +124,33 @@ if($_SESSION['pagos']==1)
 
                               <tfoot>
                               <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
                               <td>SUBTOTAL</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td><h4 id="subtotal_compra">$/. 0.00/</h4><input type="hidden" name="subtotal1" id="subtotal1"></td>
+                              <td><h4 id="subtotal_compra" style="text-align: right">$/. 0.00/</h4><input type="hidden" name="subtotal1" id="subtotal1"></td>
                               </tr>
 
                                <tr>
-                              <td>IVA</td>
                               <td></td>
                               <td></td>
                               <td></td>
                               <td></td>
                               <td></td>
-                              <td><h4 id="iva_compra">$/. 0.00/</h4></td>
+                              <td>IVA 12%</td>
+                              <td><h4 id="iva_compra" style="text-align: right">$/. 0.00/</h4></td>
                               </tr>
 
                               <tr>
-                              <th>TOTAL</th>
+                              <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
-                                <th><h4 id="total_compra">$/. 0.00/</h4> <input type="hidden" name="total" id="total"></th>
+                                <th>TOTAL</th>
+                                <th><h4 id="total_compra" style="text-align: right">$/. 0.00/</h4> <input type="hidden" name="total" id="total"></th>
                               </tr>
                              
                               </tfoot>
