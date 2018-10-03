@@ -267,7 +267,8 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
   `alumno`.`idalumno`,
   `ficha_alumno`.`fecha_acceso`,
   `ficha_alumno`.`descuento_ficha_alumno`,
-  `alumno`.`posicion_alumno`
+  `alumno`.`posicion_alumno`,
+  `ficha_alumno`.inscripcion
   FROM
   `alumno`
   INNER JOIN `representante` ON (`alumno`.`representante_idrepresentante` = `representante`.`idrepresentante`)
@@ -574,6 +575,22 @@ public function CategoriasDisponiblesInfo_get()
         );
         $this->response($respuesta);   
    }
+
+   //////datos academia
+
+   public function datosFactura_get()
+   {
+       //$pagina=$pagina*5;
+       $query = $this->db->query("SELECT datos_academia.*, CURDATE() AS fecha_actual 
+       from datos_academia WHERE datos_academia.iddatos_academia=1 ");
+
+       $respuesta = array(
+           'error' => FALSE,
+           'factura' => $query->result_array()
+       );
+       $this->response($respuesta);   
+  }
+
 
    
 }

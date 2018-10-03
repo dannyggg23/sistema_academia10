@@ -8,13 +8,13 @@ Class Pago
 
   public function insertar($representante_idrepresentante,
   $usuario_idusuario,$fecha,$total,$tipo_documento,
-  $serie_comprobante,$num_comprobante,$impuesto,
+  $serie_comprobante,$num_comprobante,$impuesto,$subtotal,
   $ficha_alumno_idficha_alumno,$numero_meses_pago,
   $precio_pago,$descuento_pago,$productos_servicios_idproductos_servicios){
     $sql=sprintf("INSERT INTO `pago`( `representante_idrepresentante`, 
     `usuario_idusuario`, `fecha`, `total`, `tipo_documento`, 
-    `estado`, `serie_comprobante`, `num_comprobante`,impuesto) 
-    VALUES ('%s','%s','%s','%s','%s','Aceptado','%s','%s','%s')",
+    `estado`, `serie_comprobante`, `num_comprobante`,impuesto,subtotal) 
+    VALUES ('%s','%s','%s','%s','%s','Aceptado','%s','%s','%s','$subtotal')",
     $representante_idrepresentante,$usuario_idusuario,$fecha,$total,
     $tipo_documento,$serie_comprobante,$num_comprobante,$impuesto);
     //return ejecutarConsulta($sql);
@@ -33,7 +33,21 @@ Class Pago
       $descuento,
       $productos_servicios_idproductos_servicios);
       ejecutarConsulta($sql_detalle) or $sw=false;
+
+     
+      if($idpagonew > 0)
+      {
+        $sql=("UPDATE `datos_academia` SET 
+       `numero_factura`= numero_factura+1 
+       WHERE `iddatos_academia`=1");
+      return ejecutarConsulta($sql);
+      }
+
+      header("Location:../reportes/exFactura.php?id='$idpagonew'");
+
     return $idpagonew;
+
+   
   }
 
   
