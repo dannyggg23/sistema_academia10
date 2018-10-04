@@ -41,7 +41,9 @@ $("#alumno_idalumno").change(function() {
     if (numeroficha == "--Seleccione--") {
         $('#numeroFicha_alumno').val("");
     } else {
-        $('#numeroFicha_alumno').val(numeroficha);
+        var res = numeroficha.split("|");
+        $('#numeroFicha_alumno').val(res[0]);
+
     }
 
 });

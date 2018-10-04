@@ -73,10 +73,10 @@ if($_SESSION['ficha_alumno']==1)
                     </div>
                     <div class="panel-body" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Número de ficha(*):</label>
+                         
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <input type="hidden" name="idficha_alumno" id="idficha_alumno">
-                            <input type="text" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno"  placeholder="Número de ficha" required>
+                            <input type="hidden" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno"  placeholder="Número de ficha" required>
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -84,7 +84,8 @@ if($_SESSION['ficha_alumno']==1)
                               <input type="date" class="form-control" name="fechaApertura_alumno" id="fechaApertura_alumno" required>
                           </div>
 
-
+                         
+                          
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Alumno(*):</label>
                             <select id="alumno_idalumno" name="alumno_idalumno" class="form-control selectpicker" data-live-search="true" required></select>
