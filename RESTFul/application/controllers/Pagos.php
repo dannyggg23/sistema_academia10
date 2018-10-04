@@ -10,76 +10,81 @@ class Pagos extends REST_Controller {
     public function __construct(){
         
         //PARA RECIBIR PETICIONES DE DIRERENRES ORIGENES
-
         header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
         header("Access-Control-Allow-Origin: *");
-
         parent::__construct();
         $this->load->database();        
-        
+	}
+	
 
-    }
-    public function pagos_alumnos_get($token="0" , $idalumno="0")
+    public function pago_post()
     {
-        if($token == '0' || $idalumno == '0')
-        {
-            $respuesta=array('error' => TRUE,
-                             'mensaje' => 'token invalio y/o usuario invalido'
-                            );
-            
-            $this->response($respuesta , REST_Controller::HTTP_BAD_REQUEST );
+        $data=$this->post();
+        
+//PAGO
+        $representante_idrepresentante=$data['representante_idrepresentante'];
+        $usuario_idusuario=$data['usuario_idusuario'];
+        $fecha=$data['fecha'];
+        $total=$data['total'];
+        $tipo_documento=$data['tipo_documento'];
+        $serie_comprobante=$data['serie_comprobante'];
+        $num_comprobante=$data['num_comprobante'];
+        $impuesto=$data['impuesto'];
+        $subtotal=$data['subtotal'];
 
-            return;
+//DETALLE
 
+        $ficha_alumno_idficha_alumno=$data['ficha_alumno_idficha_alumno'];
+        $numero_meses_pago=$data['numero_meses_pago'];
+        $precio_pago=$data['precio_pago'];
+        $descuento_pago=$data['descuento_pago'];
+        $productos_servicios_idproductos_servicios=$data['productos_servicios_idproductos_servicios'];
 
-        }
+        $descuento=(($precio_pago*$numero_meses_pago)*$descuento_pago)/100; //CALCULO EL DESCUENTO
+//INSERTAR PAGO
 
-        //comparo en la base de datos el id y el token
-        $condiciones = array('idalumno' => $idalumno , 'token' => $token  );
-        $this->db->where($condiciones);
-        $query= $this->db->get('alumno');
+        $this->db->reset_query();
+        $arraypago=array("representante_idrepresentante"=>$representante_idrepresentante,
+        "usuario_idusuario"=>$usuario_idusuario,  
+        "fecha"=>$fecha,  
+        "total"=>$total,  
+        "tipo_documento"=>$tipo_documento,  
+        "serie_comprobante"=>$serie_comprobante,  
+        "num_comprobante"=>$num_comprobante,  
+        "impuesto"=>$impuesto,  
+        "subtotal"=>$subtotal,
+        "estado"=>"Aceptado");
 
-        $existe = $query->row();
+        $this->db->insert('pago',$arraypago); //inserto una orden
+        $pago_idpago=$this->db->insert_id();//me retorna el id insertado
 
-        if (!$existe) {
-            $respuesta=array('error' => TRUE,
-                             'mensaje' => 'usuario y/o token incorrectos'
-                            );
+        $arraydetallepago=array("pago_idpago"=>$pago_idpago,
+        "ficha_alumno_idficha_alumno"=>$ficha_alumno_idficha_alumno,
+        "numero_meses_pago"=>$numero_meses_pago,
+        "precio_pago"=>$precio_pago,
+        "descuento_pago"=>$descuento,
+        "productos_servicios_idproductos_servicios"=>$productos_servicios_idproductos_servicios);
 
-            $this->response($respuesta  );
-
-            return;
-        }
-
-        //retornar todas las ordenes del usuario
-        $query = $this->db->query( 'SELECT pago.idpago, pago.representante_idrepresentante, pago.usuario_idusuario, pago.fecha, pago.total, pago.tipo_documento, pago.estado, pago.serie_comprobante, pago.num_comprobante, pago.impuesto FROM pago INNER JOIN
-        representante ON representante.idrepresentante=pago.representante_idrepresentante INNER JOIN alumno ON alumno.representante_idrepresentante=representante.idrepresentante WHERE alumno.idalumno='.$idalumno );
+        $this->db->reset_query();
+        $this->db->insert('detalle_pago',$arraydetallepago); //inserto
        
-       $ordenes = array();
+        $this->db->reset_query();
 
-        foreach ($query->result() as $row ) {
+        if($pago_idpago > 0)
+      {
+        $this->db->reset_query();
+        $query = $this->db->query("UPDATE 
+        `datos_academia` SET 
+        `numero_factura`= numero_factura+1 
+        WHERE `iddatos_academia`=1");
+      }
 
-            $query_detalle=$this->db->query("SELECT ordenes_detalle.orden_id, productos.* FROM ordenes_detalle INNER JOIN productos on ordenes_detalle.producto_id=productos.codigo
-            WHERE ordenes_detalle.orden_id=".$row->idpago);
-            $orden = array('id' => $row->id,
-                           'creado_en' => $row->creado_en,
-                           'detalle' => $query_detalle->result()
-                        );
-
-            array_push( $ordenes,$orden );
-        }
-
-        $respuesta = array('error' => FALSE,
-                           'ordenes' => $ordenes );
-
+        $respuesta  = array('error' => FALSE,
+                    'pago_idpago' => $pago_idpago );
+        
         $this->response($respuesta);
     }
 
-
-
-
-
-
-
+    	
 }

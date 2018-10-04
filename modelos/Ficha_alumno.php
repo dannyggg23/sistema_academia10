@@ -14,7 +14,17 @@ Class Ficha_alumno
     
     
 
-    $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, `fechaApertura_alumno`,`alumno_idalumno`,sucursal_categorias_idsucursal_categorias,descuento_ficha_alumno,fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fechaApertura_alumno')",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
+    $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, 
+    `fechaApertura_alumno`,
+    `alumno_idalumno`,
+    sucursal_categorias_idsucursal_categorias,
+    descuento_ficha_alumno,
+    fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fechaApertura_alumno')",
+    $numeroFicha_alumno,
+    $fechaApertura_alumno,
+    $alumno_idalumno,
+    $sucursal_categorias_idsucursal_categorias,
+    $descuento_ficha_alumno);
 
     return ejecutarConsulta_retornarID($sql);
     
@@ -26,12 +36,12 @@ Class Ficha_alumno
   public function editar($idficha_alumno,$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno)
   {
   $sql=sprintf("UPDATE `ficha_alumno` SET 
-   
     `numeroFicha_alumno`='%s',
     `fechaApertura_alumno`='%s',
     `alumno_idalumno`='%s',
     `sucursal_categorias_idsucursal_categorias`='%s',
-     descuento_ficha_alumno='%s' 
+     descuento_ficha_alumno='%s',
+     fecha_acceso='$fechaApertura_alumno' 
     WHERE  `idficha_alumno`='%s'",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno,$idficha_alumno);
     return ejecutarConsulta($sql);
 

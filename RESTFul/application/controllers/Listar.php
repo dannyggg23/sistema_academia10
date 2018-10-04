@@ -295,6 +295,7 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
        `pago`.`serie_comprobante`,
        `pago`.`num_comprobante`,
        `pago`.`impuesto`,
+       `pago`.`subtotal`,
        `representante`.`idrepresentante`
      FROM
        `representante`
@@ -497,7 +498,7 @@ public function AlumnosRepresentante_get($idrepresentante)
   INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
   INNER JOIN `categoria` ON (`sucursal_categorias`.`categoria_idcategoria` = `categoria`.`idcategoria`)
   INNER JOIN `sucursal` ON (`sucursal_categorias`.`sucursal_idsucursal` = `sucursal`.`idsucursal`)
-  WHERE representante.idrepresentante='$idrepresentante'");
+  WHERE representante.idrepresentante='$idrepresentante' AND ficha_alumno.estado=1");
 
         $respuesta = array(
             'error' => FALSE,

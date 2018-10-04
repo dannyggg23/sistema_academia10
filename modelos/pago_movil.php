@@ -22,6 +22,7 @@ Class Pago
     $sw=true;
     
       $descuento=(($precio_pago*$numero_meses_pago)*$descuento_pago)/100;
+      
       $sql_detalle=sprintf("INSERT INTO `detalle_pago`( `pago_idpago`, 
       `ficha_alumno_idficha_alumno`, `numero_meses_pago`, 
       `precio_pago`, `descuento_pago`,productos_servicios_idproductos_servicios) 
@@ -43,7 +44,7 @@ Class Pago
       $id= ejecutarConsulta($sql);
       }
 
-      header("Location:../reportes/exFactura.php?id='$idpagonew'");
+     // header("Location:../reportes/exFactura.php?id='$idpagonew'");
 
     return $idpagonew;
 
