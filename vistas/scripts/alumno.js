@@ -399,6 +399,8 @@ function guardaryeditar(e) {
                 } else {
 
                     swal("INCORRECTO", "Error al guardar", "error");
+                    mostrarform(false);
+                    listar();
 
                 }
 

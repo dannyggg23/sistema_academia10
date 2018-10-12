@@ -90,6 +90,7 @@ function limpiar() {
     $("#numeroFicha_alumno").val("");
     $("#fechaApertura_alumno").val("");
     $("#descuento_ficha_alumno").val("");
+    $("#fecha_acceso").val("");
 
     $("#alumno_idalumno").val("");
     $('#alumno_idalumno').selectpicker('refresh');
@@ -195,6 +196,8 @@ function guardaryeditar(e) {
                 } else {
 
                     swal("INCORRECTO", "Error al guardar", "error");
+                    mostrarform(false);
+                    listar();
 
                 }
 

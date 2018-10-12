@@ -643,6 +643,22 @@ public function CategoriasDisponiblesInfo_get()
         $this->response($respuesta);   
    }
 
+   
+   public function EntrenadoresDisponiblesInfo_get()
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT * FROM `entrenador` WHERE entrenador.estado=1");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'entrenadores' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+
+   
+
    //////datos academia///#########################################################
 
    public function datosFactura_get()

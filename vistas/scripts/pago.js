@@ -201,6 +201,8 @@ function guardaryeditar(e) {
                 listar();
             } else {
                 swal("INCORRECTO", "Verifique los datos antes de registrar", "error");
+                mostrarform(false);
+                listar();
 
             }
 
