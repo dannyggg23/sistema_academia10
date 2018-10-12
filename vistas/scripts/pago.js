@@ -241,14 +241,39 @@ function mostrar(idpago) {
 
 //Función para desactivar registros
 function anular(idpago) {
-    bootbox.confirm("¿Está Seguro de anular?", function(result) {
-        if (result) {
-            $.post("../ajax/pago.php?op=anular", { idpago: idpago }, function(e) {
-                bootbox.alert(e);
-                tabla.ajax.reload();
-            });
-        }
-    })
+    // bootbox.confirm("¿Está Seguro de anular?", function(result) {
+    //     if (result) {
+    //         $.post("../ajax/pago.php?op=anular", { idpago: idpago }, function(e) {
+    //             bootbox.alert(e);
+    //             tabla.ajax.reload();
+    //         });
+    //     }
+    // })
+
+
+
+    swal({
+            title: "¿Está Seguro de anular?",
+            text: "Si anula la factura no podra activarla nuevamente",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.post("../ajax/pago.php?op=anular", { idpago: idpago }, function(e) {
+                    swal(e + " !!! Si la factura se trata de mensualidades descontar el numero de meses de la fecha de acceso en la ficha del alumno ", {
+                        icon: "success",
+                    });
+
+                    tabla.ajax.reload();
+                });
+
+            } else {
+
+            }
+        });
+    //
 }
 
 ////DECLACRACION DE VARIABLES NECESARIAS PARA TRABAJAR CON LAS FACTURAS

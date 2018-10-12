@@ -77,15 +77,18 @@ if($_SESSION['ficha_alumno']==1)
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <input type="hidden" name="idficha_alumno" id="idficha_alumno">
                             <input type="hidden" class="form-control" name="numeroFicha_alumno" id="numeroFicha_alumno"  placeholder="Número de ficha" required>
-                          </div>
+                            
+                              <label>Fecha de Ingreso(*):</label>
+                              <input type="date" class="form-control" name="fechaApertura_alumno" id="fechaApertura_alumno" required>
+                       </div>
+
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                              <input type="date" class="form-control" name="fechaApertura_alumno" id="fechaApertura_alumno" required>
+                          <label>Fecha de acceso(*):</label>
+                              <input type="date" class="form-control" name="fecha_acceso" id="fecha_acceso" required>
                           </div>
 
                          
-                          
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Alumno(*):</label>
                             <select id="alumno_idalumno" name="alumno_idalumno" class="form-control selectpicker" data-live-search="true" required></select>
@@ -98,8 +101,6 @@ if($_SESSION['ficha_alumno']==1)
                             <input type="text" class="form-control" name="descuento_ficha_alumno" id="descuento_ficha_alumno" placeholder="Descuento %" maxlength="20" required>
                           </div>
 
-
-                          
 
                           <div  id="ocultar" name="ocultar" class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Sucursal(*):</label>
@@ -120,7 +121,10 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
 
 
-                         
+                         <div class=" form-group col-lg-6 col-md-6 col-sm-6 col-xs-6 alert alert-info alert-dismissible" role="alert" id="ocultar5" name="ocultar5">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <strong>Nota: </strong> La deuda de numero de meses de los alumnos se diferencia entre la fecha de ingreso y la fecha de acceso (Con cada pago realizado segun el numero de meses se sumaran a la fecha de acceso)
+                        </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>

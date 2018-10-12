@@ -8,18 +8,21 @@ Class Ficha_alumno
 
 
  
-  public function insertar($numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno){
+  public function insertar($numeroFicha_alumno,
+  $fechaApertura_alumno,
+  $alumno_idalumno,
+  $sucursal_categorias_idsucursal_categorias,
+  $descuento_ficha_alumno,
+  $fecha_acceso){
     
 
-    
-    
-
-    $sql=sprintf("INSERT INTO `ficha_alumno`( `numeroFicha_alumno`, 
+    $sql=sprintf("INSERT INTO `ficha_alumno`( 
+    `numeroFicha_alumno`, 
     `fechaApertura_alumno`,
     `alumno_idalumno`,
     sucursal_categorias_idsucursal_categorias,
     descuento_ficha_alumno,
-    fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fechaApertura_alumno')",
+    fecha_acceso) VALUES ('%s','%s','%s','%s','%s','$fecha_acceso')",
     $numeroFicha_alumno,
     $fechaApertura_alumno,
     $alumno_idalumno,
@@ -33,7 +36,14 @@ Class Ficha_alumno
 
   
 
-  public function editar($idficha_alumno,$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno)
+  public function editar(
+  $idficha_alumno,
+  $numeroFicha_alumno,
+  $fechaApertura_alumno,
+  $alumno_idalumno,
+  $sucursal_categorias_idsucursal_categorias,
+  $descuento_ficha_alumno,
+  $fecha_acceso)
   {
   $sql=sprintf("UPDATE `ficha_alumno` SET 
     `numeroFicha_alumno`='%s',
@@ -41,8 +51,14 @@ Class Ficha_alumno
     `alumno_idalumno`='%s',
     `sucursal_categorias_idsucursal_categorias`='%s',
      descuento_ficha_alumno='%s',
-     fecha_acceso='$fechaApertura_alumno' 
-    WHERE  `idficha_alumno`='%s'",$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno,$idficha_alumno);
+     fecha_acceso='$fecha_acceso' 
+    WHERE  `idficha_alumno`='%s'",
+    $numeroFicha_alumno,
+    $fechaApertura_alumno,
+    $alumno_idalumno,
+    $sucursal_categorias_idsucursal_categorias,
+    $descuento_ficha_alumno,
+    $idficha_alumno);
     return ejecutarConsulta($sql);
 
   }

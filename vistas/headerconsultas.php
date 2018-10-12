@@ -161,11 +161,11 @@
               </a>
               <ul class="treeview-menu">
               
-                <li><a href="noticias.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
-                <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias para todos</a></li>
+                 <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
+                 <!-- <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias</a></li> -->
                  <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
               
-              </ul>
+              </ul> 
             </li>
 
             <li>

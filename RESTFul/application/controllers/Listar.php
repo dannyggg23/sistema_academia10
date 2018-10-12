@@ -22,7 +22,7 @@ class Listar extends REST_Controller {
         $query = $this->db->query("SELECT sucursal.*,ciudad.ciudad,provincia.provincia,sucursal.imagen  
         FROM `sucursal` 
         INNER JOIN ciudad ON sucursal.ciudad_idCiudad=ciudad.idCiudad 
-        INNER JOIN provincia where provincia.idProvincia=ciudad.IDPROVINCIA");
+        INNER JOIN provincia WHERE provincia.idProvincia=ciudad.IDPROVINCIA AND sucursal.estado=1");
         $respuesta = array(
             'error' => FALSE,
             'sucursales' => $query->result_array()
@@ -44,7 +44,16 @@ class Listar extends REST_Controller {
     public function categorias_get()
     {
         //$pagina=$pagina*5;
-        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal.imagen,sucursal.idsucursal,categoria.idcategoria,horario.idhorario FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario");
+        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,
+        sucursal_categorias.disponible,sucursal_categorias.estado,
+        sucursal.nombre_sucursal,categoria.nombre_categoria,
+        horario.nombre,horario.hora_inicio,horario.hora_fin,
+        sucursal.imagen,sucursal.idsucursal,categoria.idcategoria,horario.idhorario 
+        FROM `sucursal_categorias` 
+        INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal 
+        INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria 
+        INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario 
+        WHERE sucursal_categorias.estado=1");
         $respuesta = array(
             'error' => FALSE,
             'categorias' => $query->result_array()
@@ -79,7 +88,19 @@ class Listar extends REST_Controller {
    public function fichaentrenador_get()
     {
         //$pagina=$pagina*5;
-        $query = $this->db->query("SELECT entrenador.cedula_entrenador,entrenador.nombre_entrenador,ficha_entrenador.estado,ficha_entrenador.idficha_entrenador,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,sucursal_categorias.idsucursal_categorias,horario.hora_inicio,horario.hora_fin,entrenador.imagen_entrenador from entrenador INNER JOIN ficha_entrenador on ficha_entrenador.entrenador_identrenador=entrenador.identrenador INNER JOIN sucursal_categorias on sucursal_categorias.idsucursal_categorias=ficha_entrenador.sucursal_categorias_idsucursal_categorias INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario");
+        $query = $this->db->query("SELECT entrenador.cedula_entrenador,
+        entrenador.nombre_entrenador,
+        ficha_entrenador.estado,ficha_entrenador.idficha_entrenador,
+        sucursal.nombre_sucursal,categoria.nombre_categoria,
+        horario.nombre,sucursal_categorias.idsucursal_categorias,
+        horario.hora_inicio,horario.hora_fin,entrenador.imagen_entrenador 
+        from entrenador 
+        INNER JOIN ficha_entrenador on ficha_entrenador.entrenador_identrenador=entrenador.identrenador 
+        INNER JOIN sucursal_categorias on sucursal_categorias.idsucursal_categorias=ficha_entrenador.sucursal_categorias_idsucursal_categorias 
+        INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal 
+        INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria 
+        INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario 
+        WHERE ficha_entrenador.estado=1");
 
         $respuesta = array(
             'error' => FALSE,
@@ -91,7 +112,18 @@ class Listar extends REST_Controller {
    public function categoriasdisponibles_get()
     {
         //$pagina=$pagina*5;
-        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal.imagen,sucursal.idsucursal,categoria.idcategoria,horario.idhorario FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal_categorias.disponible=0 ");
+        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,
+        sucursal_categorias.disponible,sucursal_categorias.estado,
+        sucursal.nombre_sucursal,categoria.nombre_categoria,
+        horario.nombre,horario.hora_inicio,
+        horario.hora_fin,sucursal.imagen,
+        sucursal.idsucursal,categoria.idcategoria,
+        horario.idhorario FROM `sucursal_categorias` 
+        INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal 
+        INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria 
+        INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario 
+        WHERE sucursal_categorias.disponible=0 
+        AND sucursal_categorias.estado=1 ");
 
         $respuesta = array(
             'error' => FALSE,
@@ -103,7 +135,14 @@ class Listar extends REST_Controller {
     public function categoriashorariosucursal_get()
     {
         //$pagina=$pagina*5;
-        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,sucursal_categorias.estado,sucursal.nombre_sucursal,categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal.imagen,sucursal.idsucursal,categoria.idcategoria,horario.idhorario FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario ");
+        $query = $this->db->query("SELECT sucursal_categorias.idsucursal_categorias,sucursal_categorias.disponible,
+        sucursal_categorias.estado,sucursal.nombre_sucursal,
+        categoria.nombre_categoria,horario.nombre,horario.hora_inicio,horario.hora_fin,sucursal.imagen,
+        sucursal.idsucursal,categoria.idcategoria,horario.idhorario 
+        FROM `sucursal_categorias` INNER JOIN sucursal ON sucursal.idsucursal=sucursal_categorias.sucursal_idsucursal 
+        INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.categoria_idcategoria 
+        INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario
+        WHERE sucursal_categorias.estado=1  ");
 
         $respuesta = array(
             'error' => FALSE,
@@ -142,6 +181,7 @@ class Listar extends REST_Controller {
     INNER JOIN categoria on sucursal_categorias.categoria_idcategoria=categoria.idcategoria 
     INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
     INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
+    WHERE ficha_alumno.estado=1
     ORDER BY ficha_alumno.fechaApertura_alumno DESC");
 
         $respuesta = array(
@@ -173,7 +213,9 @@ FROM
   INNER JOIN `sucursal` ON (`sucursal_categorias`.`sucursal_idsucursal` = `sucursal`.`idsucursal`)
   INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
 
-WHERE sucursal.idsucursal='$idsucursal'");
+WHERE sucursal.idsucursal='$idsucursal'
+AND sucursal_categorias.estado=1
+");
 
         $respuesta = array(
             'error' => FALSE,
@@ -219,7 +261,8 @@ FROM
   INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
   INNER JOIN `sucursal_categorias` ON (`ficha_alumno`.`sucursal_categorias_idsucursal_categorias` = `sucursal_categorias`.`idsucursal_categorias`)
   INNER JOIN `representante` ON (`alumno`.`representante_idrepresentante` = `representante`.`idrepresentante`)
-WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
+WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias' AND
+ficha_alumno.estado=1");
 
         $respuesta = array(
             'error' => FALSE,
@@ -272,7 +315,8 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
   FROM
   `alumno`
   INNER JOIN `representante` ON (`alumno`.`representante_idrepresentante` = `representante`.`idrepresentante`)
-  INNER JOIN `ficha_alumno` ON (`alumno`.`idalumno` = `ficha_alumno`.`alumno_idalumno`) WHERE representante.idrepresentante='$representante'");
+  INNER JOIN `ficha_alumno` ON (`alumno`.`idalumno` = `ficha_alumno`.`alumno_idalumno`) 
+  WHERE representante.idrepresentante='$representante' AND ficha_alumno.estado=1");
 
         $respuesta = array(
             'error' => FALSE,
@@ -300,7 +344,9 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
      FROM
        `representante`
        INNER JOIN `pago` ON (`representante`.`idrepresentante` = `pago`.`representante_idrepresentante`) 
-       WHERE representante.idrepresentante='$representante' ORDER BY pago.fecha DESC");
+       WHERE representante.idrepresentante='$representante'
+       AND pago.estado='Aceptado'
+       ORDER BY pago.fecha DESC");
 
        $respuesta = array(
            'error' => FALSE,
@@ -365,8 +411,9 @@ WHERE sucursal_categorias.idsucursal_categorias='$idsucursal_categorias'");
        INNER JOIN sucursal ON sucursal_categorias.sucursal_idsucursal=sucursal.idsucursal 
        INNER JOIN horario on horario.idhorario=sucursal_categorias.horario_idhorario 
        WHERE ficha_alumno.fecha_acceso <= CURDATE() 
-        AND sucursal_categorias.idsucursal_categorias='$id' 
-        ORDER BY ficha_alumno.fechaApertura_alumno DESC");
+       AND sucursal_categorias.idsucursal_categorias='$id' 
+       AND ficha_alumno.estado=1
+       ORDER BY ficha_alumno.fechaApertura_alumno DESC");
 
      $respuesta = array(
          'error' => FALSE,
@@ -536,6 +583,25 @@ FROM
         $this->response($respuesta);   
    }
 
+
+   public function imagenesDepositos_get($idrepresentante)
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT pagos_deposito.*,
+        alumno.nombre_alumno FROM `pagos_deposito` 
+        INNER JOIN ficha_alumno ON ficha_alumno.idficha_alumno=pagos_deposito.ficha_alumno_idficha_alumno 
+        INNER JOIN alumno ON alumno.idalumno=ficha_alumno.alumno_idalumno 
+        INNER JOIN representante ON representante.idrepresentante=alumno.representante_idrepresentante 
+        WHERE representante.idrepresentante='$idrepresentante'");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'depositos' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+
    //##################informacion###################################
 
 public function CategoriasDisponiblesInfo_get()
@@ -577,7 +643,7 @@ public function CategoriasDisponiblesInfo_get()
         $this->response($respuesta);   
    }
 
-   //////datos academia
+   //////datos academia///#########################################################
 
    public function datosFactura_get()
    {

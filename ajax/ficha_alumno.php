@@ -9,6 +9,7 @@ $fechaApertura_alumno=isset($_POST["fechaApertura_alumno"])? limpiarCadena($_POS
 $alumno_idalumno=isset($_POST["alumno_idalumno"])? limpiarCadena($_POST["alumno_idalumno"]):"";
 $sucursal_categorias_idsucursal_categorias=isset($_POST["sucursal_categorias_idsucursal_categorias"])? limpiarCadena($_POST["sucursal_categorias_idsucursal_categorias"]):"";
 $descuento_ficha_alumno=isset($_POST["descuento_ficha_alumno"])? limpiarCadena($_POST["descuento_ficha_alumno"]):"";
+$fecha_acceso=isset($_POST["fecha_acceso"])? limpiarCadena($_POST["fecha_acceso"]):"";
 
 
 switch ($_GET["op"]){
@@ -16,11 +17,22 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		if (empty($idficha_alumno)){
-			$rspta=$ficha_alumno->insertar($numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
+			$rspta=$ficha_alumno->insertar($numeroFicha_alumno,
+			$fechaApertura_alumno,
+			$alumno_idalumno,
+			$sucursal_categorias_idsucursal_categorias,
+			$descuento_ficha_alumno,
+		    $fecha_acceso);
 			echo $rspta;
 		}
 		else {
-			$rspta=$ficha_alumno->editar($idficha_alumno,$numeroFicha_alumno,$fechaApertura_alumno,$alumno_idalumno,$sucursal_categorias_idsucursal_categorias,$descuento_ficha_alumno);
+			$rspta=$ficha_alumno->editar($idficha_alumno,
+			$numeroFicha_alumno,
+			$fechaApertura_alumno,
+			$alumno_idalumno,
+			$sucursal_categorias_idsucursal_categorias,
+			$descuento_ficha_alumno,
+		    $fecha_acceso);
 			echo $rspta;
 		}
 	break;

@@ -214,6 +214,7 @@ function mostrar(idficha_alumno) {
         $("#numeroFicha_alumno").val(data.numeroFicha_alumno);
         $("#fechaApertura_alumno").val(data.fechaApertura_alumno);
         $("#descuento_ficha_alumno").val(data.descuento_ficha_alumno);
+        $("#fecha_acceso").val(data.fecha_acceso);
 
         $("#alumno_idalumno").val(data.alumno_idalumno);
         $('#alumno_idalumno').selectpicker('refresh');
