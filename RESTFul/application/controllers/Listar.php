@@ -658,6 +658,18 @@ public function CategoriasDisponiblesInfo_get()
        $this->response($respuesta);   
   }
 
+  public function imagenesApp_get()
+  {
+      //$pagina=$pagina*5;
+      $query = $this->db->query("SELECT * FROM `imagenes_app` WHERE estado=1");
+
+      $respuesta = array(
+          'error' => FALSE,
+          'imagenes' => $query->result_array()
+      );
+      $this->response($respuesta);   
+ }
+
 
    
 }
