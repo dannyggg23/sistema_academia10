@@ -133,7 +133,7 @@ switch ($_GET["op"]){
  				"6"=>$reg->celular_entrenador,
  				"7"=>$reg->direccion_entrenador,
  				"8"=>$reg->email_entrenador,
- 				"9"=>"<img src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
+ 				"9"=>"<img class='thumbnail zoom' src='../files/entrenadores/".$reg->imagen_entrenador."' height='50px' width='50px' >",
  				"10"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);

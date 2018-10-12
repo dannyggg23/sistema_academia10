@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../public/css/font-awesome.css">
+    <link rel="stylesheet" href="../public/css/imgs.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -134,6 +136,9 @@
                 <li><a href="horario.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
                 <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorias</a></li>
                 <li><a href="academia.php"><i class="fa fa-circle-o"></i> Datos Academia</a></li>
+                <li><a href="pagos_deposito.php"><i class="fa fa-circle-o"></i> Depósitos</a></li>
+                <li><a href="imagenes_app.php"><i class="fa fa-circle-o"></i>Imagenes App</a></li>
+
                 <!--<li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>-->
 
               </ul>

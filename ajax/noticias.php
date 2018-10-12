@@ -75,7 +75,7 @@ switch ($_GET["op"]){
  				"5"=>$reg->nombre_categoria,
  				"6"=>$reg->nombre,
  				"7"=>$reg->hora_inicio."|".$reg->hora_fin,
- 				"8"=>"<img src='../files/noticias/".$reg->imagen."' height='50px' width='50px' >",
+ 				"8"=>"<img class='thumbnail zoom' src='../files/noticias/".$reg->imagen."' height='50px' width='50px' >",
  				"9"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);

@@ -62,7 +62,7 @@ switch ($_GET["op"]){
                  '<button class="btn btn-warning" onclick="mostrar('.$reg->idimagenes.')"><i class="fa fa-pencil"></i></button>'.
                  ' <button class="btn btn-primary" onclick="activar('.$reg->idimagenes.')"><i class="fa fa-check"></i></button>',
  				"1"=>$reg->titulo,
- 				"2"=>"<img src='../files/imagenes/".$reg->imagen."' height='50px' width='50px' >",
+ 				"2"=>"<img class='thumbnail zoom' src='../files/imagenes/".$reg->imagen."' height='50px' width='50px' >",
  				"3"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);

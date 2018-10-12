@@ -115,7 +115,7 @@ switch ($_GET["op"]){
  				"7"=>$reg->talla_alumno." M",
  				"8"=>$reg->tipo_sangre_alumno,
  				"9"=>$reg->nombre_representante,
- 				"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+ 				"10"=>"<img class='thumbnail zoom' src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
  				"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);

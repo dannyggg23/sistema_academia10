@@ -77,7 +77,7 @@ switch ($_GET["op"]){
        			"4"=>$reg->encargado_sucursal,
        			"5"=>$reg->ciudad,
 				"6"=>$reg->provincia,
-				"7"=>"<img src='../files/sucursales/".$reg->imagen."' height='50px' width='50px' >",
+				"7"=>"<img class='thumbnail zoom' src='../files/sucursales/".$reg->imagen."' height='50px' width='50px' >",
       			"8"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
