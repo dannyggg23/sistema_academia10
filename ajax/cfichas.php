@@ -10,7 +10,7 @@ switch ($_GET["op"]){
  		//Vamos a declarar un array
  		$data= Array();
 
-
+ 
  		while ($reg=$rspta->fetch_object()){
 
  				$nummeses=0;
@@ -41,16 +41,17 @@ switch ($_GET["op"]){
 
  				"0"=>$reg->numeroFicha_alumno,
 				"1"=>$reg->nombre_alumno,
-				"2"=>$reg->genero_alumno,
- 				"3"=>$reg->nombre_sucursal,
- 				"4"=>$reg->nombre_categoria,
-       			"5"=>$reg->horario,
-       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+				"2"=>$reg->cedula_alumno,
+				"3"=>$reg->genero_alumno,
+ 				"4"=>$reg->nombre_sucursal,
+ 				"5"=>$reg->nombre_categoria,
+       			"6"=>$reg->horario,
+       			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+       			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+       			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+       			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+       			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+      			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
 		 }
@@ -97,16 +98,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -157,16 +159,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -215,16 +218,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  			
@@ -276,16 +280,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -336,16 +341,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -396,16 +402,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  			
@@ -458,16 +465,17 @@ switch ($_GET["op"]){
  			$data[]=array(
 				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
  				
@@ -516,20 +524,21 @@ switch ($_GET["op"]){
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
-				"1"=>$reg->nombre_alumno,
-				"2"=>$reg->genero_alumno,
- 				"3"=>$reg->nombre_sucursal,
- 				"4"=>$reg->nombre_categoria,
-       			"5"=>$reg->horario,
-       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
- 				'<span class="label bg-red">Desactivado</span>'
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
+			"1"=>$reg->nombre_alumno,
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -573,20 +582,21 @@ case 'listarDeudoresCategorias1':
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
-				"1"=>$reg->nombre_alumno,
-				"2"=>$reg->genero_alumno,
- 				"3"=>$reg->nombre_sucursal,
- 				"4"=>$reg->nombre_categoria,
-       			"5"=>$reg->horario,
-       			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-       			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-       			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-       			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-       			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-      			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
- 				'<span class="label bg-red">Desactivado</span>'
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
+			"1"=>$reg->nombre_alumno,
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
 	 $results = array(
@@ -633,19 +643,20 @@ case 'listarDeudoresSucursalCategorias1':
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -692,19 +703,20 @@ case 'listarDeudoresHorario1':
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -751,19 +763,20 @@ case 'listarDeudoresCategoriaHorario1':
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }
@@ -812,19 +825,20 @@ case 'listarDeudoresSucursalesCategoriaHorario1':
  				$nummeses=$reg->num_meses;
  			}
 
-		 $data[]=array(
-			"0"=>$reg->numeroFicha_alumno,
+			 $data[]=array(
+				"0"=>$reg->numeroFicha_alumno,
 			"1"=>$reg->nombre_alumno,
-			"2"=>$reg->genero_alumno,
-			"3"=>$reg->nombre_sucursal,
-			"4"=>$reg->nombre_categoria,
-		    "5"=>$reg->horario,
-			"6"=>$reg->hora_inicio." | ".$reg->hora_fin,
-			"7"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
-			"8"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
-			"9"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
-			"10"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
-			"11"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
+			"2"=>$reg->cedula_alumno,
+			"3"=>$reg->genero_alumno,
+			"4"=>$reg->nombre_sucursal,
+			"5"=>$reg->nombre_categoria,
+		    "6"=>$reg->horario,
+			"7"=>$reg->hora_inicio." | ".$reg->hora_fin,
+			"8"=>($reg->fecha_acceso <= $reg->fecha_actual)?'<label class="btn btn-danger btn-xs">'.$reg->fecha_acceso.'</label>':'<label class="btn btn-info btn-xs">'.$reg->fecha_acceso.'</label>',
+			"9"=>(!$bandera)?'<label class="btn btn-danger btn-xs">'.$nummeses.'</label>':'<label class="btn btn-info btn-xs">'.$nummeses.'</label>',
+			"10"=>(!$reg->inscripcion)?'<label class="btn btn-danger btn-xs">NO</label>':'<label class="btn btn-info btn-xs">SI</label>',
+			"11"=>"<img src='../files/alumnos/".$reg->imagen_alumno."' height='50px' width='50px' >",
+			"12"=>($reg->estado)?'<span class="label bg-green">Activado</span>':
 			 '<span class="label bg-red">Desactivado</span>'
 			 );
 	 }

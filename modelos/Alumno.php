@@ -36,6 +36,11 @@ Class Alumno
 
  //INSERTO EN LA FICHA DEL ALUMNO
 
+ if($cedula_alumno=="")
+ {
+   $cedula_alumno=$idalumno;
+ }
+
   $sql_ficha_alumno=sprintf("INSERT INTO `ficha_alumno`
   ( `numeroFicha_alumno`,
    `fechaApertura_alumno`,
@@ -55,6 +60,10 @@ Class Alumno
     }
     else
     {
+      if($representante_idrepresentante=="")
+      {
+        $representante_idrepresentante=5;
+      }
 
       $sql=sprintf("INSERT INTO `alumno`
       (`cedula_alumno`, `nombre_alumno`, `genero_alumno`, `imagen_alumno`, `representante_idrepresentante`,
@@ -73,6 +82,11 @@ Class Alumno
   $genero_alumno,$imagen_alumno,$representante_idrepresentante,
   $tipo_sangre_alumno,$escuela_alumno,$fecha_nacimiento,$posicion_alumno,$peso_alumno,$talla_alumno,$informacion_alumno)
   {
+    if($representante_idrepresentante=="")
+      {
+        $representante_idrepresentante=5;
+      }
+
   $sql=sprintf("UPDATE `alumno` 
   SET `cedula_alumno`='%s',
   `nombre_alumno`='%s',

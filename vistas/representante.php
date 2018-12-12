@@ -82,7 +82,7 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Género(*):</label>
-                            <select id="genero_representante" name="genero_representante" class="form-control selectpicker"  placeholder="Seleccione un item" required>
+                            <select id="genero_representante" name="genero_representante" class="form-control selectpicker"  placeholder="Seleccione un item" >
                             <option value="" >--  Seleccione  --</option>
                               <option value="Masculino">Masculino</option>
                               <option value="Femenino">Femenino</option>
@@ -96,7 +96,7 @@ if($_SESSION['ficha_alumno']==1)
 
                            <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Teléfono(*):</label>
-                            <input type="text" class="form-control" name="telefono_representante" id="telefono_representante" placeholder="Teléfono del representante" maxlength="9" minlength="9"  required>
+                            <input type="text" class="form-control" name="telefono_representante" id="telefono_representante" placeholder="Teléfono del representante" maxlength="9" minlength="9"  >
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -107,32 +107,32 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Dirección(*):</label>
-                            <input type="text" class="form-control" name="direccion_representante" id="direccion_representante" placeholder="Dirección del representante" maxlength="70" required>
+                            <input type="text" class="form-control" name="direccion_representante" id="direccion_representante" placeholder="Dirección del representante" maxlength="70" >
                           </div>
 
                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Barrio(*):</label>
-                            <input type="text" class="form-control" name="barrio_representante" id="barrio_representante" placeholder="Barrio del representante" maxlength="50"  required>
+                            <input type="text" class="form-control" name="barrio_representante" id="barrio_representante" placeholder="Barrio del representante" maxlength="50"  >
                           </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Ciudad(*):</label>
-                            <select id="ciudad_representante" name="ciudad_representante" class="form-control selectpicker"  data-live-search="true" required>
+                            <select id="ciudad_representante" name="ciudad_representante" class="form-control selectpicker"  data-live-search="true" >
                             </select>
                           </div>
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Fecha Nacimiento(*):</label>
-                              <input type="date" class="form-control" name="fecha_nacimiento_representante" id="fecha_nacimiento_representante" required>
+                              <input type="date" class="form-control" name="fecha_nacimiento_representante" id="fecha_nacimiento_representante" >
                           </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Parentesco(*):</label>
-                            <input type="text" class="form-control" name="parentesco_respresentante" id="parentesco_respresentante" placeholder="Parentezco con el alumno" maxlength="50" required>
+                            <input type="text" class="form-control" name="parentesco_respresentante" id="parentesco_respresentante" placeholder="Parentezco con el alumno" maxlength="50" >
                           </div>
                           
                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Lugar de Trabajo(*):</label>
-                            <input type="text" class="form-control" name="lugar_trabajo_representante" id="lugar_trabajo_representante" placeholder="Lugar de trabajo del representante" maxlength="70"  required>
+                            <input type="text" class="form-control" name="lugar_trabajo_representante" id="lugar_trabajo_representante" placeholder="Lugar de trabajo del representante" maxlength="70"  >
                           </div>
 
 

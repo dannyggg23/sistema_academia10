@@ -118,9 +118,16 @@ class Login extends REST_Controller {
     {
     	$data=$this->post();
 
-        	$id=$data['id'];
-        	$token=$data['token'];
-        	$tabla=$data['tabla'];
+            $id=$data['id'];
+            
+        	if(isset($data['token'])){
+                $token=$data['token'];
+            }else{
+                $token="";
+            }
+            $tabla=$data['tabla'];
+            
+
 
         	if($tabla=="usuario")
         	{

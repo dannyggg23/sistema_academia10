@@ -37,10 +37,8 @@ $("#modalrepresentante").click(function() {
                             var lugar_trabajo_representante = $("#lugar_trabajo_representante").val();
 
                             if (cedula_representante == "" || nombre_representante == "" || cedula_conyugue_representante == "" ||
-                                nombre_conyugue_representante == "" || genero_representante == "" || email_representante == "" ||
-                                telefono_representante == "" || ciudad_representante == "" || barrio_representante == "" ||
-                                direccion_representante == "" || fecha_nacimiento_representante == "" || parentesco_respresentante == "" ||
-                                lugar_trabajo_representante == "") { swal("ERROR", "Complete los campos correctamente", "error") } else {
+                                nombre_conyugue_representante == "" || email_representante == "" ||
+                                ciudad_representante == "") { swal("ERROR", "Complete los campos correctamente", "error") } else {
 
                                 var ciudad = ciudad_representante;
 
@@ -49,7 +47,7 @@ $("#modalrepresentante").click(function() {
 
                                     ciudad_representante = data.idCiudad;
 
-                                    genero_representante == "m" || genero_representante == "M" ? genero_representante = "Masculino" : genero_representante = "Femenino";
+                                    genero_representante == "m" || genero_representante == "M" || genero_representante == "" ? genero_representante = "Masculino" : genero_representante = "Femenino";
 
                                     $.post("../ajax/representante.php?op=guardar", {
                                         cedula_representante: cedula_representante,
@@ -230,7 +228,7 @@ function init() {
 
     $("#formulario").on("submit", function(e) {
         guardaryeditar(e);
-    })
+    });
 
 
 
@@ -252,6 +250,7 @@ function init() {
     $("#ocultar1").hide();
     $("#ocultar2").hide();
     $("#ocultar3").hide();
+    $("#fecha_nacimiento").val("2000-02-19");
 
 
 }
@@ -273,7 +272,7 @@ function limpiar() {
     $('#tipo_sangre_alumno').selectpicker('refresh');
 
     $("#escuela_alumno").val("");
-    $("#fecha_nacimiento").val("");
+    $("#fecha_nacimiento").val("2000-02-19");
     $("#posicion_alumno").val("");
 
     $("#peso_alumno").val("");

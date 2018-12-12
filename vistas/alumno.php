@@ -75,7 +75,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Cédula(*):</label><label class="checkbox-inline">(   <input type="checkbox" name="checkbox2" id="checkbox2">Pasaporte)</label>
                             <input type="hidden" name="idalumno" id="idalumno">
-                            <input type="text" class="form-control" onblur="validarcedula()" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" onkeyup = "if(event.keyCode == 13) validarcedula()" required>
+                            <input type="text" class="form-control" onblur="validarcedula()" name="cedula_alumno" id="cedula_alumno" maxlength="13" minlength="10"  placeholder="Cédula" onkeyup = "if(event.keyCode == 13) validarcedula()" >
                           </div>
 
                          
@@ -97,7 +97,7 @@ if($_SESSION['ficha_alumno']==1)
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Tipo de sangre(*):</label>
                             
-                              <select id="tipo_sangre_alumno" name="tipo_sangre_alumno" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" required>
+                              <select id="tipo_sangre_alumno" name="tipo_sangre_alumno" class="form-control selectpicker" data-live-search="true" placeholder="Seleccione una opción" >
                               <option value="">--Seleccione una opción--</option>                              
                               <option value="O negativo">O negativo</option>
                               <option value="O positivo">O positivo</option>
@@ -113,12 +113,12 @@ if($_SESSION['ficha_alumno']==1)
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha Nacimiento(*):</label>
-                              <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" required>
+                              <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" >
                           </div>
 
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Establecimiento educativo(*):</label>
-                              <input type="text" class="form-control" name="escuela_alumno"	 id="escuela_alumno" maxlength="50" placeholder="Escuela de donde proviene" required>
+                              <input type="text" class="form-control" name="escuela_alumno"	 id="escuela_alumno" maxlength="50" placeholder="Escuela de donde proviene" >
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -129,7 +129,7 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Posición(*):</label>
-                              <input type="text" class="form-control" name="posicion_alumno" id="posicion_alumno" placeholder="Pocición en la que juega" maxlength="30" required>
+                              <input type="text" class="form-control" name="posicion_alumno" id="posicion_alumno" placeholder="Pocición en la que juega" maxlength="30" >
                           </div>
 
 
@@ -137,12 +137,12 @@ if($_SESSION['ficha_alumno']==1)
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Peso(*):</label>
-                              <input type="text" class="form-control" name="peso_alumno" id="peso_alumno" placeholder="Peso Kilogramos" maxlength="20" required>
+                              <input type="text" class="form-control" name="peso_alumno" id="peso_alumno" placeholder="Peso Kilogramos" maxlength="20" >
                           </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Talla(*):</label>
-                              <input type="text" class="form-control" name="talla_alumno" id="talla_alumno" placeholder="Talla Metros" maxlength="20" required>
+                              <input type="text" class="form-control" name="talla_alumno" id="talla_alumno" placeholder="Talla Metros" maxlength="20" >
                           </div>
 
                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -153,18 +153,13 @@ if($_SESSION['ficha_alumno']==1)
                           </div>
 
 
-
-                         
-
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Como se entero de la Acdemia(*):</label>
-                              <input type="text" class="form-control" name="informacion_alumno" id="informacion_alumno" placeholder="Cómo se entero de nuestra academia" maxlength="100" required>
+                              <input type="text" class="form-control" name="informacion_alumno" id="informacion_alumno" placeholder="Cómo se entero de nuestra academia" maxlength="100" >
                           </div>
 
                           
-                         
-
-
+            
                           <br>
                           <br>
                           <br>

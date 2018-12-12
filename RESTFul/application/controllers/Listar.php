@@ -656,6 +656,38 @@ public function CategoriasDisponiblesInfo_get()
         $this->response($respuesta);   
    }
 
+   public function SucCatHorInfo_get()
+   {
+       //$pagina=$pagina*5;
+       $query = $this->db->query("SELECT 
+       `sucursal_categorias`.`idsucursal_categorias`,
+       `sucursal_categorias`.`sucursal_idsucursal`,
+       `sucursal_categorias`.`categoria_idcategoria`,
+       `sucursal_categorias`.`horario_idhorario`,
+       `sucursal`.`idsucursal`,
+       `categoria`.`idcategoria`,
+       `categoria`.`nombre_categoria`,
+       `sucursal`.`nombre_sucursal`,
+       `horario`.`nombre`,
+       `horario`.`hora_inicio`,
+       `horario`.`hora_fin`,
+       `horario`.`idhorario`,
+       `sucursal_categorias`.`estado`
+     FROM
+       `sucursal_categorias`
+       INNER JOIN `sucursal` ON (`sucursal_categorias`.`sucursal_idsucursal` = `sucursal`.`idsucursal`)
+       INNER JOIN `categoria` ON (`sucursal_categorias`.`categoria_idcategoria` = `categoria`.`idcategoria`)
+       INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
+       WHERE sucursal_categorias.estado=1 ");
+
+       $respuesta = array(
+           'error' => FALSE,
+           'SucCatHor' => $query->result_array()
+       );
+       $this->response($respuesta);   
+  }
+
+
 
    
 

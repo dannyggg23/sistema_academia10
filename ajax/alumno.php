@@ -40,6 +40,12 @@ switch ($_GET["op"]){
 				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/alumnos/" . $imagen);
 			}
 		}
+
+		if(empty($imagen))
+		{
+			$imagen="default.jpg";
+		}
+
 		if (empty($idalumno)){
 			$rspta=$alumno->insertar($cedula_alumno,
 			$nombre_alumno

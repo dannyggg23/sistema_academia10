@@ -128,22 +128,13 @@ function mostrar(idusuario) {
 
     $.post("../ajax/usuario.php?op=clave", function(data, status) {
         mostrarform(true);
-
         data = JSON.parse(data);
-
-
         $("#clave_usuario").val(data.clave);
-
-
-
     });
 
 
     $.post("../ajax/usuario.php?op=mostrar", { idusuario: idusuario }, function(data, status) {
         data = JSON.parse(data);
-
-
-
 
         $("#idusuario").val(data.idusuario);
         $("#nombre_usuario").val(data.nombre_usuario);

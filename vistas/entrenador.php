@@ -87,7 +87,7 @@ if($_SESSION['ficha_entrenador']==1)
                       
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Email(*):</label>
-                              <input type="email" class="form-control" name="email_entrenador" id="email_entrenador" maxlength="40" placeholder="Email" required>
+                              <input type="email" class="form-control" name="email_entrenador" id="email_entrenador" maxlength="40" placeholder="Email" >
                           </div>
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -97,13 +97,13 @@ if($_SESSION['ficha_entrenador']==1)
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Celular(*):</label>
-                              <input type="text" class="form-control" name="celular_entrenador" id="celular_entrenador" maxlength="10" placeholder="Celular" required>
+                              <input type="text" class="form-control" name="celular_entrenador" id="celular_entrenador" maxlength="10" placeholder="Celular" >
                           </div>
 
                       
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Género(*):</label>
-                            <select id="genero_entrenador" name="genero_entrenador" class="form-control selectpicker" data-live-search="true" required>
+                            <select id="genero_entrenador" name="genero_entrenador" class="form-control selectpicker" data-live-search="true" >
                             <option value="">--Seleccione--</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -112,17 +112,17 @@ if($_SESSION['ficha_entrenador']==1)
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Título(*):</label>
-                              <input type="text" class="form-control" name="titulo_entrenador" id="titulo_entrenador" placeholder="Título del entrenador" maxlength="40" required>
+                              <input type="text" class="form-control" name="titulo_entrenador" id="titulo_entrenador" placeholder="Título del entrenador" maxlength="40" >
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha nacimiento(*):</label>
-                              <input type="date" class="form-control" name="fechanacimiento_entrenador" id="fechanacimiento_entrenador"  required>
+                              <input type="date" class="form-control" name="fechanacimiento_entrenador" id="fechanacimiento_entrenador"  >
                           </div>
 
                            <div class="form-group col-lg-12 col-md-12 col-sm-6 col-xs-12">
                             <label>Dirección(*):</label>
-                              <input type="text" class="form-control" name="direccion_entrenador" id="direccion_entrenador" placeholder="Ingrese su dirección de domicilio" maxlength="200" required>
+                              <input type="text" class="form-control" name="direccion_entrenador" id="direccion_entrenador" placeholder="Ingrese su dirección de domicilio" maxlength="200" >
                           </div>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

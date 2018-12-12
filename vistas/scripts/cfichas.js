@@ -41,7 +41,7 @@ function listar() {
                 title: 'REPORTE DE ALUMNOS MATRICULADOS ',
                 pageSize: 'LEGAL',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                 }
             }, 'copyHtml5',
             'excelHtml5',
@@ -77,7 +77,7 @@ function listarDeudores() {
                 title: 'REPORTE DE ALUMNOS QUE ADEUDAN ',
                 pageSize: 'LEGAL',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                 }
             }, 'copyHtml5',
             'excelHtml5',
@@ -122,7 +122,7 @@ function cargarDeudoresSucursales(idsucursal) {
                 title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs,
                 pageSize: 'LEGAL',
                 exportOptions: {
-                    columns: [0, 1, 2, 4, 5, 6, 7, 8, 10]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                 }
             }, 'copyHtml5',
             'excelHtml5',
@@ -169,7 +169,7 @@ function cargarDeudoresCategorias(idcategoria) {
                     title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Categoría: ' + categ,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 5, 6, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -205,7 +205,7 @@ function cargarDeudoresCategorias(idcategoria) {
                     title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs + ' \n Categoría: ' + categ,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 5, 6, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -252,7 +252,7 @@ function cargarDeudoresHorario(idhorario) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -289,7 +289,7 @@ function cargarDeudoresHorario(idhorario) {
                     title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Categoria: ' + categ + ' \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -325,7 +325,7 @@ function cargarDeudoresHorario(idhorario) {
                     title: 'REPORTE DE ALUMNOS QUE ADEUDAN \n Sucursal: ' + sucurs + ' \n Categoria: ' + categ + ' \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -378,7 +378,7 @@ function cargarDeudoresSucursales1(idsucursal) {
                 title: 'REPORTE DE ALUMNOS MATRICULADOS \n Sucursal: ' + sucurs,
                 pageSize: 'LEGAL',
                 exportOptions: {
-                    columns: [0, 1, 2, 4, 5, 6, 7, 8, 10]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                 }
             }, 'copyHtml5',
             'excelHtml5',
@@ -425,7 +425,7 @@ function cargarDeudoresCategorias1(idcategoria) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Categoría: ' + categ,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 5, 6, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -461,7 +461,7 @@ function cargarDeudoresCategorias1(idcategoria) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Sucursal: ' + sucurs + ' \n Categoría: ' + categ,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 5, 6, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -514,7 +514,7 @@ function cargarDeudoresHorario1(idhorario) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -551,7 +551,7 @@ function cargarDeudoresHorario1(idhorario) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Categoria: ' + categ + ' \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',
@@ -587,7 +587,7 @@ function cargarDeudoresHorario1(idhorario) {
                     title: 'REPORTE DE ALUMNOS MATRICULADOS \n Sucursal: ' + sucurs + ' \n Categoria: ' + categ + ' \n Horario: ' + horar,
                     pageSize: 'LEGAL',
                     exportOptions: {
-                        columns: [0, 1, 2, 7, 8, 10]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                     }
                 }, 'copyHtml5',
                 'excelHtml5',

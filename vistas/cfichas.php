@@ -39,6 +39,7 @@ require 'headerconsultas.php';
   
                             <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Cédula</th>
                             <th>Género</th>
                             <th>Sucursal</th>
                             <th>Categoria</th>
@@ -55,6 +56,7 @@ require 'headerconsultas.php';
                           <tfoot>
                           <th>Ficha</th>
                             <th>Alumno</th>
+                            <th>Cédula</th>
                             <th>Género</th>
                             <th>Sucursal</th>
                             <th>Categoria</th>
