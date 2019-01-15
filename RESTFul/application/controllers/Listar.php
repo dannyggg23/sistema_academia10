@@ -437,6 +437,26 @@ public function productosServicios_get()
      $this->response($respuesta);   
 }
 
+
+
+public function busquedaAlumnos_get($nombre_alumno)
+ {
+     //$pagina=$pagina*5;
+     $query = $this->db->query("SELECT 
+     `alumno`.`idalumno`,
+     `alumno`.`nombre_alumno`,
+     `ficha_alumno`.`idficha_alumno`
+   FROM
+     `ficha_alumno`
+     INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
+   WHERE alumno.nombre_alumno like '$nombre_alumno'");
+
+     $respuesta = array(
+         'error' => FALSE,
+         'alumnos' => $query->result_array()
+     );
+     $this->response($respuesta);   
+}
   
 
   //########################--ENTRENADORES--#######################//
