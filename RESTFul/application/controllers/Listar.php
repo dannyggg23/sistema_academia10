@@ -271,6 +271,71 @@ ficha_alumno.estado=1");
         $this->response($respuesta);   
    }
 
+
+   public function datosAlumnosIdalumno_get($idalumno)
+    {
+        //$pagina=$pagina*5;
+        $query = $this->db->query("SELECT 
+        alumno.*,
+       `representante`.`nombre_representante`,
+       `representante`.`cedula_representante`,
+       `ficha_entrenador`.`idficha_entrenador`,
+       `entrenador`.`nombre_entrenador`,
+       `sucursal`.`nombre_sucursal`,
+       `sucursal`.`direrccion_ducursal`,
+       `horario`.`nombre`,
+       `horario`.`hora_inicio`,
+       `horario`.`hora_fin`,
+       `categoria`.`nombre_categoria`,
+       `ficha_alumno`.`fecha_acceso`
+     FROM
+       `alumno`
+       INNER JOIN `representante` ON (`alumno`.`representante_idrepresentante` = `representante`.`idrepresentante`)
+       INNER JOIN `ficha_alumno` ON (`alumno`.`idalumno` = `ficha_alumno`.`alumno_idalumno`)
+       INNER JOIN `sucursal_categorias` ON (`ficha_alumno`.`sucursal_categorias_idsucursal_categorias` = `sucursal_categorias`.`idsucursal_categorias`)
+       INNER JOIN `sucursal` ON (`sucursal_categorias`.`sucursal_idsucursal` = `sucursal`.`idsucursal`)
+       INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
+       INNER JOIN `ficha_entrenador` ON (`sucursal_categorias`.`idsucursal_categorias` = `ficha_entrenador`.`sucursal_categorias_idsucursal_categorias`)
+       INNER JOIN `entrenador` ON (`ficha_entrenador`.`entrenador_identrenador` = `entrenador`.`identrenador`)
+       INNER JOIN `categoria` ON (`sucursal_categorias`.`categoria_idcategoria` = `categoria`.`idcategoria`)
+       where alumno.idalumno='$idalumno'");
+
+        $respuesta = array(
+            'error' => FALSE,
+            'datos' => $query->result_array()
+        );
+        $this->response($respuesta);   
+   }
+
+   //aSISTENCIAS ALUMNO DE ADMINISTRADOR CONSULTAS+
+
+   public function asistenciaAlumnosAdmi_get($idalumno)
+   {
+       //$pagina=$pagina*5;
+       $query = $this->db->query("SELECT 
+       `asistencia`.`fecha_asistencia`,
+       `asistencia`.`asistencia_alumno`,
+       `alumno`.`idalumno`,
+       `ficha_alumno`.`idficha_alumno`,
+       `asistencia`.`idasistencia`,
+       `asistencia`.`ficha_alumno_idficha_alumno`
+     FROM
+       `asistencia`
+       INNER JOIN `ficha_alumno` ON (`asistencia`.`ficha_alumno_idficha_alumno` = `ficha_alumno`.`idficha_alumno`)
+       INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
+       WHERE alumno.idalumno='$idalumno'
+       ORDER BY asistencia.fecha_asistencia DESC");
+
+       $respuesta = array(
+           'error' => FALSE,
+           'asistencia' => $query->result_array()
+       );
+       $this->response($respuesta);   
+  }
+
+
+
+
    public function representantes_get()
     {
         //$pagina=$pagina*5;
@@ -325,6 +390,8 @@ ficha_alumno.estado=1");
         $this->response($respuesta);   
    }
 
+
+
    public function pagoPorRepresentante_get($representante)
    {
        //$pagina=$pagina*5;
@@ -354,6 +421,36 @@ ficha_alumno.estado=1");
        );
        $this->response($respuesta);   
   }
+
+  public function pagoPorAlumno_get($alumno)
+  {
+      //$pagina=$pagina*5;
+      $query = $this->db->query("SELECT 
+      `pago`.`idpago`,
+      `pago`.`representante_idrepresentante`,
+      `pago`.`usuario_idusuario`,
+      `pago`.`fecha`,
+      `pago`.`total`,
+      `pago`.`tipo_documento`,
+      `pago`.`estado`,
+      `pago`.`serie_comprobante`,
+      `pago`.`num_comprobante`,
+      `pago`.`impuesto`,
+      `representante`.`idrepresentante`,
+      `alumno`.`idalumno`
+    FROM
+      `pago`
+      INNER JOIN `representante` ON (`pago`.`representante_idrepresentante` = `representante`.`idrepresentante`)
+      INNER JOIN `alumno` ON (`representante`.`idrepresentante` = `alumno`.`representante_idrepresentante`)
+    WHERE alumno.idalumno='$alumno' AND pago.estado='Aceptado'
+    ORDER BY pago.fecha DESC");
+
+      $respuesta = array(
+          'error' => FALSE,
+          'pagos' => $query->result_array()
+      );
+      $this->response($respuesta);   
+ }
 
 
   public function detallePago_get($idpago)
@@ -449,7 +546,7 @@ public function busquedaAlumnos_get($nombre_alumno)
    FROM
      `ficha_alumno`
      INNER JOIN `alumno` ON (`ficha_alumno`.`alumno_idalumno` = `alumno`.`idalumno`)
-   WHERE alumno.nombre_alumno like '$nombre_alumno'");
+   WHERE alumno.nombre_alumno like '%$nombre_alumno%'");
 
      $respuesta = array(
          'error' => FALSE,
