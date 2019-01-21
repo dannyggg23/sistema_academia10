@@ -99,6 +99,21 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'mostrarModalRepresentante':
+		$rspta=$alumno->mostrarModalRepresentante($idalumno);
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
+	break;
+
+	case 'mostrarCurso':
+		$rspta=$alumno->mostrarCurso($idalumno);
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
+	break;
+
+
+	
+
 	case 'listar':
 		$rspta=$alumno->listar();
  		//Vamos a declarar un array

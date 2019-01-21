@@ -215,17 +215,37 @@ if($_SESSION['ficha_alumno']==1)
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 
-      <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" >Alumno</h4>
-        </div>
-        <div class="modal-body">
 
-        <style>
+<!-- otro-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+                </button>
+                 <h4 class="modal-title" id="myModalLabel">Alumno</h4>
+
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Alumno</a>
+
+                        </li>
+                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Representante</a>
+
+                        </li>
+                        <li role="presentation"><a href="#cursotab" aria-controls="cursotab" role="tab" data-toggle="tab">Curso</a>
+
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">
+                        
+                        <style>
    .input-group-addon{
     font-weight: bold;
    }
@@ -302,14 +322,109 @@ if($_SESSION['ficha_alumno']==1)
           <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombrerepresentante" name="nombrerepresentante">
     </div>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>        
-      </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="browseTab">
+                        
+                        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Cédula </span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="cedula_representante5" name="cedula_representante5">
     </div>
-  </div>  
-  <!--Fin-Modal-->
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre_representante5" name="nombre_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Cédula conyugue</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="cedula_conyugue_representante5" name="cedula_conyugue_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Nombre</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre_conyugue_representante5" name="nombre_conyugue_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Dirección</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="direccion_representante5" name="direccion_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="telefono_representante5" name="telefono_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Email</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="email_representante5" name="email_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Lugar de trabajo</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="lugar_trabajo_representante5" name="lugar_trabajo_representante5">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Parentezco</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="parentesco_respresentante5" name="parentesco_respresentante5">
+    </div>
+
+                        </div>
+                        <div role="cursotab" class="tab-pane" id="cursotab">
+
+                        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Sucursal</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre_sucursal9" name="nombre_sucursal9">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Categoria</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre_categoria9" name="nombre_categoria9">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Horario</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre9" name="nombre9">
+    </div>
+
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Inicio</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="hora_inicio9" name="hora_inicio9">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Fin</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="hora_fin9" name="hora_fin9">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Entrenador</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="nombre_entrenador9" name="nombre_entrenador9">
+    </div>
+
+    <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">Cédula</span>
+          <input type="text" class="form-control"  aria-describedby="sizing-addon2" id="cedula_entrenador9" name="cedula_entrenador9">
+    </div>
+
+
+
+
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- otro-->
+
 <?php
 }
 else

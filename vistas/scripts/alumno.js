@@ -149,8 +149,8 @@ function abrirmodal(idalumno) {
 
 
     console.log(idalumno);
-
-    $.post("../ajax/alumno.php?op=mostrar", { idalumno: idalumno }, function(data, status) {
+    
+    $.post("../ajax/alumno.php?op=mostrarModalRepresentante", { idalumno: idalumno }, function(data, status) {
         data = JSON.parse(data);
 
         $("#nombre_alumno1").val(data.nombre_alumno);
@@ -166,9 +166,40 @@ function abrirmodal(idalumno) {
         $("#representante").val(data.cedula_representante);
         $("#nombrerepresentante").val(data.nombre_representante);
         $("#imagenmodal").attr("src", "../files/alumnos/" + data.imagen_alumno);
+        
+
+        $("#cedula_representante5").val(data.cedula_representante);
+        $("#nombre_representante5").val(data.nombre_representante);
+        $("#cedula_conyugue_representante5").val(data.cedula_conyugue_representante);
+        $("#nombre_conyugue_representante5").val(data.nombre_conyugue_representante);
+        $("#direccion_representante5").val(data.direccion_representante);
+        $("#telefono_representante5").val(data.telefono_representante);
+        $("#email_representante5").val(data.email_representante);
+        $("#lugar_trabajo_representante5").val(data.lugar_trabajo_representante);
+        $("#parentesco_respresentante5").val(data.parentesco_respresentante);
+
+        $.post("../ajax/alumno.php?op=mostrarCurso", { idalumno: idalumno }, function(data, status) {
+            data = JSON.parse(data);
+
+    
+            $("#nombre_categoria9").val(data.nombre_categoria);
+            $("#nombre_sucursal9").val(data.nombre_sucursal);
+            $("#nombre9").val(data.nombre);
+            $("#hora_inicio9").val(data.hora_inicio);
+            $("#hora_fin9").val(data.hora_fin);
+            $("#cedula_entrenador9").val(data.cedula_entrenador);
+            $("#nombre_entrenador9").val(data.nombre_entrenador);
 
 
+
+        });
+
+        
+        
+     
     });
+
+    
 }
 
 //#########################################################- FIN MOSTRAR MODAL DE DATOS DE ALUMNO---###################################################
