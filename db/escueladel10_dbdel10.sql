@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2018 a las 20:40:55
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 5.6.33
+-- Servidor: localhost:3306
+-- Tiempo de generación: 26-01-2019 a las 23:38:03
+-- Versión del servidor: 10.2.21-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_academia10`
+-- Base de datos: `escueladel10_dbdel10`
 --
 
 -- --------------------------------------------------------
@@ -34,16 +34,23 @@ CREATE TABLE `alumno` (
   `nombre_alumno` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `genero_alumno` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `imagen_alumno` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `representante_idrepresentante` int(11) NOT NULL,
-  `estado` tinyint(4) DEFAULT '1',
+  `representante_idrepresentante` int(11) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 1,
   `tipo_sangre_alumno` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `escuela_alumno` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `posicion_alumno` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `peso_alumno` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `talla_alumno` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `informacion_alumno` varchar(200) COLLATE utf8_spanish2_ci NOT NULL
+  `peso_alumno` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `talla_alumno` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `informacion_alumno` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`idalumno`, `cedula_alumno`, `nombre_alumno`, `genero_alumno`, `imagen_alumno`, `representante_idrepresentante`, `estado`, `tipo_sangre_alumno`, `escuela_alumno`, `fecha_nacimiento`, `posicion_alumno`, `peso_alumno`, `talla_alumno`, `informacion_alumno`) VALUES
+(29, '0504353210', 'Danny Garcia', 'Masculino', 'default.jpg', 1, 1, 'O negativo', 'Isidro ayora', '1993-04-23', 'Delantero', '90', '1.73', 'Danny');
 
 -- --------------------------------------------------------
 
@@ -58,6 +65,18 @@ CREATE TABLE `asistencia` (
   `ficha_alumno_idficha_alumno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`idasistencia`, `asistencia_alumno`, `fecha_asistencia`, `ficha_alumno_idficha_alumno`) VALUES
+(5, 1, '2019-01-18', 35),
+(6, 1, '2019-01-17', 35),
+(7, 0, '2019-01-16', 35),
+(8, 1, '2019-01-15', 35),
+(9, 1, '2019-01-14', 35),
+(10, 0, '2019-01-13', 35);
+
 -- --------------------------------------------------------
 
 --
@@ -68,8 +87,21 @@ CREATE TABLE `categoria` (
   `idcategoria` int(11) NOT NULL,
   `nombre_categoria` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `descripcion_categoria` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1'
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idcategoria`, `nombre_categoria`, `descripcion_categoria`, `estado`) VALUES
+(1, 'SUB 10', 'EDADES HASTA 10 AÑOS', 1),
+(2, 'SUB 11', 'CATEGORIAS HASTA 12 AÑOS', 1),
+(3, 'SUB 12', 'CATEGORIAS HASTA 12 AÑOS', 1),
+(4, 'Sub 6', 'Sub 6', 1),
+(5, 'Sub 8', 'Sub 8', 1),
+(6, 'sub 2', 'sub 2', 1),
+(7, 'SUB 16 FEMENINO', 'HORARIO NOCTURNO', 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +113,7 @@ CREATE TABLE `categorias_productos_servicios` (
   `idcategorias_productos_servicios` int(11) NOT NULL,
   `nombre_categoria_productos` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `descripcion_categoria_productos` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1'
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -89,8 +121,8 @@ CREATE TABLE `categorias_productos_servicios` (
 --
 
 INSERT INTO `categorias_productos_servicios` (`idcategorias_productos_servicios`, `nombre_categoria_productos`, `descripcion_categoria_productos`, `estado`) VALUES
-(1, 'SERVICIOS', 'Servicios que ofrece la academia de fútbol para los estudiantes de la &quot;Escuela del 10&quot;', 1),
-(2, 'PRODUCTOS', 'Productos que ofrece la academia de fútbol la escuela del 10 a los alumnos', 1);
+(1, 'Servicios', 'Servicios', 1),
+(2, 'Productos', 'Productos', 1);
 
 -- --------------------------------------------------------
 
@@ -334,6 +366,31 @@ INSERT INTO `ciudad` (`idCiudad`, `ciudad`, `IDPROVINCIA`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `datos_academia`
+--
+
+CREATE TABLE `datos_academia` (
+  `iddatos_academia` int(11) NOT NULL,
+  `titulo_factura` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre_propietario` varchar(40) COLLATE utf8_spanish2_ci NOT NULL,
+  `documento_identidad` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
+  `direccion_academia` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `telefono_academia` varchar(15) COLLATE utf8_spanish2_ci NOT NULL,
+  `email_academia` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `serie_factura` int(11) NOT NULL,
+  `numero_factura` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `datos_academia`
+--
+
+INSERT INTO `datos_academia` (`iddatos_academia`, `titulo_factura`, `nombre_propietario`, `documento_identidad`, `direccion_academia`, `telefono_academia`, `email_academia`, `serie_factura`, `numero_factura`) VALUES
+(1, 'LA ESCUELA DEL 10', 'Mg. Pablo Poveda', '1803610920', 'Ambato', '0996269763', 'pablopoveda@escueladel10.com', 12346, 42);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_pago`
 --
 
@@ -346,6 +403,16 @@ CREATE TABLE `detalle_pago` (
   `descuento_pago` decimal(11,2) NOT NULL,
   `productos_servicios_idproductos_servicios` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_pago`
+--
+
+INSERT INTO `detalle_pago` (`iddetalle_pago`, `pago_idpago`, `ficha_alumno_idficha_alumno`, `numero_meses_pago`, `precio_pago`, `descuento_pago`, `productos_servicios_idproductos_servicios`) VALUES
+(34, 30, 35, 1, '20.00', '0.00', 2),
+(35, 31, 35, 1, '25.00', '0.00', 1),
+(36, 32, 35, 1, '25.00', '0.00', 1),
+(37, 33, 35, 1, '25.00', '0.00', 1);
 
 --
 -- Disparadores `detalle_pago`
@@ -378,13 +445,21 @@ CREATE TABLE `entrenador` (
   `imagen_entrenador` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `usuario` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `clave` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT '1',
-  `token` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 1,
+  `token` text COLLATE utf8_spanish2_ci DEFAULT NULL,
   `descripcion` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `genero_entrenador` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `titulo_entrenador` varchar(240) COLLATE utf8_spanish2_ci NOT NULL,
-  `fechanacimiento_entrenador` date NOT NULL
+  `titulo_entrenador` varchar(240) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fechanacimiento_entrenador` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `entrenador`
+--
+
+INSERT INTO `entrenador` (`identrenador`, `cedula_entrenador`, `nombre_entrenador`, `direccion_entrenador`, `email_entrenador`, `telefono_entrenador`, `celular_entrenador`, `imagen_entrenador`, `usuario`, `clave`, `estado`, `token`, `descripcion`, `genero_entrenador`, `titulo_entrenador`, `fechanacimiento_entrenador`) VALUES
+(1, '1802707511', 'Andres Sanchez Paez', 'av cevallos', 'a.sanchez@escueladel10.com', '098790024', '0987900242', '1538401096.jpg', '1802707511', '1802707511', 1, 'd615f9cb-ab77-4f53-8fe7-ebaf69b7cc79', 'assasa', 'Masculino', 'Licenciado', '1982-01-01'),
+(2, '1803610920', 'Alex Fiallos', 'av cevallos', 'a.fiallos@escueladel10.com', '098790024', '0987900242', '1538401293.jpg', '1803610920', '1803610920', 1, '', '', 'Masculino', 'Licenciado', '1998-01-01');
 
 -- --------------------------------------------------------
 
@@ -394,15 +469,22 @@ CREATE TABLE `entrenador` (
 
 CREATE TABLE `ficha_alumno` (
   `idficha_alumno` int(11) NOT NULL,
-  `numeroFicha_alumno` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
+  `numeroFicha_alumno` varchar(25) COLLATE utf8_spanish2_ci NOT NULL,
   `fechaApertura_alumno` date NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
   `alumno_idalumno` int(11) NOT NULL,
   `fecha_acceso` date DEFAULT NULL,
   `sucursal_categorias_idsucursal_categorias` int(11) NOT NULL,
-  `descuento_ficha_alumno` int(11) NOT NULL,
-  `inscripcion` tinyint(4) NOT NULL DEFAULT '0'
+  `descuento_ficha_alumno` int(11) DEFAULT NULL,
+  `inscripcion` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `ficha_alumno`
+--
+
+INSERT INTO `ficha_alumno` (`idficha_alumno`, `numeroFicha_alumno`, `fechaApertura_alumno`, `estado`, `alumno_idalumno`, `fecha_acceso`, `sucursal_categorias_idsucursal_categorias`, `descuento_ficha_alumno`, `inscripcion`) VALUES
+(35, '0504353210', '2018-09-01', 1, 29, '2019-03-05', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -413,24 +495,20 @@ CREATE TABLE `ficha_alumno` (
 CREATE TABLE `ficha_entrenador` (
   `idficha_entrenador` int(11) NOT NULL,
   `fechaApertura_entrenador` date NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
   `entrenador_identrenador` int(11) NOT NULL,
   `sucursal_categorias_idsucursal_categorias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `habilidad`
+-- Volcado de datos para la tabla `ficha_entrenador`
 --
 
-CREATE TABLE `habilidad` (
-  `idhabilidad` int(11) NOT NULL,
-  `pocicion_alumno` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `habilidades_alumno` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
-  `ficha_alumno_idficha_alumno` int(11) NOT NULL,
-  `descripcion` varchar(200) COLLATE utf8_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+INSERT INTO `ficha_entrenador` (`idficha_entrenador`, `fechaApertura_entrenador`, `estado`, `entrenador_identrenador`, `sucursal_categorias_idsucursal_categorias`) VALUES
+(1, '2018-10-01', 1, 1, 3),
+(2, '2018-10-01', 1, 2, 4),
+(3, '2018-10-29', 1, 1, 6),
+(4, '2019-01-15', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -443,8 +521,18 @@ CREATE TABLE `horario` (
   `nombre` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1'
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `horario`
+--
+
+INSERT INTO `horario` (`idhorario`, `nombre`, `hora_inicio`, `hora_fin`, `estado`) VALUES
+(1, 'LUNES-MIERCOLES-VIERNES', '16:00:00', '17:30:00', 1),
+(2, 'MARTES-JUEVES-SABADOS', '16:00:00', '17:30:00', 1),
+(3, 'SABADO Y DOMINGO', '08:00:00', '10:00:00', 1),
+(4, 'SUB 16 FEMENINO', '18:30:00', '20:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -462,6 +550,27 @@ CREATE TABLE `imagenes` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `imagenes_app`
+--
+
+CREATE TABLE `imagenes_app` (
+  `idimagenes_app` int(11) NOT NULL,
+  `imagen` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `imagenes_app`
+--
+
+INSERT INTO `imagenes_app` (`idimagenes_app`, `imagen`, `estado`) VALUES
+(1, '1539347048.jpg', 1),
+(2, '1539347064.jpg', 1),
+(3, '1539347077.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `noticias`
 --
 
@@ -469,12 +578,19 @@ CREATE TABLE `noticias` (
   `idnoticias` int(11) NOT NULL,
   `titulo` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `descripcion` text COLLATE utf8_spanish2_ci,
+  `descripcion` text COLLATE utf8_spanish2_ci DEFAULT NULL,
   `imagen` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `estado` tinyint(1) DEFAULT '1',
+  `estado` tinyint(1) DEFAULT 1,
   `sucursal_categorias_idsucursal_categorias` int(11) DEFAULT NULL,
-  `todos` tinyint(4) NOT NULL DEFAULT '1'
+  `todos` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`idnoticias`, `titulo`, `fecha`, `descripcion`, `imagen`, `estado`, `sucursal_categorias_idsucursal_categorias`, `todos`) VALUES
+(1, 'sefwwe', '2019-01-16', 'werwerwer', '1547586178.jpg', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -492,7 +608,33 @@ CREATE TABLE `pago` (
   `estado` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `serie_comprobante` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `num_comprobante` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
-  `impuesto` int(11) NOT NULL
+  `impuesto` int(11) NOT NULL,
+  `subtotal` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`idpago`, `representante_idrepresentante`, `usuario_idusuario`, `fecha`, `total`, `tipo_documento`, `estado`, `serie_comprobante`, `num_comprobante`, `impuesto`, `subtotal`) VALUES
+(30, 2, 5, '2018-12-05', '22.4', 'Factura', 'Aceptado', '12346', '38', 12, '20'),
+(31, 2, 5, '2018-12-11', '28', 'Factura', 'Aceptado', '12346', '39', 12, '25'),
+(32, 2, 5, '2018-12-12', '28', 'Factura', 'Aceptado', '12346', '40', 12, '25'),
+(33, 1, 5, '2019-01-15', '28', 'Factura', 'Aceptado', '12346', '41', 12, '25');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pagos_deposito`
+--
+
+CREATE TABLE `pagos_deposito` (
+  `idpagos_deposito` int(11) NOT NULL,
+  `imagen` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `ficha_alumno_idficha_alumno` int(11) NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
+  `estado_aprobada` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -533,7 +675,7 @@ CREATE TABLE `productos_servicios` (
   `precio_productos_servicios` decimal(11,2) DEFAULT NULL,
   `descripcion_productos_servicios` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `categorias_productos_servicios_idcategorias_productos_servicios` int(11) DEFAULT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1'
+  `estado` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -541,8 +683,8 @@ CREATE TABLE `productos_servicios` (
 --
 
 INSERT INTO `productos_servicios` (`idproductos_servicios`, `nombre_productos_servicios`, `precio_productos_servicios`, `descripcion_productos_servicios`, `categorias_productos_servicios_idcategorias_productos_servicios`, `estado`) VALUES
-(1, 'MENSUALIDAD', '25.00', 'Mensualidades para los alumnos de la Academia de fútbol', 1, 1),
-(2, 'INSCRIPCION', '20.00', 'INSCRIPCIÓN PARA LOS ALUMNOS RECIÉN LLEGADOS A LA ACADEMIA', 1, 1);
+(1, 'MENSUALIDAD', '25.00', 'Mensualidades para los alumnos ', 1, 1),
+(2, 'INSCRIPCION', '20.00', 'INSCRIPCIÓN PARA LOS ALUMNOS ', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -593,25 +735,36 @@ INSERT INTO `provincia` (`idProvincia`, `provincia`) VALUES
 
 CREATE TABLE `representante` (
   `idrepresentante` int(11) NOT NULL,
-  `cedula_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `nombre_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `cedula_representante` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre_representante` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `email_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `direccion_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `telefono_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `usuario` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `clave` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `estado` tinyint(4) DEFAULT '1',
-  `token` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 1,
+  `token` text COLLATE utf8_spanish2_ci DEFAULT NULL,
   `genero_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha_nacimiento_representante` date DEFAULT NULL,
   `parentesco_respresentante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `celular_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `lugar_trabajo_representante` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `cedula_conyugue_representante` varchar(13) COLLATE utf8_spanish2_ci NOT NULL,
-  `nombre_conyugue_representante` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `barrio_representante` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `cedula_conyugue_representante` varchar(13) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `nombre_conyugue_representante` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `barrio_representante` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `ciudad_representante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `representante`
+--
+
+INSERT INTO `representante` (`idrepresentante`, `cedula_representante`, `nombre_representante`, `email_representante`, `direccion_representante`, `telefono_representante`, `usuario`, `clave`, `estado`, `token`, `genero_representante`, `fecha_nacimiento_representante`, `parentesco_respresentante`, `celular_representante`, `lugar_trabajo_representante`, `cedula_conyugue_representante`, `nombre_conyugue_representante`, `barrio_representante`, `ciudad_representante`) VALUES
+(1, '1803610920', 'Fausto Viscaino', 'faustov_zh1@hotmail.com', 'Enrique gallo y Av. los chasquis', '098765445', '1803610920', '1803610920', 1, NULL, 'Femenino', '1982-04-30', 'Padre', '098765456', 'UNIANDES', '1803688652', 'Gabriela Amancha', 'La pradera', 186),
+(2, '0504353211', 'GLORIA GALARZA', 'dannyggg23@gmail.com', 'VERTIENTES DEL COTOPAXI LATACUNGA', '099626976', '0504353211', '0504353211', 1, '', 'Masculino', '1978-01-12', 'MADRE', '0996269763', 'EL SALTO', '0504353213', 'GUSTAVO GARCIA', 'VERTIENTES DEL COTOPAXI', 36),
+(3, '1802460103', 'POVEDA PABLO', 'pablopoveda_10@hotmail.com', 'los girasoles y av. los guaytambos', '6001850', '1802460103', '1802460103', 1, NULL, 'Masculino', '1974-11-20', 'padre', '0995001812', 'Municipio de Ambato', '1802990646', 'LEON MARIA JOSE', 'Ficoa', 186),
+(4, '1802259943', 'ALVARO CHATO', 'joseleon85@hotmail.com', 'COLEGIO PIO X', '', '1802259943', '1802259943', 1, NULL, 'Masculino', '1980-02-19', 'PADRE', '0984216949', 'PROFESIONAL INDEPENDIENTE', '1802342186', 'MARTHA HEREDIA', 'ATOCHA', 186),
+(5, '0000000076', 'Sin representante', 'Sin representante', 'Sin representante', NULL, 'representante', 'representante', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -621,16 +774,24 @@ CREATE TABLE `representante` (
 
 CREATE TABLE `sucursal` (
   `idsucursal` int(11) NOT NULL,
-  `nombre_sucursal` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `direrccion_ducursal` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre_sucursal` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `direrccion_ducursal` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono_sucursal` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `encargado_sucursal` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `ciudad_idCiudad` int(11) NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
   `imagen` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `latitud_sucursal` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `longitud_sucursal` varchar(100) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `sucursal`
+--
+
+INSERT INTO `sucursal` (`idsucursal`, `nombre_sucursal`, `direrccion_ducursal`, `telefono_sucursal`, `encargado_sucursal`, `ciudad_idCiudad`, `estado`, `imagen`, `latitud_sucursal`, `longitud_sucursal`) VALUES
+(1, 'Futgol', 'Rodrigo Pachano y Dalias', '0980224517', 'Mg. Pablo Poveda', 186, 1, '1538199693.jpg', '-0.931513', '-78.6233596'),
+(2, 'Futbol City', 'Av. Los Chasquis y Velasco Ibarra', '0983384885', 'Mg. Pablo Poveda', 186, 1, '1538199793.jpg', '1.262755', '78.625113');
 
 -- --------------------------------------------------------
 
@@ -643,9 +804,22 @@ CREATE TABLE `sucursal_categorias` (
   `sucursal_idsucursal` int(11) NOT NULL,
   `categoria_idcategoria` int(11) NOT NULL,
   `horario_idhorario` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL DEFAULT '1',
-  `disponible` tinyint(4) NOT NULL DEFAULT '0'
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `disponible` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `sucursal_categorias`
+--
+
+INSERT INTO `sucursal_categorias` (`idsucursal_categorias`, `sucursal_idsucursal`, `categoria_idcategoria`, `horario_idhorario`, `estado`, `disponible`) VALUES
+(1, 1, 1, 1, 1, 1),
+(2, 1, 2, 1, 1, 0),
+(3, 2, 1, 1, 1, 1),
+(4, 2, 5, 2, 1, 1),
+(5, 1, 3, 3, 1, 0),
+(6, 2, 6, 2, 1, 1),
+(7, 1, 7, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -665,15 +839,16 @@ CREATE TABLE `usuario` (
   `login_usuario` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `clave_usuario` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `imagen_usuario` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1'
+  `estado` tinyint(4) NOT NULL DEFAULT 1,
+  `token` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nombre_usuario`, `cedula_usuario`, `direccion_usuario`, `telefono_usuario`, `celular_usuario`, `email_usuario`, `cargo_usuario`, `login_usuario`, `clave_usuario`, `imagen_usuario`, `estado`) VALUES
-(5, 'admin', '0000000000', 'admin', '0000000000', '0000000000', 'admin', 'admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1522717736.jpg', 1);
+INSERT INTO `usuario` (`idusuario`, `nombre_usuario`, `cedula_usuario`, `direccion_usuario`, `telefono_usuario`, `celular_usuario`, `email_usuario`, `cargo_usuario`, `login_usuario`, `clave_usuario`, `imagen_usuario`, `estado`, `token`) VALUES
+(5, 'admin', '0000000000', 'admin', '0000000000', '0000000000', 'admin', 'admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1538194716.jpg', 1, '');
 
 -- --------------------------------------------------------
 
@@ -692,15 +867,15 @@ CREATE TABLE `usuario_permiso` (
 --
 
 INSERT INTO `usuario_permiso` (`idusuario_permiso`, `permiso_idpermiso`, `usuario_idusuario`) VALUES
-(52, 1, 5),
-(53, 2, 5),
-(54, 3, 5),
-(55, 4, 5),
-(56, 5, 5),
-(57, 6, 5),
-(58, 7, 5),
-(59, 8, 5),
-(60, 9, 5);
+(88, 1, 5),
+(89, 2, 5),
+(90, 3, 5),
+(91, 4, 5),
+(92, 5, 5),
+(93, 6, 5),
+(94, 7, 5),
+(95, 8, 5),
+(96, 9, 5);
 
 --
 -- Índices para tablas volcadas
@@ -711,7 +886,6 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `permiso_idpermiso`, `usuari
 --
 ALTER TABLE `alumno`
   ADD PRIMARY KEY (`idalumno`),
-  ADD UNIQUE KEY `cedula_alumno_UNIQUE` (`cedula_alumno`),
   ADD KEY `fk_alumno_representante1_idx` (`representante_idrepresentante`);
 
 --
@@ -741,6 +915,12 @@ ALTER TABLE `ciudad`
   ADD KEY `fk_ciudad_provincia_idx` (`IDPROVINCIA`);
 
 --
+-- Indices de la tabla `datos_academia`
+--
+ALTER TABLE `datos_academia`
+  ADD PRIMARY KEY (`iddatos_academia`);
+
+--
 -- Indices de la tabla `detalle_pago`
 --
 ALTER TABLE `detalle_pago`
@@ -761,7 +941,6 @@ ALTER TABLE `entrenador`
 --
 ALTER TABLE `ficha_alumno`
   ADD PRIMARY KEY (`idficha_alumno`),
-  ADD UNIQUE KEY `idficha_alumno` (`idficha_alumno`),
   ADD UNIQUE KEY `numeroFicha_alumno` (`numeroFicha_alumno`),
   ADD KEY `fk_ficha_alumno_alumno1_idx` (`alumno_idalumno`),
   ADD KEY `fk_ficha_alumno_sucursal_categorias1_idx` (`sucursal_categorias_idsucursal_categorias`);
@@ -773,13 +952,6 @@ ALTER TABLE `ficha_entrenador`
   ADD PRIMARY KEY (`idficha_entrenador`),
   ADD KEY `fk_ficha_entrenador_entrenador1_idx` (`entrenador_identrenador`),
   ADD KEY `fk_ficha_entrenador_sucursal_categorias1_idx` (`sucursal_categorias_idsucursal_categorias`);
-
---
--- Indices de la tabla `habilidad`
---
-ALTER TABLE `habilidad`
-  ADD PRIMARY KEY (`idhabilidad`),
-  ADD KEY `fk_habilidad_ficha_alumno1_idx` (`ficha_alumno_idficha_alumno`);
 
 --
 -- Indices de la tabla `horario`
@@ -795,6 +967,12 @@ ALTER TABLE `imagenes`
   ADD KEY `fk_imagenes_noticias1_idx` (`noticias_idnoticias`);
 
 --
+-- Indices de la tabla `imagenes_app`
+--
+ALTER TABLE `imagenes_app`
+  ADD PRIMARY KEY (`idimagenes_app`);
+
+--
 -- Indices de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -808,6 +986,13 @@ ALTER TABLE `pago`
   ADD PRIMARY KEY (`idpago`),
   ADD KEY `fk_pago_representante1_idx` (`representante_idrepresentante`),
   ADD KEY `fk_pago_usuario1_idx` (`usuario_idusuario`);
+
+--
+-- Indices de la tabla `pagos_deposito`
+--
+ALTER TABLE `pagos_deposito`
+  ADD PRIMARY KEY (`idpagos_deposito`),
+  ADD KEY `fk_habilidad_ficha_alumno1_idx` (`ficha_alumno_idficha_alumno`);
 
 --
 -- Indices de la tabla `permiso`
@@ -874,19 +1059,19 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `idalumno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idalumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  MODIFY `idasistencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idasistencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_productos_servicios`
@@ -901,40 +1086,40 @@ ALTER TABLE `ciudad`
   MODIFY `idCiudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
+-- AUTO_INCREMENT de la tabla `datos_academia`
+--
+ALTER TABLE `datos_academia`
+  MODIFY `iddatos_academia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_pago`
 --
 ALTER TABLE `detalle_pago`
-  MODIFY `iddetalle_pago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-  MODIFY `identrenador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `identrenador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ficha_alumno`
 --
 ALTER TABLE `ficha_alumno`
-  MODIFY `idficha_alumno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idficha_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `ficha_entrenador`
 --
 ALTER TABLE `ficha_entrenador`
-  MODIFY `idficha_entrenador` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `habilidad`
---
-ALTER TABLE `habilidad`
-  MODIFY `idhabilidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idficha_entrenador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idhorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
@@ -943,16 +1128,28 @@ ALTER TABLE `imagenes`
   MODIFY `idimagenes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `imagenes_app`
+--
+ALTER TABLE `imagenes_app`
+  MODIFY `idimagenes_app` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idnoticias` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idnoticias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `pagos_deposito`
+--
+ALTER TABLE `pagos_deposito`
+  MODIFY `idpagos_deposito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -964,7 +1161,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `productos_servicios`
 --
 ALTER TABLE `productos_servicios`
-  MODIFY `idproductos_servicios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idproductos_servicios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `provincia`
@@ -976,19 +1173,19 @@ ALTER TABLE `provincia`
 -- AUTO_INCREMENT de la tabla `representante`
 --
 ALTER TABLE `representante`
-  MODIFY `idrepresentante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idrepresentante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `sucursal`
 --
 ALTER TABLE `sucursal`
-  MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `sucursal_categorias`
 --
 ALTER TABLE `sucursal_categorias`
-  MODIFY `idsucursal_categorias` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsucursal_categorias` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -1000,7 +1197,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
-  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Restricciones para tablas volcadas
@@ -1013,96 +1210,10 @@ ALTER TABLE `alumno`
   ADD CONSTRAINT `fk_alumno_representante1` FOREIGN KEY (`representante_idrepresentante`) REFERENCES `representante` (`idrepresentante`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `asistencia`
---
-ALTER TABLE `asistencia`
-  ADD CONSTRAINT `fk_asistencia_ficha_alumno1` FOREIGN KEY (`ficha_alumno_idficha_alumno`) REFERENCES `ficha_alumno` (`idficha_alumno`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD CONSTRAINT `fk_ciudad_provincia` FOREIGN KEY (`IDPROVINCIA`) REFERENCES `provincia` (`idProvincia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `detalle_pago`
---
-ALTER TABLE `detalle_pago`
-  ADD CONSTRAINT `fk_detalle_pago_ficha_alumno1` FOREIGN KEY (`ficha_alumno_idficha_alumno`) REFERENCES `ficha_alumno` (`idficha_alumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detalle_pago_pago1` FOREIGN KEY (`pago_idpago`) REFERENCES `pago` (`idpago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detalle_pago_productos_servicios1` FOREIGN KEY (`productos_servicios_idproductos_servicios`) REFERENCES `productos_servicios` (`idproductos_servicios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `ficha_alumno`
---
-ALTER TABLE `ficha_alumno`
-  ADD CONSTRAINT `fk_ficha_alumno_alumno1` FOREIGN KEY (`alumno_idalumno`) REFERENCES `alumno` (`idalumno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_ficha_alumno_sucursal_categorias1` FOREIGN KEY (`sucursal_categorias_idsucursal_categorias`) REFERENCES `sucursal_categorias` (`idsucursal_categorias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `ficha_entrenador`
---
-ALTER TABLE `ficha_entrenador`
-  ADD CONSTRAINT `fk_ficha_entrenador_entrenador1` FOREIGN KEY (`entrenador_identrenador`) REFERENCES `entrenador` (`identrenador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_ficha_entrenador_sucursal_categorias1` FOREIGN KEY (`sucursal_categorias_idsucursal_categorias`) REFERENCES `sucursal_categorias` (`idsucursal_categorias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `habilidad`
---
-ALTER TABLE `habilidad`
-  ADD CONSTRAINT `fk_habilidad_ficha_alumno1` FOREIGN KEY (`ficha_alumno_idficha_alumno`) REFERENCES `ficha_alumno` (`idficha_alumno`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `imagenes`
---
-ALTER TABLE `imagenes`
-  ADD CONSTRAINT `fk_imagenes_noticias1` FOREIGN KEY (`noticias_idnoticias`) REFERENCES `noticias` (`idnoticias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `noticias`
---
-ALTER TABLE `noticias`
-  ADD CONSTRAINT `fk_noticias_sucursal_categorias1` FOREIGN KEY (`sucursal_categorias_idsucursal_categorias`) REFERENCES `sucursal_categorias` (`idsucursal_categorias`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `pago`
---
-ALTER TABLE `pago`
-  ADD CONSTRAINT `fk_pago_representante1` FOREIGN KEY (`representante_idrepresentante`) REFERENCES `representante` (`idrepresentante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pago_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `productos_servicios`
---
-ALTER TABLE `productos_servicios`
-  ADD CONSTRAINT `fk_productos_servicios_categorias_productos_servicios1` FOREIGN KEY (`categorias_productos_servicios_idcategorias_productos_servicios`) REFERENCES `categorias_productos_servicios` (`idcategorias_productos_servicios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `representante`
---
-ALTER TABLE `representante`
-  ADD CONSTRAINT `fk_representante_ciudad1` FOREIGN KEY (`ciudad_representante`) REFERENCES `ciudad` (`idCiudad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `sucursal`
---
-ALTER TABLE `sucursal`
-  ADD CONSTRAINT `fk_sucursal_ciudad1` FOREIGN KEY (`ciudad_idCiudad`) REFERENCES `ciudad` (`idCiudad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `sucursal_categorias`
---
-ALTER TABLE `sucursal_categorias`
-  ADD CONSTRAINT `fk_sucursal_categorias_categoria1` FOREIGN KEY (`categoria_idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sucursal_categorias_horario1` FOREIGN KEY (`horario_idhorario`) REFERENCES `horario` (`idhorario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sucursal_categorias_sucursal1` FOREIGN KEY (`sucursal_idsucursal`) REFERENCES `sucursal` (`idsucursal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuario_permiso`
---
-ALTER TABLE `usuario_permiso`
-  ADD CONSTRAINT `fk_usuario_permiso_permiso1` FOREIGN KEY (`permiso_idpermiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_permiso_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
