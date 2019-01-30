@@ -1,7 +1,7 @@
 <?php
 require_once "../modelos/Categoria.php";
 
- header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
     header("Access-Control-Allow-Origin: *");
 

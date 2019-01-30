@@ -835,6 +835,20 @@ public function CategoriasDisponiblesInfo_get()
       $this->response($respuesta);   
  }
 
+ //MATRICULAR ALUMNO
+ public function busquedaReMatri_get($cedula_representante)
+ {
+     //$pagina=$pagina*5;
+     $query = $this->db->query("SELECT * FROM `representante`
+      WHERE representante.cedula_representante='$cedula_representante'");
+
+     $respuesta = array(
+         'error' => FALSE,
+         'representante' => $query->result_array()
+     );
+     $this->response($respuesta);   
+}
+
 
    
 }
