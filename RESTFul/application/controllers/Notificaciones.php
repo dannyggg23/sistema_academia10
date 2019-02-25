@@ -120,8 +120,28 @@ class Notificaciones extends REST_Controller {
 		curl_close($ch);
 
 
+		//Guardar en la base de datos la notificacion 
+
+		$dirigido="";
+
+		$this->db->reset_query();
+		 $querySucur = $this->db->query("SELECT sucursal.nombre_sucursal FROM `sucursal` WHERE sucursal.idsucursal='$idsucursal'");
+
 		
+		foreach ($querySucur->result() as $rowSu)
+		{
+			$dirigido=$rowSu->nombre_sucursal;
+		}
+
+		$arrayNotificacion=array("titulo"=>$titulo,
+        "mensaje"=>$mensaje,
+        "dirigido"=>$dirigido,
+		"fecha"=>date("Y-m-d"));
 		
+        $this->db->reset_query();
+        $this->db->insert('notificaciones',$arrayNotificacion);
+
+
 		 $this->response($response);
 		 return $response;
 	
@@ -178,6 +198,17 @@ class Notificaciones extends REST_Controller {
 
 		$response = curl_exec($ch);
 		curl_close($ch);
+
+
+		//Guardar en la base de datos
+
+		$arrayNotificacion=array("titulo"=>$titulo,
+        "mensaje"=>$mensaje,
+        "dirigido"=>"Toda la academia",
+		"fecha"=>date("Y-m-d"));
+		
+        $this->db->reset_query();
+        $this->db->insert('notificaciones',$arrayNotificacion);
 		
 		
 		 $this->response($response);
@@ -283,6 +314,33 @@ public function curso_post()
 
 
 		
+		//Guardar en la base de datos la notificacion 
+
+		$dirigido="";
+
+		$this->db->reset_query();
+		 $querySucur = $this->db->query("SELECT sucursal.nombre_sucursal, categoria.nombre_categoria, horario.nombre FROM `sucursal_categorias` 
+		 INNER JOIN categoria ON categoria.idcategoria=sucursal_categorias.sucursal_idsucursal 
+		 INNER JOIN sucursal ON sucursal.idsucursal= sucursal_categorias.sucursal_idsucursal 
+		 INNER JOIN horario ON horario.idhorario=sucursal_categorias.horario_idhorario WHERE sucursal_categorias.idsucursal_categorias='$idsucursal'");
+
+		
+		foreach ($querySucur->result() as $rowSu)
+		{
+			$dirigido=$rowSu->nombre_sucursal. " - " .$rowSu->nombre_categoria." - ".$rowSu->nombre;
+		}
+
+		$arrayNotificacion=array("titulo"=>$titulo,
+        "mensaje"=>$mensaje,
+        "dirigido"=>$dirigido,
+		"fecha"=>date("Y-m-d"));
+		
+        $this->db->reset_query();
+        $this->db->insert('notificaciones',$arrayNotificacion);
+
+		
+
+
 		
 		 $this->response($response);
 		 return $response;

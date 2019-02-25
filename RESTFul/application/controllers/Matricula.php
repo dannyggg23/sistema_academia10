@@ -68,7 +68,7 @@ class Matricula extends REST_Controller {
         "alumno_idalumno"=>$idalumno,
         "sucursal_categorias_idsucursal_categorias"=>$idsucursal_categorias,
         "fecha_acceso"=>date("Y-m-d"),
-        "descuento_ficha_alumno"=>$descuento_ficha_alumno,
+        "descuento_ficha_alumno"=>$descuento_ficha_alumno
     );
         $this->db->reset_query();
         $this->db->insert('ficha_alumno',$arrayFichaAlumno); //inserto una ficha

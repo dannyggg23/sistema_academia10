@@ -849,6 +849,55 @@ public function CategoriasDisponiblesInfo_get()
      $this->response($respuesta);   
 }
 
+ //Listar notifiaciones
+ public function listaNotificaciones_get()
+ {
+     //$pagina=$pagina*5;
+     $query = $this->db->query("SELECT `id_notificaciones`, `titulo`, `mensaje`, `dirigido`, `fecha` FROM `notificaciones`");
 
-   
+     $respuesta = array(
+         'error' => FALSE,
+         'notificaciones' => $query->result_array()
+     );
+     $this->response($respuesta);   
+}
+
+public function borrarNotificacion_delete($id_notificaciones)
+ {
+    $this->db->where('id_notificaciones', $id_notificaciones);
+    $query=$this->db->delete('notificaciones');
+
+     $respuesta = array(
+         'error' => FALSE,
+         'notificaciones' =>"OK"
+     );
+     $this->response($respuesta);   
+}
+
+public function validarCedula_get($cedula_representante)
+ {
+
+    require_once('../vendor/autoload.php');
+      
+         $validador = new Tavo\ValidadorEc;
+
+		 if ($validador->validarCedula($cedula_representante)) {
+           
+            $respuesta = array(
+                'error' => FALSE,
+                'notificaciones' =>"CEDULA VALIDA"
+            );
+
+		} else {
+
+            $respuesta = array(
+                'error' => TRUE,
+                'notificaciones' =>'CEDULA INCORRECTA: '.$validador->getError()
+            );
+		}
+
+     $this->response($respuesta);
+
+}
+
 }

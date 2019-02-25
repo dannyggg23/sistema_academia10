@@ -189,17 +189,17 @@
             </li>
 
             <li class="treeview">
-              <a href="#">
+              <a href="noticias_todos.php">
                 <i class="fa fa-newspaper-o fa-lg"></i> <span>Noticias</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu"> -->
               
-                 <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias</a></li>
                  <!-- <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias</a></li> -->
-                 <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li>
+                 <!-- <li><a href="noticias_todos.php"><i class="fa fa-circle-o"></i>Noticias</a></li> -->
+                 <!-- <li><a href="imagenes.php"><i class="fa fa-circle-o"></i>Agregar imagenes</a></li> -->
               
-              </ul> 
+              <!-- </ul>  -->
             </li>
 
             <li>
