@@ -900,4 +900,77 @@ public function validarCedula_get($cedula_representante)
 
 }
 
+//convenios
+
+
+public function listaConvenios_get()
+{
+   
+    $query = $this->db->query('SELECT * FROM `documento` WHERE tipo="Convenio"');
+
+    $respuesta = array(
+        'error' => FALSE,
+        'convenios' => $query->result_array()
+    );
+    $this->response($respuesta);   
+}
+
+public function listaCertificaciones_get()
+{
+   
+    $query = $this->db->query('SELECT * FROM `documento` WHERE tipo="Certificado"');
+
+    $respuesta = array(
+        'error' => FALSE,
+        'certificaciones' => $query->result_array()
+    );
+    $this->response($respuesta);   
+}
+
+
+public function listarSubCatego_get($sub)
+{
+    $query = $this->db->query("SELECT 
+    `categoria`.`nombre_categoria`,
+    `sucursal`.`latitud_sucursal`,
+    `sucursal`.`longitud_sucursal`,
+    `sucursal`.`nombre_sucursal`,
+    `sucursal_categorias`.`idsucursal_categorias`
+  FROM
+    `sucursal`
+    INNER JOIN `sucursal_categorias` ON (`sucursal`.`idsucursal` = `sucursal_categorias`.`sucursal_idsucursal`)
+    INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
+    INNER JOIN `categoria` ON (`sucursal_categorias`.`categoria_idcategoria` = `categoria`.`idcategoria`)
+  WHERE categoria.nombre_categoria like '%$sub%'");
+
+    $respuesta = array(
+        'error' => FALSE,
+        'subcategorias' => $query->result_array()
+    );
+    $this->response($respuesta);   
+}
+
+public function listarHorarioSucur_get($sucursal)
+{
+    $query = $this->db->query("SELECT 
+    `categoria`.`nombre_categoria`,
+    `horario`.`nombre`,
+    `horario`.`hora_inicio`,
+    `horario`.`hora_fin`
+  FROM
+    `sucursal`
+    INNER JOIN `sucursal_categorias` ON (`sucursal`.`idsucursal` = `sucursal_categorias`.`sucursal_idsucursal`)
+    INNER JOIN `horario` ON (`sucursal_categorias`.`horario_idhorario` = `horario`.`idhorario`)
+    INNER JOIN `categoria` ON (`sucursal_categorias`.`categoria_idcategoria` = `categoria`.`idcategoria`)
+  WHERE sucursal.idsucursal='$sucursal'
+  ");
+
+    $respuesta = array(
+        'error' => FALSE,
+        'horarios' => $query->result_array()
+    );
+    $this->response($respuesta);   
+}
+
+
 }

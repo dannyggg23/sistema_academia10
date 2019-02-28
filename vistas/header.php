@@ -169,6 +169,7 @@
                 <li><a href="academia.php"><i class="fa fa-circle-o"></i> Datos Academia</a></li>
                 <li><a href="pagos_deposito.php"><i class="fa fa-circle-o"></i> Depósitos</a></li>
                 <li><a href="imagenes_app.php"><i class="fa fa-circle-o"></i> Imagenes App</a></li>
+                <li><a href="documento.php"><i class="fa fa-circle-o"></i>Documentos</a></li>
                 <!--<li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>-->
 
               </ul>
